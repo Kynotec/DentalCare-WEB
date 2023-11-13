@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/yii2-app-advanced/vendor/ralouphie/getallheaders" />
@@ -89,6 +99,107 @@
       <path value="$PROJECT_DIR$/yii2-app-advanced/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/yii2-app-advanced/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/yii2-app-advanced/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/yiisoft/yii2-symfonymailer" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/yiisoft/yii2-gii" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/yiisoft/yii2-faker" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/yiisoft/yii2-debug" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/yiisoft/yii2-composer" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/yiisoft/yii2-bootstrap5" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/yiisoft/yii2" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpspec/php-diff" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/cebe/markdown" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/verify" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/stub" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/module-yii2" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/module-filesystem" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/module-asserts" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/composer" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/lib-web" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/lib-innerbrowser" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/lib-asserts" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/codeception" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/bower-asset/yii2-pjax" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/bower-asset/punycode" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/bower-asset/jquery" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/bower-asset/inputmask" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/bower-asset/bootstrap" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/doctrine/instantiator" />
     </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/DentalCare/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
   </component>
 </project>
