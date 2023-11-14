@@ -11,6 +11,12 @@
       <sourceFolder url="file://$MODULE_DIR$/DentalCare/frontend/tests/_support" isTestSource="true" packagePrefix="frontend\tests\" />
       <sourceFolder url="file://$MODULE_DIR$/DentalCare/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/DentalCare/vendor/codeception/phpunit-wrapper" />
+      <excludeFolder url="file://$MODULE_DIR$/DentalCare/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/DentalCare/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/DentalCare/vendor/symfony/polyfill-php73" />
+      <excludeFolder url="file://$MODULE_DIR$/DentalCare/vendor/symfony/polyfill-php80" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

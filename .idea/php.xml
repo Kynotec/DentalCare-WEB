@@ -127,7 +127,6 @@
       <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/css-selector" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/browser-kit" />
-      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-invoker" />
@@ -186,6 +185,11 @@
       <path value="$PROJECT_DIR$/DentalCare/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/phpunit-wrapper" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/phpunit" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">

@@ -88,11 +88,14 @@ AppAsset::register($this);
 </header>
 
 <main role="main" class="flex-shrink-0">
+
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+
         <?= $content ?>
+
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">

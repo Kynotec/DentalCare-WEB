@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab03ef3-d14a-4517-83e3-a9ebf12fedcb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/views/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/views/layouts/main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/views/site/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/views/site/index.php" afterDir="false" />
-    </list>
+    <list default="true" id="fab03ef3-d14a-4517-83e3-a9ebf12fedcb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +17,9 @@
   </component>
   <component name="ComposerSettings">
     <pharConfigPath>$PROJECT_DIR$/DentalCare/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -145,7 +144,6 @@
       <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/css-selector" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/browser-kit" />
-      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/php-invoker" />
@@ -204,6 +202,11 @@
       <path value="$PROJECT_DIR$/DentalCare/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/phpunit-wrapper" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/phpunit/phpunit" />
     </include_path>
   </component>
   <component name="ProjectId" id="2Y84kxxwyy0zBFFviJC2LoZuAbC" />
@@ -211,17 +214,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings scope="ConfigurationFile" />
