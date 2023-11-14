@@ -4,12 +4,13 @@
 /** @var string $content */
 
 use common\widgets\Alert;
+use frontend\assets\AppAsset;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 
-
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -34,36 +35,42 @@ use yii\bootstrap5\NavBar;
 
     <!-- Template Main CSS File -->
     <link href="../../assets/css/style.css" rel="stylesheet">
+
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
+
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header>
+<header id="header">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+            'class' => '',
         ],
     ]);
+    ?>
+    <a href="index.html"> <img src="../../assets/img/dentalcarelogo.png" height="70" width="160"></a>
+    <?php
     $menuItems = [
+
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Serviços', 'url' => ['/site/about']],
-        ['label' => 'Produtos', 'url' => ['/site/contact']],
-        ['label' => 'Marcações', 'url' => ['/site/marcacoes']],
+        ['label' => 'Serviços', 'url' => ["#services"]],
+
     ];
+    /*
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
     }
-
+*/
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
+        'options' => ['class' => 'container d-flex align-items-center'],
         'items' => $menuItems,
     ]);
     if (Yii::$app->user->isGuest) {
@@ -81,26 +88,15 @@ use yii\bootstrap5\NavBar;
 </header>
 
 <main role="main" class="flex-shrink-0">
-    <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">
-    <!-- Vendor JS Files -->
-    <script src="../../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="../../assets/vendor/aos/aos.js"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="../../assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="../../assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="../../assets/js/main.js"></script>
 
     <div class="container">
 
@@ -112,7 +108,22 @@ use yii\bootstrap5\NavBar;
         </div>
     </div>
 
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
 </footer>
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="../../assets/vendor/aos/aos.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../../assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="../../assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../../assets/js/main.js"></script>
+
 
 <?php $this->endBody() ?>
 </body>

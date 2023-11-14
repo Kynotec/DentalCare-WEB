@@ -5,7 +5,6 @@
 $this->title = 'Dental Care';
 ?>
 
-</header>
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -15,18 +14,12 @@ $this->title = 'Dental Care';
         <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url(../../assets/img/slide/slide-1.jpg)">
+            <div class="carousel-item active" style="background-image: url(../../assets/img/slide/slide-2.jpg)">
                 <div class="container">
-                    <h2>Welcome to <span>DentalCare</span></h2>
-
-                    <a href="#about" class="btn-get-started scrollto">Read More</a>
+                    <h2>Bem-vindo à <span>DentalCare</span></h2>
                 </div>
             </div>
-
-
         </div>
-
-
     </div>
 </section><!-- End Hero -->
 
@@ -38,7 +31,7 @@ $this->title = 'Dental Care';
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
-                <h2>Services</h2>
+                <h2>Serviços</h2>
                 <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
 
