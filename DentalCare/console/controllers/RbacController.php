@@ -18,9 +18,9 @@ class RbacController extends Controller
         //TODO: PERMISSSÂO LOGIN / Logout
 
         // Criar a permissão viewLogin - Fazer Login
-        $viewLogin = $auth->createPermission('viewLogin');
-        $viewLogin->description = "Fazer Login";
-        $auth->add($viewLogin);
+        $viewLoginBo = $auth->createPermission('viewLoginBo');
+        $viewLoginBo->description = "Fazer Login BO";
+        $auth->add($viewLoginBo);
 
 
         // Criar a permissão doLogout - Fazer Logout
@@ -229,7 +229,6 @@ class RbacController extends Controller
         // Cria o utilizador "Utente"
         $utente = $auth->createRole("utente");
         $auth->add($utente);
-        $auth->addChild($utente, $viewLogin);
         $auth->addChild($utente, $doLogout);
         $auth->addChild($utente, $createConsulta);
         $auth->addChild($utente, $updateConsulta);
@@ -248,6 +247,7 @@ class RbacController extends Controller
         $medico = $auth->createRole("medico");
         $auth->add($medico);
         $auth->addChild($medico, $utente);
+        $auth->addChild($medico, $viewLoginBo);
         $auth->addChild($medico, $addEstadoClinico);
         $auth->addChild($medico, $readEstadoClinico);
         $auth->addChild($medico, $updateEstadoClinico);
@@ -255,7 +255,7 @@ class RbacController extends Controller
         // Cria o utilizador "Funcionario"
         $funcionario = $auth->createRole("funcionario");
         $auth->add($funcionario);
-        $auth->addChild($funcionario, $viewLogin);
+        $auth->addChild($funcionario, $viewLoginBo);
         $auth->addChild($funcionario, $doLogout);
         $auth->addChild($funcionario, $createConsulta);
         $auth->addChild($funcionario, $updateConsulta);

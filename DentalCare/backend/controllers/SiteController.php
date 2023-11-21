@@ -26,14 +26,20 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
+                'only' => ['login', 'logout', 'index'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
                         'allow' => true,
+                        'actions' => ['login', 'error'],
                     ],
                     [
-                        'actions' => ['logout', 'index'],
                         'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['logout'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -46,6 +52,7 @@ class SiteController extends Controller
             ],
         ];
     }
+
 
     /**
      * {@inheritdoc}
@@ -80,11 +87,29 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-
+        $this->layout = 'main-login';
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['/cliente/view', 'user_id' =>Yii::$app->user->id]);
+            if(!Yii::$app->user->can('viewLoginBo')){
+                Yii::$app->user->logout();
+                $this->redirect('http://localhost/DentalCare-WEB/DentalCare/frontend/web/');
+
+            }
+
+            else
+            {
+
+                $role = User::findOne(Yii::$app->user->getId())->getRole();
+                if ($role == ' ')
+                {
+                    return $this->redirect('');
+                }
+                return $this->goBack();
+
+            }
+              
+
         }
 
         $model->password = '';
