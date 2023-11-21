@@ -35,40 +35,28 @@
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-
-                    /** Marcações **/
                     [
-                        'label' => 'Marcações',
-                        'icon' => 'calendar',
-                        'visible' => Yii::$app->user->can("createConsulta"),
+                        'label' => 'Starter Pages',
+                        'icon' => 'tachometer-alt',
+                        'badge' => '<span class="right badge badge-info">2</span>',
                         'items' => [
-                            ['label' => 'Consultar Marcações', 'icon' => 'eye', 'url' => ['/marcacoes'], ],
-                            ['label' => 'Criar Marcações', 'icon' => 'plus', 'url' => ['../web/user/create?userType=utente'],
-                            ],
-                        ],
+                            ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
+                            ['label' => 'Inactive Page', 'iconStyle' => 'far'],
+                        ]
                     ],
+                    ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
 
-                    /** Diagnósticos **/
-                    [
-                        'label' => 'Diagnósticos',
-                        'icon' => 'notes-medical',
-                        'visible' => Yii::$app->user->can("addEstadoClinico"),
-                        'items' => [
-                            ['label' => 'Consultar Diagnósticos', 'icon' => 'eye', 'url' => [''], ],
-                            ['label' => 'Criar Diagnósticos', 'icon' => 'plus', 'url' => [''],
-                            ],
-                        ],
-                    ],
+                    ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
 
 
                     /** Utente **/
                     [
-                        'label' => 'Utentes','badge' => '<span class="right badge badge-danger">New</span>' ,
+                        'label' => 'Utentes',
                         'icon' => 'user',
                         'visible' => Yii::$app->user->can("createUtilizador"),
                         'items' => [
                             ['label' => 'Consultar Utentes', 'icon' => 'eye', 'url' => ['/utente'], ],
-                            ['label' => 'Criar Utentes', 'icon' => 'plus', 'url' => ['../web/user/create?userType=utente'],
+                            ['label' => 'Criar Utentes', 'icon' => 'plus', 'url' => ['../user/create?userType=cliente'],
                             ],
                         ],
                     ],
@@ -82,46 +70,6 @@
                             ['label' => 'Criar Funcionarios', 'icon' => 'plus', 'url' => ['../user/create?userType=funcionario']],
                         ],
                     ],
-
-                    /** Produtos **/
-                    [
-                        'label' => 'Produtos',
-                        'icon' => 'boxes',
-                        'visible' => Yii::$app->user->can("createProdutos"),
-                        'items' => [
-                            ['label' => 'Consultar Produtos', 'icon' => 'eye', 'url' => ['']],
-                            ['label' => 'Criar Produtos', 'icon' => 'plus', 'url' => ['']],
-                        ],
-                    ],
-
-                    /** Ivas **/
-                    [
-                        'label' => 'Ivas',
-                        'icon' => 'tag',
-                        'visible' => Yii::$app->user->can("createIva"),
-                        'items' => [
-                            ['label' => 'Consultar Produtos', 'icon' => 'eye', 'url' => ['']],
-                            ['label' => 'Criar Produtos', 'icon' => 'plus', 'url' => ['']],
-                        ],
-                    ],
-
-                    /** Empresa **/
-                    [
-                        'label' => 'Empresa',
-                        'icon' => 'building',
-                        'visible' => Yii::$app->user->can("addEmpresa"),
-                        'items' => [
-                            ['label' => 'Consultar Empresa', 'icon' => 'eye', 'url' => ['']],
-                            ['label' => 'Criar Empresa', 'icon' => 'plus', 'url' => ['']],
-                        ],
-                    ],
-
-
-
-
-
-
-
                 ],
             ]);
             ?>

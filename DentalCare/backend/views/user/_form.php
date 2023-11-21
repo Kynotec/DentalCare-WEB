@@ -1,25 +1,21 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\User */
-/* @var $form yii\bootstrap4\ActiveForm */
+/** @var yii\web\View $this */
+/** @var common\models\User $model */
+/** @var yii\widgets\ActiveForm $form */
 ?>
 
 <div class="user-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-    <?= $form->field($model, 'email') ?>
-
-    <?= $form->field($model, 'password')->passwordInput() ?>
+    <?= $form->field($model, 'status')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

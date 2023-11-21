@@ -249,7 +249,9 @@ class RbacController extends Controller
         $auth->add($medico);
         $auth->addChild($medico, $utente);
         $auth->addChild($medico, $addEstadoClinico);
-        $auth->addChild($medico, $readEstadoClinico);
+        $auth->addChild($medico, $createProdutos);
+        $auth->addChild($medico, $readUtilizador);
+        $auth->addChild($medico, $updateUtilizador);
         $auth->addChild($medico, $updateEstadoClinico);
 
         // Cria o utilizador "Funcionario"
@@ -286,6 +288,9 @@ class RbacController extends Controller
 
 
             $auth->assign($admin, 1);
+            $auth->assign($funcionario, 2);
+            $auth->assign($medico, 13);
+            $auth->assign($utente,30);
 
 
 
