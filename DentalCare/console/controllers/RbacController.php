@@ -9,9 +9,11 @@ class RbacController extends Controller
 
     public function actionInit()
     {
+        try
+        {
+
         $auth = Yii::$app->authManager;
         $auth->removeAll();
-
 
         //TODO: PERMISSSÂO LOGIN / Logout
 
@@ -27,20 +29,12 @@ class RbacController extends Controller
         $auth->add($doLogout);
 
 
-
-
         //TODO: PERMISSSOES CONSULTAS CRU  com desmarcar
 
         // Criar a permissão createConsulta - Criar Consulta por Todos Utilizadores
         $createConsulta = $auth->createPermission('createConsulta');
         $createConsulta->description = "Create Consulta";
         $auth->add($createConsulta);
-
-        // Criar a permissão createConsultaByMedic - Criar Consultas por Medico
-        $createConsultaByMedic = $auth->createPermission('createConsultaByMedic');
-        $createConsultaByMedic->description = "Create Consulta by Medic";
-        $auth->add($createConsultaByMedic);
-
 
         // Criar a permissão readConsulta - Ver Consulta
         $readConsulta = $auth->createPermission('readConsulta');
@@ -61,8 +55,6 @@ class RbacController extends Controller
         //TODO: PERMISSOES Estado Clinico CRU
 
 
-
-
         // Cria a permissão createEstadoClinico - Criar Estado Clinico
         $addEstadoClinico = $auth->createPermission('addEstadoClinico');
         $addEstadoClinico->description = "Adicionar estado Clinico";
@@ -74,12 +66,10 @@ class RbacController extends Controller
         $auth->add($readEstadoClinico);
 
 
-
         // Cria a permissão updateEstadoClinico - Atualizar Estado Clinico
         $updateEstadoClinico = $auth->createPermission('updateEstadoClinico');
         $updateEstadoClinico->description = "Atualizar dados Clinicos";
         $auth->add($updateEstadoClinico);
-
 
 
         //TODO: PERMISSSOES PRODUTOS CRUD
@@ -89,18 +79,10 @@ class RbacController extends Controller
         $createProdutos->description = "Create Produtos";
         $auth->add($createProdutos);
 
-
-        //Produtos FO
-        // Criar a permissão readProdutosFO - Ver Produtos FO
-        $readProdutosFO = $auth->createPermission('readProdutosFO');
-        $readProdutosFO->description = "Ver Produtos FO";
-        $auth->add($readProdutosFO);
-
-        // Produtos BO
-        // Criar a permissão readProdutosBO - Ver Produtos BO
-        $readProdutosBO = $auth->createPermission('readProdutosBO');
-        $readProdutosBO->description = "Ver Produtos BO";
-        $auth->add($readProdutosBO);
+        // Criar a permissão readProdutos - Ver Produtos
+        $readProdutos = $auth->createPermission('readProdutos');
+        $readProdutos->description = "Ver Produtos ";
+        $auth->add($readProdutos);
 
         // criar a permissão updateProdutos - Update Produtos
         $updateProdutos = $auth->createPermission('updateProdutos');
@@ -138,55 +120,40 @@ class RbacController extends Controller
 
         //TODO: PERMISSOES UTILIZADORES CRUD
 
-        //Coloca permissao apenas em Admin para criar contas
-        // Cria a permissão createUtilizadorAdm - Criar Utilizador ADM
-        $createUtilizadorByAdm = $auth->createPermission('createUtilizadorByAdm');
-        $createUtilizadorByAdm->description = 'Create Utilizador by ADM';
-        $auth->add($createUtilizadorByAdm);
 
-        // Cria a permissão createUtilizadorByFunc - Criar Utilizador por Funcionario
-        $createUtilizadorByFunc = $auth->createPermission('createUtilizadorByFunc');
-        $createUtilizadorByFunc->description = 'Create Utilizador by Func';
-        $auth->add($createUtilizadorByFunc);
+        // Cria a permissão createUtilizador - Criar Utilizador
+        $createUtilizador = $auth->createPermission('createUtilizador');
+        $createUtilizador->description = 'Create Utilizador';
+        $auth->add($createUtilizador);
 
-        // Cria a permissão readUtilizadorByUser - Ver Dados do próprio utente
-        $readUtilizadorByUser = $auth->createPermission('readUtilizadorByUser');
-        $readUtilizadorByUser->description = "Ler dados User";
-        $auth->add($readUtilizadorByUser);
+        //Cria a permisao createFuncionario - Criar createFuncionario Por Admin
+            $createFuncionario = $auth->createPermission('createFuncionario');
+            $createFuncionario->description = 'Create Funcionario';
+            $auth->add($createFuncionario);
 
-        // Cria a permissão readUtilizadorByFunc - Ver Utilizadores por Funcionario
-        $readUtilizadorByFunc = $auth->createPermission('readUtilizadorByFunc');
-        $readUtilizadorByFunc->description = "Ver Utilizadores por Funcionario";
-        $auth->add($readUtilizadorByFunc);
+            //Cria a permisao createMedico - Criar createMedico Por Admin
+            $createMedico = $auth->createPermission('createMedico');
+            $createMedico->description = 'Create Medico';
+            $auth->add($createMedico);
 
-        // Cria a permissão updateUtilizadorByUser - Update utilizador por User
-        $updateUtilizadorByUser = $auth->createPermission('updateUtilizadorByUser');
-        $updateUtilizadorByUser->description = "Update Utilizador by User";
-        $auth->add($updateUtilizadorByUser);
 
-        // Cria a permissão updateUtilizadorByFunc - Update utilizador por Funcionario
-        $updateUtilizadorByFunc = $auth->createPermission('updateUtilizadorByFunc');
-        $updateUtilizadorByFunc->description = "Update Utilizador by Func";
-        $auth->add($updateUtilizadorByFunc);
 
-        //Coloca permissao apenas em Admin para atualizar contas
-        // Cria a permissão updateUtilizadorAdm - Update utilizador por Adm
-        $updateUtilizadorByAdm = $auth->createPermission('updateUtilizadorByAdm');
-        $updateUtilizadorByAdm->description = "Update Utilizador by ADM";
-        $auth->add($updateUtilizadorByAdm);
 
-        //Coloca permissao apenas em Admin para desativar contas
-        // Cria a permissão disableUtilizadorAdm - Desativar utilizador por Admin
-        $disableUtilizadorByAdm = $auth->createPermission('disableUtilizadorByAdm');
-        $disableUtilizadorByAdm->description = "Disable Utilizador by ADM";
-        $auth->add($disableUtilizadorByAdm);
+        // Cria a permissão readUtilizador - Ver Utilizadores
+        $readUtilizador = $auth->createPermission('readUtilizador');
+        $readUtilizador->description = "Ler dados";
+        $auth->add($readUtilizador);
 
-        // Fazer o Funcionario Desativar Contas
-        // Cria a permissão disableUtilizadorFunc - Desativar utilizador por Funcionario
-        $disableUtilizadorByFunc = $auth->createPermission('disableUtilizadorByFunc');
-        $disableUtilizadorByFunc->description = "Disable Utilizador by FUNC";
-        $auth->add($disableUtilizadorByFunc);
+        // Cria a permissão updateUtilizador - Update utilizador
+        $updateUtilizador = $auth->createPermission('updateUtilizador');
+        $updateUtilizador->description = "Update Utilizador";
+        $auth->add($updateUtilizador);
 
+
+        // Cria a permissão disableUtilizador - Desativar utilizador
+        $disableUtilizador = $auth->createPermission('disableUtilizador');
+        $disableUtilizador->description = "Disable Utilizador";
+        $auth->add($disableUtilizador);
 
 
         //TODO: PERMISSOES Faturas
@@ -269,33 +236,23 @@ class RbacController extends Controller
         $auth->addChild($utente, $readConsulta);
         $auth->addChild($utente, $desmarcarConsulta);
         $auth->addChild($utente, $readEstadoClinico);
-        $auth->addChild($utente, $readUtilizadorByUser);
+        $auth->addChild($utente, $readUtilizador);
+        $auth->addChild($utente, $updateUtilizador);
         $auth->addChild($utente, $readCarrinho);
         $auth->addChild($utente, $addCarrinho);
         $auth->addChild($utente, $deleteCarrinho);
         $auth->addChild($utente, $updateCarrinho);
-        $auth->addChild($utente, $readProdutosFO);
-        $auth->addChild($utente, $addEstadoClinico);
+        $auth->addChild($utente, $readProdutos);
 
         // Cria o utilizador "Médico"
         $medico = $auth->createRole("medico");
         $auth->add($medico);
-        $auth->addChild($medico, $viewLogin);
-        $auth->addChild($medico, $doLogout);
-        $auth->addChild($medico, $createConsulta);
-        $auth->addChild($medico, $createConsultaByMedic);
-        $auth->addChild($medico, $updateConsulta);
-        $auth->addChild($medico, $readConsulta);
-        $auth->addChild($medico, $desmarcarConsulta);
-        $auth->addChild($medico, $readEstadoClinico);
+        $auth->addChild($medico, $utente);
+        $auth->addChild($medico, $addEstadoClinico);
         $auth->addChild($medico, $createProdutos);
-        $auth->addChild($medico, $readProdutosBO);
-        $auth->addChild($medico, $updateProdutos);
-        $auth->addChild($medico, $deleteProdutos);
-        $auth->addChild($medico, $readUtilizadorByFunc);
+        $auth->addChild($medico, $readUtilizador);
+        $auth->addChild($medico, $updateUtilizador);
         $auth->addChild($medico, $updateEstadoClinico);
-        $auth->addChild($medico, $readEstadoClinico);
-
 
         // Cria o utilizador "Funcionario"
         $funcionario = $auth->createRole("funcionario");
@@ -303,60 +260,53 @@ class RbacController extends Controller
         $auth->addChild($funcionario, $viewLogin);
         $auth->addChild($funcionario, $doLogout);
         $auth->addChild($funcionario, $createConsulta);
-        $auth->addChild($funcionario, $createConsultaByMedic);
         $auth->addChild($funcionario, $updateConsulta);
         $auth->addChild($funcionario, $readConsulta);
         $auth->addChild($funcionario, $desmarcarConsulta);
         $auth->addChild($funcionario, $createProdutos);
-        $auth->addChild($funcionario, $readProdutosBO);
+        $auth->addChild($funcionario, $readProdutos);
         $auth->addChild($funcionario, $updateProdutos);
         $auth->addChild($funcionario, $deleteProdutos);
         $auth->addChild($funcionario, $updateIva);
-        $auth->addChild($funcionario, $createUtilizadorByFunc);
-        $auth->addChild($funcionario, $readUtilizadorByFunc);
-        $auth->addChild($funcionario, $updateUtilizadorByFunc);
-        $auth->addChild($funcionario, $disableUtilizadorByFunc);
+        $auth->addChild($funcionario, $createUtilizador);
+        $auth->addChild($funcionario, $readUtilizador);
+        $auth->addChild($funcionario, $updateUtilizador);
+        $auth->addChild($funcionario, $disableUtilizador);
         $auth->addChild($funcionario, $createIva);
         $auth->addChild($funcionario, $readIva);
-        $auth->addChild($funcionario, $updateIva);
         $auth->addChild($funcionario, $disableIva);
 
-
         // Cria o utilizador "Administrador"
-        $admin = $auth->createRole('admin');
+        $admin = $auth->createRole('administrador');
         $auth->add($admin);
-        $auth->addChild($admin, $viewLogin);
-        $auth->addChild($admin, $doLogout);
-        $auth->addChild($admin, $createConsulta);
-        $auth->addChild($admin, $createConsultaByMedic);
-        $auth->addChild($admin, $updateConsulta);
-        $auth->addChild($admin, $readConsulta);
-        $auth->addChild($admin, $desmarcarConsulta);
-        $auth->addChild($admin, $createProdutos);
-        $auth->addChild($admin, $readProdutosBO);
-        $auth->addChild($admin, $updateProdutos);
-        $auth->addChild($admin, $deleteProdutos);
-        $auth->addChild($admin, $updateIva);
-        $auth->addChild($admin, $createUtilizadorByAdm);
-        $auth->addChild($admin, $createUtilizadorByFunc);
-        $auth->addChild($admin, $readUtilizadorByFunc);
-        $auth->addChild($admin, $updateUtilizadorByUser);
-        $auth->addChild($admin, $updateUtilizadorByFunc);
-        $auth->addChild($admin, $updateUtilizadorByAdm);
-        $auth->addChild($admin, $disableUtilizadorByAdm);
-        $auth->addChild($admin, $disableUtilizadorByFunc);
+        $auth->addChild($admin, $funcionario);
         $auth->addChild($admin, $addEmpresa);
         $auth->addChild($admin, $readEmpresa);
         $auth->addChild($admin, $updateEmpresa);
-        $auth->addChild($admin, $createIva);
-        $auth->addChild($admin, $readIva);
-        $auth->addChild($admin, $updateIva);
-        $auth->addChild($admin, $disableIva);
-        $auth->addChild($admin, $readProdutosFO);
-        $auth->addChild($admin, $addEstadoClinico);
-        $auth->addChild($admin, $updateEstadoClinico);
-        $auth->addChild($admin, $readEstadoClinico);
+        $auth->addChild($admin, $createFuncionario);
+        $auth->addChild($admin, $createMedico);
 
+
+            $auth->assign($admin, 1);
+            $auth->assign($funcionario, 2);
+            $auth->assign($medico, 13);
+            $auth->assign($utente,30);
+
+
+
+        }
+        catch (\Exception $exception)
+        {
+            print_r($exception->getMessage());
+            print_r($exception->getLine());
+        }
+
+    }
+
+    public function actionClear()
+    {
+        $auth = Yii::$app->authManager;
+        $auth->removeAll();
     }
 
 }
