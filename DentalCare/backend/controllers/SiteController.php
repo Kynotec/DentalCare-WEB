@@ -2,6 +2,10 @@
 
 namespace backend\controllers;
 
+
+use frontend\models\SignupForm;
+use common\models\Perfil;
+use common\models\User;
 use common\models\LoginForm;
 use Yii;
 use yii\filters\VerbFilter;
@@ -76,11 +80,11 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $this->layout = 'blank';
+
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(['/cliente/view', 'user_id' =>Yii::$app->user->id]);
         }
 
         $model->password = '';
@@ -89,6 +93,24 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        $modelPerfil = new Perfil();
+
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            $user=$this->getId();
+            $modelPerfil->user_id=$user->getId();
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+            'modelPerfil' => $modelPerfil,
+        ]);
+    }
+
 
     /**
      * Logout action.
