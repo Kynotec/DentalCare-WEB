@@ -1,10 +1,12 @@
 <?php
 
+use common\models\User;
+use hail812\adminlte3\yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\search\ClienteSearch */
+/* @var $searchModel backend\models\SearchUtente */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Utentes';
@@ -40,18 +42,52 @@ $this->params['breadcrumbs'][] = $this->title;
                             'nif',
                             [
                                 'attribute' => 'user_id',
-                                'label' => 'Estado',
-                                'content' => function ($model) {
-                                  return Html::tag('span', $model->user->status ? 'Ativo' : 'Inativo', [
-                                        'class' => $model->user->status ? 'badge badge-success' : 'badge badge-danger']);
-                                }
+
+                                    'label' => 'Estado',
+                                    'format' => 'html',
+                                    'value' => function($data) {
+                                        return $data->user->getStatusLabel();
+                                    }
+
                             ],
-                            ['class' => 'hail812\adminlte3\yii\grid\ActionColumn'],
-                        ],
-                        'summaryOptions' => ['class' => 'summary mb-2'],
-                        'pager' => [
-                            'class' => 'yii\bootstrap4\LinkPager',
-                        ]
+                            [
+                                'class' => ActionColumn::class,
+                                'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
+                                'template' => '{view} {update} {delete}',
+                                'buttons' => [
+                                    'view' => function($url, $model)
+                                    {
+                                        return Html::a('<i class="fas fa-eye"></i>', ['utente/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                                    },
+                                    'update' => function($url, $model)
+                                    {
+                                        if (Yii::$app->user->can('updateUtilizador')) {
+                                            return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['utente/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
+                                        }
+                                    },
+                                    'delete' => function($url, $model)
+                                    {
+                                        if (Yii::$app->user->can('disableUtilizador')) {
+
+                                                if($model->user->status == User::STATUS_ACTIVE)
+                                                {
+                                                    return Html::a("<span class='material-symbols-outlined' style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>toggle_off</span>", ['desativar', 'user_id' => $model->user_id], [
+                                                        'class' => 'btn  btn-danger pb-0',
+                                                        'data'=> [
+                                                            'confirm' => 'Tem a certeza que quer desativar este Utente?'
+                                                        ]
+                                                    ]);
+                                                }
+                                                else
+                                                {
+                                                    return Html::a("<span class='material-symbols-outlined'  style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>toggle_on</span>", ['ativar', 'user_id' => $model->user_id], ['class' => 'btn  btn-success pb-0']);
+                                                }
+                                            }
+
+                                    }
+                                ],
+                            ],
+                            ],
                     ]); ?>
 
 
@@ -64,3 +100,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <!--.row-->
 </div>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />

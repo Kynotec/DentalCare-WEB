@@ -29,7 +29,20 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+    public function getStatusLabel()
+    {
+        switch ($this->status)
+        {
+            case self::STATUS_ACTIVE:
+                return '<span class="badge badge-success">Ativo</span>';
 
+            case self::STATUS_INACTIVE:
+                return '<span class="badge badge-danger">Desativado</span>';
+
+            default:
+                return '<span class="badge badge-info">' . $this->status . '</span>';
+        }
+    }
     /**
      * {@inheritdoc}
      */
