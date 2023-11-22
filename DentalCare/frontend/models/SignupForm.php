@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\models\Perfil;
 use Yii;
 use yii\base\Model;
 use common\models\User;
@@ -14,6 +15,14 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $status;
+
+    public $nome;
+    public $telefone;
+    public $morada;
+    public $nif;
+    public $codigopostal;
+    public $user_id;
 
 
     /**
@@ -35,6 +44,21 @@ class SignupForm extends Model
 
             ['password', 'required', 'message' => 'Insira uma password.'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+
+            ['nome', 'trim'],
+            ['nome', 'required', 'message' => 'Insira um nome.'],
+
+            ['telefone', 'trim'],
+            ['nome', 'required', 'message' => 'Insira um número de telefone.'],
+
+            ['morada', 'trim'],
+            ['morada', 'required', 'message' => 'Insira uma morada.'],
+
+            ['nif', 'trim'],
+            ['nif', 'required', 'message' => 'Insira o NIF.'],
+
+            ['codigopostal', 'trim'],
+            ['codigopostal', 'required', 'message' => 'Insira um código postal.'],
         ];
     }
 
@@ -48,15 +72,30 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
+        $perfil = new Perfil();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->status='10';
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
+        $user->save();
 
-        return $user->save() && $this->sendEmail($user);
+        $perfil->nome = $this->nome;
+        $perfil->telefone = $this->telefone;
+        $perfil->morada = $this->morada;
+        $perfil->nif = $this->nif;
+        $perfil->codigopostal = $this->codigopostal;
+        $perfil->user_id = $user->id;
+
+
+        $auth = \Yii::$app->authManager;
+        $utenteRole = $auth->getRole('utente');
+        $auth->assign($utenteRole, $user->getId());
+
+        return $perfil->save();
     }
 
     /**

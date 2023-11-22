@@ -151,6 +151,7 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+
     public function actionSignup()
     {
         $model = new SignupForm();

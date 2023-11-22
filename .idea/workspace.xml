@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab03ef3-d14a-4517-83e3-a9ebf12fedcb" name="Changes" comment="" />
+    <list default="true" id="fab03ef3-d14a-4517-83e3-a9ebf12fedcb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/backend/views/utente/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/backend/views/utente/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/controllers/SiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/models/SignupForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/models/SignupForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/views/site/signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/views/site/signup.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -227,14 +233,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ITAssets-Web" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings scope="ConfigurationFile" />
