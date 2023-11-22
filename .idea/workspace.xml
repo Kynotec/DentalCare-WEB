@@ -15,7 +15,7 @@
       <option value="$PROJECT_DIR$/DentalCare/frontend/web/assets/c2295deb/composer.json" />
     </option>
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/DentalCare/composer.json</pharConfigPath>
     <execution>
       <executable path="composer" />
@@ -228,8 +228,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ITAssets-Web" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
     <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
@@ -253,6 +257,7 @@
       <workItem from="1700497652772" duration="1937000" />
       <workItem from="1700504884172" duration="6467000" />
       <workItem from="1700569063650" duration="2441000" />
+      <workItem from="1700676154348" duration="1916000" />
     </task>
     <servers />
   </component>

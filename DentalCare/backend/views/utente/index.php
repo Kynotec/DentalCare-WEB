@@ -4,7 +4,6 @@ use common\models\User;
 use hail812\adminlte3\yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
-
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\SearchUtente */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -100,4 +99,3 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <!--.row-->
 </div>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />

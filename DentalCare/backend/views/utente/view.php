@@ -1,42 +1,81 @@
 <?php
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+/* @var $this yii\web\View */
+/* @var $model common\models\Perfil  */
+/* @var $modelUser common\models\User  */
+/* @var $searchModel backend\models\SearchUtente */
 
-/** @var yii\web\View $this */
-/** @var common\models\Perfil $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Perfils', 'url' => ['index']];
+$this->title = $model->nome;
+$this->params['breadcrumbs'][] = ['label' => 'Utentes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
-<div class="perfil-view">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        <?= Html::a('Atualizar', ['update', 'id' => $model->user_id], [
+                            'class' => 'btn btn-primary',
+                            'hidden' =>  !Yii::$app->user->can("funcionario")]) ?>
+                        <?php if ($model->user->status == User::STATUS_INACTIVE){
+                            echo  Html::a("<span class='material-symbols-outlined' style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>toggle_off</span>", ['ativar', 'user_id' => $model->user_id],
+                                [
+                                'class' => 'btn  btn-success pb-0',
+                                'hidden' =>  !Yii::$app->user->can("disableUtilizador"),
+                                'data' => [
+                                    'confirm' => 'Tem a certeza que pretende ativar este cliente?',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        } elseif($model->user->status == User::STATUS_ACTIVE)
+                        {
+                            echo Html::a("<span class='material-symbols-outlined'  style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>toggle_on</span>", ['desativar', 'user_id' => $model->user_id],
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                            [
+                                'class' => 'btn  btn-danger pb-0',
+                                'hidden' =>  !Yii::$app->user->can("disableUtilizador"),
+                                'data' => [
+                                    'confirm' => 'Tem a certeza que pretende desativar este cliente?',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        }
+                        ?>
+                    </p>
+                    <?= DetailView::widget([
+                        'model' => $model,
+                        'attributes' => [
+                            [ 'label' => 'Username',
+                                'value' => function ($data) {
+                                    return $data->user->username;
+                                }
+                            ],
+                            'nome',
+                            'telefone',
+                            'nif',
+                            'morada',
+                            'codigopostal',
+                            [ 'label' => 'Status',
+                                'format' =>'html',
+                                'value' => function ($data) {
+                                    return $data->user->getStatusLabel();
+                                }
+                            ],
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nome',
-            'telefone',
-            'morada',
-            'nif',
-            'codigopostal',
-            'user_id',
-        ],
-    ]) ?>
-
+                        ],
+                    ]) ?>
+                </div>
+                <!--.col-md-12-->
+            </div>
+            <!--.row-->
+        </div>
+        <!--.card-body-->
+    </div>
+    <!--.card-->
 </div>
