@@ -94,6 +94,29 @@ class RbacController extends Controller
         $deleteProdutos->description = "Delete dados Produtos";
         $auth->add($deleteProdutos);
 
+
+            //TODO: PERMISSSOES SERVICOS CRUD
+
+            // Criar a permissão createServicos - Criar Servicos
+            $createServicos = $auth->createPermission('createServicos');
+            $createServicos->description = "Create Servicos";
+            $auth->add($createServicos);
+
+            // Criar a permissão readServicos - Ver Servicos
+            $readServicos = $auth->createPermission('readServicos');
+            $readServicos->description = "Ver Servicos ";
+            $auth->add($readServicos);
+
+            // criar a permissão updateServicos - Update Servicos
+            $updateServicos = $auth->createPermission('updateServicos');
+            $updateServicos->description = "Update dados Servicos";
+            $auth->add($updateServicos);
+
+            // Cria a permissão deleteServicos - Delete Servicos
+            $deleteServicos = $auth->createPermission('deleteServicos');
+            $deleteServicos->description = "Delete dados Servicos";
+            $auth->add($deleteServicos);
+
         //TODO: PERMISSOES IVA CRUD
 
 
@@ -273,7 +296,10 @@ class RbacController extends Controller
         $auth->addChild($funcionario, $createIva);
         $auth->addChild($funcionario, $readIva);
         $auth->addChild($funcionario, $disableIva);
-
+        $auth->addChild($funcionario, $createServicos);
+        $auth->addChild($funcionario, $readServicos);
+        $auth->addChild($funcionario, $updateServicos);
+        $auth->addChild($funcionario, $deleteServicos);
         // Cria o utilizador "Administrador"
         $admin = $auth->createRole('administrador');
         $auth->add($admin);

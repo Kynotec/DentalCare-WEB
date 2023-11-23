@@ -15,13 +15,13 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'telefone')->textInput(['type'=>'number','maxlength'=>true])->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'telefone')->textInput(['maxlength' => true])->textInput(['type'=> 'number'])?>
 
-    <?= $form->field($model, 'nif')->textInput(['type'=> 'number'])->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nif')->textInput(['maxlength' => true])->textInput(['type'=> 'number']) ?>
 
     <?= $form->field($model, 'morada')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'codigopostal')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'codigopostal')->textInput(['maxlength' => true])?>
 
     <?= Html::submitButton('Guardar', ['class' => 'btn btn-success btn-lg btn-block']) ?>
 

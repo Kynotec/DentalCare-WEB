@@ -105,6 +105,17 @@
                         ],
                     ],
 
+                    /** Serviços **/
+                    [
+                        'label' => 'Serviços',
+                        'icon' => 'dolly',
+                        'visible' => Yii::$app->user->can("createServicos"),
+                        'items' => [
+                            ['label' => 'Consultar Serviços', 'icon' => 'eye', 'url' => ['']],
+                            ['label' => 'Criar Serviços', 'icon' => 'plus', 'url' => ['']],
+                        ],
+                    ],
+
                     /** Ivas **/
                     [
                         'label' => 'Ivas',
