@@ -6,15 +6,19 @@ use yii\helpers\Html;
 /** @var common\models\Perfil $model */
 
 $this->title = 'Create Perfil';
-$this->params['breadcrumbs'][] = ['label' => 'Perfils', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Utente', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="perfil-create">
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
 
+        </div>
+    </div>
 </div>

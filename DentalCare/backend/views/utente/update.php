@@ -4,18 +4,21 @@ use yii\helpers\Html;
 
 /** @var yii\web\View $this */
 /** @var common\models\Perfil $model */
-
-$this->title = 'Update Perfil: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Perfils', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Atualizar Utente:  ' . $model->user->username;
+$this->params['breadcrumbs'][] = ['label' => 'Utentes', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->user->username, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Atualizar';
 ?>
-<div class="perfil-update">
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
 
+        </div>
+    </div>
 </div>

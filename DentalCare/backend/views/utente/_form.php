@@ -8,28 +8,20 @@ use yii\bootstrap4\ActiveForm;
 /* @var $form yii\bootstrap4\ActiveForm */
 ?>
 
-<div class="perfil-form">
-
+<div>
     <?php $form = ActiveForm::begin(); ?>
-    <?php
 
-        echo $form->field($model, 'nome')->textInput(['maxlength' => true]);
-        echo $form->field($model, 'telefone')->input(['number']);
-        echo $form->field($model, 'nif')->textInput(['type' => 'number']);
+    <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'telefone')->textInput(['type'=>'number','maxlength'=>true])->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'nif')->textInput(['type'=> 'number'])->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'morada')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'codigopostal')->textInput(['maxlength' => true]) ?>
 
-
-        echo $form->field($model, 'morada')->textInput(['maxlength' => true]);
-
-        echo $form->field($model, 'codigopostal')->textInput(['maxlength' => true])->textInput(['type' => 'number']);
-    ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+    <?= Html::submitButton('Guardar', ['class' => 'btn btn-success btn-lg btn-block']) ?>
 
     <?php ActiveForm::end(); ?>
 

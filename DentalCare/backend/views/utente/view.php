@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <div class="col-md-12">
                     <p>
-                        <?= Html::a('Atualizar', ['update', 'id' => $model->user_id], [
-                            'class' => 'btn btn-primary',
+                        <?= Html::a("<span class='material-symbols-outlined' style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>edit</span>", ['update', 'id' => $model->user_id], [
+                            'class' => 'btn ',
                             'hidden' =>  !Yii::$app->user->can("funcionario")]) ?>
                         <?php if ($model->user->status == User::STATUS_INACTIVE){
                             echo  Html::a("<span class='material-symbols-outlined' style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>toggle_off</span>", ['ativar', 'user_id' => $model->user_id],
@@ -55,11 +55,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return $data->user->username;
                                 }
                             ],
+                            [ 'label' => 'E-mail',
+                                'value' => function ($data) {
+                                    return $data->user->email;
+                                }
+                            ],
                             'nome',
                             'telefone',
                             'nif',
                             'morada',
-                            'codigopostal',
+                            [ 'label' => 'Código-Postal',
+                                'value' => function ($data) {
+                                    return $data->codigopostal;
+                                }
+                            ],
                             [ 'label' => 'Status',
                                 'format' =>'html',
                                 'value' => function ($data) {

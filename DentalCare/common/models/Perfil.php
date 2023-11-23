@@ -37,9 +37,14 @@ class Perfil extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'integer'],
+            [['nome'], 'required'],
             [['nome'], 'string', 'max' => 45],
-            [['telefone', 'nif', 'codigopostal'], 'string', 'max' => 9],
+            [['telefone','nif'], 'required'],
+            [['telefone', 'nif'], 'string', 'max' => 9],
+            [['morada'], 'required'],
             [['morada'], 'string', 'max' => 25],
+            [['codigopostal'], 'required'],
+            [['codigopostal'], 'string', 'max' => 8],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -54,8 +59,8 @@ class Perfil extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'telefone' => 'Telefone',
             'morada' => 'Morada',
-            'nif' => 'Nif',
-            'codigopostal' => 'Codigopostal',
+            'nif' => 'NIF',
+            'codigopostal' => 'Código-Postal',
             'user_id' => 'User ID',
         ];
     }
