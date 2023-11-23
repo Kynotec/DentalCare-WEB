@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab03ef3-d14a-4517-83e3-a9ebf12fedcb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeception.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeception.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/controllers/SiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/views/site/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/views/site/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/web/index/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/web/index/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
