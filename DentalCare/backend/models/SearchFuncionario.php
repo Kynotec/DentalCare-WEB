@@ -7,9 +7,9 @@ use yii\data\ActiveDataProvider;
 use common\models\Perfil;
 
 /**
- * SearchUtente represents the model behind the search form of `common\models\Perfil`.
+ * SearchFuncionario represents the model behind the search form of `common\models\Perfil`.
  */
-class SearchUtente extends Perfil
+class SearchFuncionario extends Perfil
 {
     /**
      * {@inheritdoc}
@@ -41,13 +41,12 @@ class SearchUtente extends Perfil
     public function search($params)
     {
         $query = Perfil::find();
-
         $query->select('profiles.user_id, nome, telefone, morada, nif,codigopostal')
             ->from('user');
         $query->join = [
             ['JOIN', 'profiles', 'profiles.user_id = user.id'],
             ['JOIN', 'auth_assignment', 'user.id = auth_assignment.user_id']];
-        $query->where('auth_assignment.item_name = "utente"');
+        $query->where('auth_assignment.item_name = "funcionario"');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

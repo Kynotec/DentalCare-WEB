@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 18-Nov-2023 às 22:57
--- Versão do servidor: 8.0.33
--- versão do PHP: 8.1.0
+-- Tempo de geração: 23-Nov-2023 às 22:47
+-- Versão do servidor: 8.0.31
+-- versão do PHP: 8.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,10 +41,15 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
 --
 
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
-('administrador', '1', 1700224349),
-('funcionario', '2', 1700224349),
-('medico', '13', 1700224349),
-('utente', '30', 1700224349);
+('administrador', '1', 1700614633),
+('funcionario', '12', 1700779436),
+('funcionario', '9', 1700778923),
+('medico', '13', 1700779573),
+('medico', '7', 1700776888),
+('utente', '10', 1700779215),
+('utente', '11', 1700779398),
+('utente', '6', 1700685859),
+('utente', '8', 1700777082);
 
 -- --------------------------------------------------------
 
@@ -71,44 +76,44 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
-('addCarrinho', 2, 'Adicionar ao carrinho de compras', NULL, NULL, 1700224349, 1700224349),
-('addEmpresa', 2, 'Adicionar dados empresa', NULL, NULL, 1700224349, 1700224349),
-('addEstadoClinico', 2, 'Adicionar estado Clinico', NULL, NULL, 1700224349, 1700224349),
-('administrador', 1, NULL, NULL, NULL, 1700224349, 1700224349),
-('createConsulta', 2, 'Create Consulta', NULL, NULL, 1700224349, 1700224349),
-('createFaturas', 2, 'Criar Faturas', NULL, NULL, 1700224349, 1700224349),
-('createFuncionario', 2, 'Create Funcionario', NULL, NULL, 1700224349, 1700224349),
-('createIva', 2, 'Create Iva', NULL, NULL, 1700224349, 1700224349),
-('createMedico', 2, 'Create Medico', NULL, NULL, 1700224349, 1700224349),
-('createProdutos', 2, 'Create Produtos', NULL, NULL, 1700224349, 1700224349),
-('createUtilizador', 2, 'Create Utilizador', NULL, NULL, 1700224349, 1700224349),
-('deleteCarrinho', 2, 'Elimiar  artigos do carrinho ', NULL, NULL, 1700224349, 1700224349),
-('deleteProdutos', 2, 'Delete dados Produtos', NULL, NULL, 1700224349, 1700224349),
-('desmarcarConsulta', 2, 'Desmarcar Consultas', NULL, NULL, 1700224349, 1700224349),
-('disableFaturas', 2, 'Desativar Faturas', NULL, NULL, 1700224349, 1700224349),
-('disableIva', 2, 'Disable dados Iva', NULL, NULL, 1700224349, 1700224349),
-('disableUtilizador', 2, 'Disable Utilizador', NULL, NULL, 1700224349, 1700224349),
-('doLogout', 2, 'Fazer Logout', NULL, NULL, 1700224349, 1700224349),
-('funcionario', 1, NULL, NULL, NULL, 1700224349, 1700224349),
-('medico', 1, NULL, NULL, NULL, 1700224349, 1700224349),
-('readCarrinho', 2, 'Ver carrinho compras', NULL, NULL, 1700224349, 1700224349),
-('readConsulta', 2, 'Ver dados Consulta', NULL, NULL, 1700224349, 1700224349),
-('readEmpresa', 2, 'Ver dados empresa', NULL, NULL, 1700224349, 1700224349),
-('readEstadoClinico', 2, 'Ver estados Clinicos', NULL, NULL, 1700224349, 1700224349),
-('readFaturas', 2, 'Ver dados Faturas', NULL, NULL, 1700224349, 1700224349),
-('readIva', 2, 'Ver dados Iva', NULL, NULL, 1700224349, 1700224349),
-('readProdutos', 2, 'Ver Produtos ', NULL, NULL, 1700224349, 1700224349),
-('readUtilizador', 2, 'Ler dados', NULL, NULL, 1700224349, 1700224349),
-('updateCarrinho', 2, 'Atualizar artigos carrinho', NULL, NULL, 1700224349, 1700224349),
-('updateConsulta', 2, 'Update dados Consulta', NULL, NULL, 1700224349, 1700224349),
-('updateEmpresa', 2, 'Atualizar dados empresa', NULL, NULL, 1700224349, 1700224349),
-('updateEstadoClinico', 2, 'Atualizar dados Clinicos', NULL, NULL, 1700224349, 1700224349),
-('updateFaturas', 2, 'Update Faturas', NULL, NULL, 1700224349, 1700224349),
-('updateIva', 2, 'Update dados Iva', NULL, NULL, 1700224349, 1700224349),
-('updateProdutos', 2, 'Update dados Produtos', NULL, NULL, 1700224349, 1700224349),
-('updateUtilizador', 2, 'Update Utilizador', NULL, NULL, 1700224349, 1700224349),
-('utente', 1, NULL, NULL, NULL, 1700224349, 1700224349),
-('viewLogin', 2, 'Fazer Login', NULL, NULL, 1700224349, 1700224349);
+('addCarrinho', 2, 'Adicionar ao carrinho de compras', NULL, NULL, 1700614632, 1700614632),
+('addEmpresa', 2, 'Adicionar dados empresa', NULL, NULL, 1700614632, 1700614632),
+('addEstadoClinico', 2, 'Adicionar estado Clinico', NULL, NULL, 1700614632, 1700614632),
+('administrador', 1, NULL, NULL, NULL, 1700614633, 1700614633),
+('createConsulta', 2, 'Create Consulta', NULL, NULL, 1700614632, 1700614632),
+('createFaturas', 2, 'Criar Faturas', NULL, NULL, 1700614632, 1700614632),
+('createFuncionario', 2, 'Create Funcionario', NULL, NULL, 1700614632, 1700614632),
+('createIva', 2, 'Create Iva', NULL, NULL, 1700614632, 1700614632),
+('createMedico', 2, 'Create Medico', NULL, NULL, 1700614632, 1700614632),
+('createProdutos', 2, 'Create Produtos', NULL, NULL, 1700614632, 1700614632),
+('createUtilizador', 2, 'Create Utilizador', NULL, NULL, 1700614632, 1700614632),
+('deleteCarrinho', 2, 'Elimiar  artigos do carrinho ', NULL, NULL, 1700614632, 1700614632),
+('deleteProdutos', 2, 'Delete dados Produtos', NULL, NULL, 1700614632, 1700614632),
+('desmarcarConsulta', 2, 'Desmarcar Consultas', NULL, NULL, 1700614632, 1700614632),
+('disableFaturas', 2, 'Desativar Faturas', NULL, NULL, 1700614632, 1700614632),
+('disableIva', 2, 'Disable dados Iva', NULL, NULL, 1700614632, 1700614632),
+('disableUtilizador', 2, 'Disable Utilizador', NULL, NULL, 1700614632, 1700614632),
+('doLogout', 2, 'Fazer Logout', NULL, NULL, 1700614632, 1700614632),
+('funcionario', 1, NULL, NULL, NULL, 1700614632, 1700614632),
+('medico', 1, NULL, NULL, NULL, 1700614632, 1700614632),
+('readCarrinho', 2, 'Ver carrinho compras', NULL, NULL, 1700614632, 1700614632),
+('readConsulta', 2, 'Ver dados Consulta', NULL, NULL, 1700614632, 1700614632),
+('readEmpresa', 2, 'Ver dados empresa', NULL, NULL, 1700614632, 1700614632),
+('readEstadoClinico', 2, 'Ver estados Clinicos', NULL, NULL, 1700614632, 1700614632),
+('readFaturas', 2, 'Ver dados Faturas', NULL, NULL, 1700614632, 1700614632),
+('readIva', 2, 'Ver dados Iva', NULL, NULL, 1700614632, 1700614632),
+('readProdutos', 2, 'Ver Produtos ', NULL, NULL, 1700614632, 1700614632),
+('readUtilizador', 2, 'Ler dados', NULL, NULL, 1700614632, 1700614632),
+('updateCarrinho', 2, 'Atualizar artigos carrinho', NULL, NULL, 1700614632, 1700614632),
+('updateConsulta', 2, 'Update dados Consulta', NULL, NULL, 1700614632, 1700614632),
+('updateEmpresa', 2, 'Atualizar dados empresa', NULL, NULL, 1700614632, 1700614632),
+('updateEstadoClinico', 2, 'Atualizar dados Clinicos', NULL, NULL, 1700614632, 1700614632),
+('updateFaturas', 2, 'Update Faturas', NULL, NULL, 1700614632, 1700614632),
+('updateIva', 2, 'Update dados Iva', NULL, NULL, 1700614632, 1700614632),
+('updateProdutos', 2, 'Update dados Produtos', NULL, NULL, 1700614632, 1700614632),
+('updateUtilizador', 2, 'Update Utilizador', NULL, NULL, 1700614632, 1700614632),
+('utente', 1, NULL, NULL, NULL, 1700614632, 1700614632),
+('viewLoginBo', 2, 'Fazer Login BO', NULL, NULL, 1700614632, 1700614632);
 
 -- --------------------------------------------------------
 
@@ -138,13 +143,13 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('funcionario', 'createIva'),
 ('administrador', 'createMedico'),
 ('funcionario', 'createProdutos'),
-('medico', 'createProdutos'),
 ('funcionario', 'createUtilizador'),
 ('utente', 'deleteCarrinho'),
 ('funcionario', 'deleteProdutos'),
 ('funcionario', 'desmarcarConsulta'),
 ('utente', 'desmarcarConsulta'),
 ('funcionario', 'disableIva'),
+('administrador', 'disableUtilizador'),
 ('funcionario', 'disableUtilizador'),
 ('funcionario', 'doLogout'),
 ('utente', 'doLogout'),
@@ -153,12 +158,12 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('funcionario', 'readConsulta'),
 ('utente', 'readConsulta'),
 ('administrador', 'readEmpresa'),
+('medico', 'readEstadoClinico'),
 ('utente', 'readEstadoClinico'),
 ('funcionario', 'readIva'),
 ('funcionario', 'readProdutos'),
 ('utente', 'readProdutos'),
 ('funcionario', 'readUtilizador'),
-('medico', 'readUtilizador'),
 ('utente', 'readUtilizador'),
 ('utente', 'updateCarrinho'),
 ('funcionario', 'updateConsulta'),
@@ -168,11 +173,10 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('funcionario', 'updateIva'),
 ('funcionario', 'updateProdutos'),
 ('funcionario', 'updateUtilizador'),
-('medico', 'updateUtilizador'),
 ('utente', 'updateUtilizador'),
 ('medico', 'utente'),
-('funcionario', 'viewLogin'),
-('utente', 'viewLogin');
+('funcionario', 'viewLoginBo'),
+('medico', 'viewLoginBo');
 
 -- --------------------------------------------------------
 
@@ -419,7 +423,16 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `profiles`
+--
+
+INSERT INTO `profiles` (`id`, `nome`, `telefone`, `morada`, `nif`, `codigopostal`, `user_id`) VALUES
+(11, 'Utente', '912235435', 'utente', '984938271', '3100-111', 11),
+(12, 'Funcionario', '949593928', 'funcionario', '949302930', '3100-123', 12),
+(13, 'Médico', '904930293', 'medico', '930293940', '3100-000', 13);
 
 -- --------------------------------------------------------
 
@@ -461,14 +474,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
-(1, 'admin', 'YZ5UGIRxTnJ7iGZRSJ2mPKWhZG8GRJQm', '$2y$13$Ctd0aeAt/IzYrCe/UpiEBuXeEH8O10zXHs/u1d5zjwoPMNlZKC1fK', NULL, 'admin@gmail.com', 10, 1700221506, 1700221506, 'EbU5X1MWVYjYNTUWFcs7vIeu4_IifQqC_1700221506');
+(1, 'admin', '7pSZ4x53kHoWAgWyWWzyoVnocAQKIexN', '$2y$13$iaPF0tih3m1uqCUR//35duXBAe3S.AJgSn4hudSb9CN6wFy/b2Y3.', NULL, 'admin@gmail.com', 10, 1700498962, 1700498962, 'GWr2Z-ELPiSWpVZfFRIZIcB0Ja-4j77P_1700498962'),
+(11, 'Utente', 'FVLVKqBEci7xm6WNr-6AaweG6GLQe_oM', '$2y$13$XSIXKu2R80odoOi0/4v2pucxafYK4u3LAo8Dt0wLOS9rHiK2O0W7K', NULL, 'utente@gmail.com', 10, 1700779398, 1700779398, NULL),
+(12, 'funcionario', '4ejwy0V8QStbXiEA4eWZNQDCzmrdvON1', '$2y$13$oO1D4Qng8GmTkwHe2c/5tOifU0iv82.Sw26ybNKaYo5PGuviyU/o6', NULL, 'funcionario@gmail.com', 10, 1700779436, 1700779436, NULL),
+(13, 'medico', 'NKnjltO7qC8l4OqkIeJeqOM-lVYReJuI', '$2y$13$ykf3WrZwUxUgYA23d2YUXOcKMVG5U.pCc9FLfZFIB7OLq/sQlU/AK', NULL, 'medico@gmail.com', 10, 1700779573, 1700779573, NULL);
 
 --
 -- Restrições para despejos de tabelas
