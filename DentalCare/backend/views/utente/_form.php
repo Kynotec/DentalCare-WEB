@@ -5,11 +5,13 @@ use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Perfil */
+/* @var $model common\models\User */
 /* @var $form yii\bootstrap4\ActiveForm */
 ?>
 
 <div>
     <?php $form = ActiveForm::begin(); ?>
+
 
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 

@@ -1,9 +1,11 @@
 <?php
 
-namespace app\controllers;
+namespace backend\controllers;
 
 use common\models\Perfil;
-use app\models\SearchMedico;
+use backend\models\SearchMedico;
+use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -18,17 +20,45 @@ class MedicoController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['readUtilizador'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['createUtilizador'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['readUtilizador'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['updateUtilizador'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['desativar', 'ativar'],
+                        'roles' => ['disableUtilizador'],
+                    ],
+
                 ],
-            ]
-        );
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -38,8 +68,9 @@ class MedicoController extends Controller
      */
     public function actionIndex()
     {
+        $value = 0;
         $searchModel = new SearchMedico();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider = $searchModel->search($this->request->queryParams, $value);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -65,20 +96,29 @@ class MedicoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($idUser)
     {
         $model = new Perfil();
+        $model->user_id = $idUser;
+        $modelUser = $model->user;
+        if ($model->load(Yii::$app->request->post())) {
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if (isset($model)){
+                $model->save();
+
+                return $this->redirect(['index']);
+
+            }else
+            {
+                $model->save();
+                return $this->redirect(['index']);
             }
-        } else {
-            $model->loadDefaultValues();
+
         }
 
         return $this->render('create', [
             'model' => $model,
+            'modelUser' => $modelUser,
         ]);
     }
 
@@ -91,6 +131,7 @@ class MedicoController extends Controller
      */
     public function actionUpdate($id)
     {
+
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -98,7 +139,9 @@ class MedicoController extends Controller
         }
 
         return $this->render('update', [
+
             'model' => $model,
+
         ]);
     }
 
@@ -109,10 +152,19 @@ class MedicoController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDesativar($user_id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($user_id);
+        $modelUser = $model->user;
+        $modelUser->updateAttributes(['status' => 9]);
+        return $this->redirect(['index']);
+    }
 
+    public function actionAtivar($user_id)
+    {
+        $model = $this->findModel($user_id);
+        $modelUser = $model->user;
+        $modelUser->updateAttributes(['status' => 10]);
         return $this->redirect(['index']);
     }
 

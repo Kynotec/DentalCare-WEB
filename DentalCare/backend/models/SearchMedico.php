@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -42,7 +42,12 @@ class SearchMedico extends Perfil
     {
         $query = Perfil::find();
 
-        // add conditions that should always apply here
+        $query->select('profiles.user_id, nome, telefone, morada, nif,codigopostal')
+            ->from('user');
+        $query->join = [
+            ['JOIN', 'profiles', 'profiles.user_id = user.id'],
+            ['JOIN', 'auth_assignment', 'user.id = auth_assignment.user_id']];
+        $query->where('auth_assignment.item_name = "medico"');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

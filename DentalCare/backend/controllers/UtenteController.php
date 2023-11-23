@@ -111,12 +111,12 @@ class UtenteController extends Controller
             if (isset($model)){
                     $model->save();
 
-                    return $this->redirect(['view', 'id' => $model->user_id]);
+                    return $this->redirect(['index']);
 
             }else
             {
                 $model->save();
-                return $this->redirect(['view', 'id' => $model->user_id]);
+                return $this->redirect(['index']);
             }
 
         }
@@ -137,6 +137,7 @@ class UtenteController extends Controller
      */
     public function actionUpdate($id)
     {
+
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -144,7 +145,9 @@ class UtenteController extends Controller
         }
 
         return $this->render('update', [
+
             'model' => $model,
+
         ]);
     }
 
@@ -153,7 +156,7 @@ class UtenteController extends Controller
         $model = $this->findModel($user_id);
         $modelUser = $model->user;
         $modelUser->updateAttributes(['status' => 9]);
-        return $this->redirect(['view', 'id' => $modelUser->id]);
+        return $this->redirect(['index']);
     }
 
     public function actionAtivar($user_id)
@@ -161,7 +164,7 @@ class UtenteController extends Controller
         $model = $this->findModel($user_id);
         $modelUser = $model->user;
         $modelUser->updateAttributes(['status' => 10]);
-        return $this->redirect(['view', 'id' => $modelUser->id]);
+        return $this->redirect(['index']);
     }
 
 

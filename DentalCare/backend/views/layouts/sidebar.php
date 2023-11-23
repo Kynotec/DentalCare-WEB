@@ -63,7 +63,7 @@
 
                     /** Utente **/
                     [
-                        'label' => 'Utentes','badge' => '<span class="right badge badge-danger">New</span>' ,
+                        'label' => 'Utentes',
                         'icon' => 'user',
                         'visible' => Yii::$app->user->can("createUtilizador"),
                         'items' => [
@@ -80,6 +80,17 @@
                         'items' => [
                             ['label' => 'Consultar Funcionarios', 'icon' => 'eye', 'url' => ['/funcionario']],
                             ['label' => 'Criar Funcionarios', 'icon' => 'plus', 'url' => ['../user/create?userType=funcionario']],
+                        ],
+                    ],
+
+                    /** Médicos **/
+                    [
+                        'label' => 'Médicos',
+                        'icon' => 'user',
+                        'visible' => Yii::$app->user->can("createMedico"),
+                        'items' => [
+                            ['label' => 'Consultar Médicos', 'icon' => 'eye', 'url' => ['/medico']],
+                            ['label' => 'Criar Médicos', 'icon' => 'plus', 'url' => ['../web/user/create?userType=medico']],
                         ],
                     ],
 
