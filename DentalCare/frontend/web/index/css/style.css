@@ -24,6 +24,11 @@ a:hover {
   text-decoration: none;
 }
 
+
+.menu-right {
+  float: right;
+}
+
 h1,
 h2,
 h3,

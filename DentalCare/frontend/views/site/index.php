@@ -18,39 +18,52 @@ $this->title = 'Dental Care';
 <header id="header">
     <div class="container d-flex align-items-center">
 
-    <a href=""> <img src="index/img/dentalcarelogo.png" height="70" width="160"></a>
-    <nav id="navbar" class="navbar order-last order-lg-0">
+
+    <nav id="navbar" class="navbar form">
         <ul>
-            <?php
-            echo Html::tag('li class="nav-link scrollto',Html::a('',['']));
-            ?>
+
+            <div class="container d-flex align-items-center">
+                <a href=""> <img src="index/img/dentalcarelogo.png" height="70" width="160"></a>
+                <nav id="navbar" class="navbar form">
+                    <ul>
+                        <?php
+                        if (Yii::$app->user->isGuest) {
+                            echo Html::tag('div ',Html::a('Home',['/'],['class' => ['btn header-btn']]));
+                            echo Html::tag('div ',Html::a('Login',['/site/login'],['class' => ['btn header-btn']]));
+                            echo Html::tag('div ',Html::a('Registe-se',['/site/signup'],['class' => ['btn header-btn']]));
+
+                        }
+                        ?>
+                    </ul>
+                </nav>
+            </div>
+
             <?php
             if (!Yii::$app->user->isGuest)
             {
-                //echo Html::tag('li',Html::a('AREA CLIENTE',['/cliente/view','user_id'=>Yii::$app->user->id]));
+                echo Html::tag('li',Html::a('AREA UTENTE',['/areautente/view','user_id'=>Yii::$app->user->id]));
+                echo Html::tag('li',Html::a('MARCAÇÕES',['/marcacoes/view','user_id'=>Yii::$app->user->id]));
+                echo Html::tag('li',Html::a('CONSULTA',['/consulta/view','user_id'=>Yii::$app->user->id]));
+                echo Html::tag('li',Html::a('PRODUTOS',['/produtos/view','user_id'=>Yii::$app->user->id]));
+                echo Html::tag('li',Html::a('SERVIÇOS',['/servicos/view','user_id'=>Yii::$app->user->id]));
+                echo Html::tag('li',Html::a('',['']));
+                {
+                    echo Html::beginForm(['site/logout'], 'get')
+                        . Html::submitButton(
+                            'Logout (' . Yii::$app->user->identity->username . ')',
+                            ['class' => 'nav-link scrollto']
+                        )
+                        . Html::endForm();
+                }
             }
             ?>
         </ul>
     </nav>
     </div>
 
-    <div class="container d-flex align-items-center">
-        <?php
-        if (Yii::$app->user->isGuest) {
-            echo Html::tag('div ',Html::a('Home',['/'],['class' => ['btn header-btn']]));
-            echo Html::tag('div ',Html::a('Login',['/site/login'],['class' => ['btn header-btn']]));
-            echo Html::tag('div ',Html::a('Registe-se',['/site/signup'],['class' => ['btn header-btn']]));
-        } else {
-            echo Html::beginForm(['site/logout'], 'get')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn header-btn']
-                )
-                . Html::endForm();
-        }
-        ?>
 
-    </div>
+
+
 
 </header>
 <main id="main">

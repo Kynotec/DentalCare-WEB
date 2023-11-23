@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab03ef3-d14a-4517-83e3-a9ebf12fedcb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeception.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeception.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/backend/views/utente/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/backend/views/utente/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DentalCare/frontend/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/controllers/SiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/models/SignupForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/models/SignupForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/views/site/signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/views/site/signup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/views/site/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/views/site/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/web/index/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/web/index/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,11 +233,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/DentalCare-WEB&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings scope="ConfigurationFile" />
@@ -261,6 +266,8 @@
       <workItem from="1700504884172" duration="6467000" />
       <workItem from="1700569063650" duration="2441000" />
       <workItem from="1700676154348" duration="1916000" />
+      <workItem from="1700748113737" duration="2398000" />
+      <workItem from="1700765191001" duration="539000" />
     </task>
     <servers />
   </component>
