@@ -15,9 +15,9 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'telefone')->textInput(['maxlength' => true])->textInput(['type'=> 'number'])?>
+    <?= $form->field($model, 'telefone')->textInput(['type'=>'number'])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'nif')->textInput(['maxlength' => true])->textInput(['type'=> 'number']) ?>
+    <?= $form->field($model, 'nif')->textInput(['type'=> 'number'])->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'morada')->textInput(['maxlength' => true]) ?>
 

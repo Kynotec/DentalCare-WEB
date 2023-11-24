@@ -27,27 +27,27 @@ class MedicoController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index'],
-                        'roles' => ['readUtilizador'],
+                        'roles' => ['createMedico'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['create'],
-                        'roles' => ['createUtilizador'],
+                        'roles' => ['createMedico'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['view'],
-                        'roles' => ['readUtilizador'],
+                        'roles' => ['createMedico'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['update'],
-                        'roles' => ['updateUtilizador'],
+                        'roles' => ['createMedico'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['desativar', 'ativar'],
-                        'roles' => ['disableUtilizador'],
+                        'roles' => ['createMedico'],
                     ],
 
                 ],

@@ -52,12 +52,7 @@ class UtenteController extends Controller
 
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
+
         ];
     }
 
@@ -72,10 +67,12 @@ class UtenteController extends Controller
         $searchModel = new SearchUtente();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $value);
 
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+
     }
 
     /**

@@ -32,7 +32,7 @@ class FuncionarioController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['create'],
-                        'roles' => ['createUtilizador'],
+                        'roles' => ['createFuncionario'],
                     ],
                     [
                         'allow' => true,
@@ -42,12 +42,12 @@ class FuncionarioController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['update'],
-                        'roles' => ['updateUtilizador'],
+                        'roles' => ['createFuncionario'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['desativar', 'ativar'],
-                        'roles' => ['disableUtilizador'],
+                        'roles' => ['createFuncionario'],
                     ],
 
                 ],
