@@ -300,6 +300,11 @@ class RbacController extends Controller
         $auth->addChild($funcionario, $readServicos);
         $auth->addChild($funcionario, $updateServicos);
         $auth->addChild($funcionario, $deleteServicos);
+        $auth->addChild($funcionario, $createFaturas);
+        $auth->addChild($funcionario, $readFaturas);
+        $auth->addChild($funcionario, $updateFaturas);
+        $auth->addChild($funcionario, $disableFaturas);
+
         // Cria o utilizador "Administrador"
         $admin = $auth->createRole('administrador');
         $auth->add($admin);
