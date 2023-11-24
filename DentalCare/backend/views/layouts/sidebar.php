@@ -127,6 +127,18 @@
                         ],
                     ],
 
+                    /** Faturas **/
+                    [
+                        'label' => 'Faturas',
+                        'icon' => 'copy',
+                        'visible' => Yii::$app->user->can("createFaturas"),
+                        'items' => [
+                            ['label' => 'Consultar Faturas', 'icon' => 'eye', 'url' => ['']],
+                            ['label' => 'Criar Fatura', 'icon' => 'plus', 'url' => ['']],
+                        ],
+                    ],
+
+
                     /** Empresa **/
                     [
                         'label' => 'Empresa',
@@ -137,6 +149,7 @@
                             ['label' => 'Criar Empresa', 'icon' => 'plus', 'url' => ['']],
                         ],
                     ],
+
 
 
 
