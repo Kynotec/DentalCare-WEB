@@ -258,8 +258,6 @@ class RbacController extends Controller
         $auth->addChild($utente, $readConsulta);
         $auth->addChild($utente, $desmarcarConsulta);
         $auth->addChild($utente, $readEstadoClinico);
-        $auth->addChild($utente, $readUtilizador);
-        $auth->addChild($utente, $updateUtilizador);
         $auth->addChild($utente, $readCarrinho);
         $auth->addChild($utente, $addCarrinho);
         $auth->addChild($utente, $deleteCarrinho);

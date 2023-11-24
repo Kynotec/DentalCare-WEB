@@ -27,7 +27,7 @@ class MedicoController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index'],
-                        'roles' => ['readUtilizador'],
+                        'roles' => ['createMedico'],
                     ],
                     [
                         'allow' => true,
@@ -37,7 +37,7 @@ class MedicoController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['view'],
-                        'roles' => ['readUtilizador'],
+                        'roles' => ['createMedico'],
                     ],
                     [
                         'allow' => true,
