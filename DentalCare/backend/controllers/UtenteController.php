@@ -26,17 +26,33 @@ class UtenteController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','update','ativar','desativar'],
-                        'roles' => ['administrador','funcionario'],
+                        'actions' => ['index'],
+                        'roles' => ['readUtilizador'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['createUtilizador'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['readUtilizador'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['updateUtilizador'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['desativar', 'ativar'],
+                        'roles' => ['disableUtilizador'],
+                    ],
+
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
+
         ];
     }
 

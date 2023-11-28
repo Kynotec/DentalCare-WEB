@@ -26,9 +26,30 @@ class FuncionarioController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','update','ativar','desativar'],
-                        'roles' => ['administrador'],
+                        'actions' => ['index'],
+                        'roles' => ['readUtilizador'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['createFuncionario'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['readUtilizador'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['createFuncionario'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['desativar', 'ativar'],
+                        'roles' => ['createFuncionario'],
+                    ],
+
                 ],
             ],
             'verbs' => [
