@@ -72,6 +72,18 @@
                             ],
                         ],
                     ],
+
+                    /** Administradores **/
+                    [
+                        'label' => 'Administradores',
+                        'icon' => 'user',
+                        'visible' => Yii::$app->user->can("createAdministrador"),
+                        'items' => [
+                            ['label' => 'Consultar Administradores', 'icon' => 'eye', 'url' => ['/administrador']],
+                            ['label' => 'Criar Administradores', 'icon' => 'plus', 'url' => ['../web/user/create?userType=administrador']],
+                        ],
+                    ],
+
                     /** Funcionarios **/
                     [
                         'label' => 'Funcionarios',

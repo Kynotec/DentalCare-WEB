@@ -159,6 +159,11 @@ class RbacController extends Controller
             $createMedico->description = 'Create Medico';
             $auth->add($createMedico);
 
+            //Cria a permisao createAdministrador - Criar createAdministrador Por Admin
+            $createAdminstrador = $auth->createPermission('createAdministrador');
+            $createAdminstrador->description = 'Create Administrador';
+            $auth->add($createAdminstrador);
+
 
 
 
@@ -311,6 +316,7 @@ class RbacController extends Controller
         $auth->addChild($admin, $readEmpresa);
         $auth->addChild($admin, $updateEmpresa);
         $auth->addChild($admin, $createFuncionario);
+        $auth->addChild($admin, $createAdminstrador);
         $auth->addChild($admin, $createMedico);
 
 
