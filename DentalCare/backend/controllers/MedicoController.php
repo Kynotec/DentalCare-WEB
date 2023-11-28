@@ -26,30 +26,9 @@ class MedicoController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
-                        'roles' => ['createMedico'],
+                        'actions' => ['index','create','view','update','ativar','desativar'],
+                        'roles' => ['administrador'],
                     ],
-                    [
-                        'allow' => true,
-                        'actions' => ['create'],
-                        'roles' => ['createMedico'],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['view'],
-                        'roles' => ['createMedico'],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['update'],
-                        'roles' => ['createMedico'],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['desativar', 'ativar'],
-                        'roles' => ['createMedico'],
-                    ],
-
                 ],
             ],
             'verbs' => [
