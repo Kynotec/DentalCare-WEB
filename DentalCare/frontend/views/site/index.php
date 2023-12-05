@@ -44,7 +44,7 @@ $this->title = 'Dental Care';
                 echo Html::tag('li',Html::a('AREA UTENTE',['/areautente/view','user_id'=>Yii::$app->user->id]));
                 echo Html::tag('li',Html::a('MARCAÇÕES',['/marcacoes/view','user_id'=>Yii::$app->user->id]));
                 echo Html::tag('li',Html::a('CONSULTA',['/consulta/view','user_id'=>Yii::$app->user->id]));
-                echo Html::tag('li',Html::a('PRODUTOS',['/produtos/view','user_id'=>Yii::$app->user->id]));
+                echo Html::tag('li',Html::a('PRODUTOS',['/site/produtos']));
                 echo Html::tag('li',Html::a('SERVIÇOS',['/servicos/view','user_id'=>Yii::$app->user->id]));
                 echo Html::tag('li',Html::a('',['']));
                 {
