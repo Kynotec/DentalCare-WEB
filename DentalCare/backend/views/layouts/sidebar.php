@@ -106,14 +106,26 @@
                         ],
                     ],
 
+
+                    /** Categorias **/
+                    [
+                        'label' => 'Categorias',
+                        'icon' => 'layer-group',
+                        'visible' => Yii::$app->user->can("createCategorias"),
+                        'items' => [
+                            ['label' => 'Consultar Categorias', 'icon' => 'eye', 'url' => ['/categoria']],
+                            ['label' => 'Criar Categorias', 'icon' => 'plus', 'url' => ['/categoria/create']],
+                        ],
+                    ],
+
                     /** Produtos **/
                     [
                         'label' => 'Produtos',
                         'icon' => 'boxes',
                         'visible' => Yii::$app->user->can("createProdutos"),
                         'items' => [
-                            ['label' => 'Consultar Produtos', 'icon' => 'eye', 'url' => ['']],
-                            ['label' => 'Criar Produtos', 'icon' => 'plus', 'url' => ['']],
+                            ['label' => 'Consultar Produtos', 'icon' => 'eye', 'url' => ['/produto']],
+                            ['label' => 'Criar Produtos', 'icon' => 'plus', 'url' => ['/produto/create']],
                         ],
                     ],
 

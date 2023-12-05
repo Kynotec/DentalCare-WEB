@@ -15,8 +15,8 @@ use Yii;
  * @property int|null $carrinho_id
  * @property int $produto_id
  *
- * @property Carrinhos $carrinho
- * @property Produtos $produto
+ * @property Carrinho $carrinho
+ * @property Produto $produto
  */
 class LinhaCarrinho extends \yii\db\ActiveRecord
 {
@@ -37,8 +37,8 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
             [['quantidade', 'valorunitario', 'valoriva', 'valortotal'], 'number'],
             [['carrinho_id', 'produto_id'], 'integer'],
             [['produto_id'], 'required'],
-            [['carrinho_id'], 'exist', 'skipOnError' => true, 'targetClass' => Carrinhos::class, 'targetAttribute' => ['carrinho_id' => 'id']],
-            [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produtos::class, 'targetAttribute' => ['produto_id' => 'id']],
+            [['carrinho_id'], 'exist', 'skipOnError' => true, 'targetClass' => Carrinho::class, 'targetAttribute' => ['carrinho_id' => 'id']],
+            [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produto::class, 'targetAttribute' => ['produto_id' => 'id']],
         ];
     }
 
@@ -65,7 +65,7 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
      */
     public function getCarrinho()
     {
-        return $this->hasOne(Carrinhos::class, ['id' => 'carrinho_id']);
+        return $this->hasOne(Carrinho::class, ['id' => 'carrinho_id']);
     }
 
     /**
@@ -75,6 +75,6 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
      */
     public function getProduto()
     {
-        return $this->hasOne(Produtos::class, ['id' => 'produto_id']);
+        return $this->hasOne(Produto::class, ['id' => 'produto_id']);
     }
 }

@@ -72,6 +72,31 @@ class RbacController extends Controller
         $auth->add($updateEstadoClinico);
 
 
+            //TODO: PERMISSSOES CATEGORIAS CRUD
+
+            // Criar a permissão createCategorias - Criar Categorias
+            $createCategorias = $auth->createPermission('createCategorias');
+            $createCategorias->description = "Create Categorias";
+            $auth->add($createCategorias);
+
+            // Criar a permissão readCategorias - Ver Categorias
+            $readCategorias = $auth->createPermission('readCategorias');
+            $readCategorias->description = "Ver Categorias ";
+            $auth->add($readCategorias);
+
+            // criar a permissão updateCategorias - Update Categorias
+            $updateCategorias = $auth->createPermission('updateCategorias');
+            $updateCategorias->description = "Update dados Categorias";
+            $auth->add($updateCategorias);
+
+            // Cria a permissão deleteCategorias - Delete Categorias
+            $deleteCategorias = $auth->createPermission('deleteCategorias');
+            $deleteCategorias->description = "Delete dados Categorias";
+            $auth->add($deleteCategorias);
+
+
+
+
         //TODO: PERMISSSOES PRODUTOS CRUD
 
         // Criar a permissão createProdutos - Criar Produtos
@@ -307,6 +332,11 @@ class RbacController extends Controller
         $auth->addChild($funcionario, $readFaturas);
         $auth->addChild($funcionario, $updateFaturas);
         $auth->addChild($funcionario, $disableFaturas);
+        $auth->addChild($funcionario, $createCategorias);
+        $auth->addChild($funcionario, $readCategorias);
+        $auth->addChild($funcionario, $updateCategorias);
+        $auth->addChild($funcionario, $deleteCategorias);
+
 
         // Cria o utilizador "Administrador"
         $admin = $auth->createRole('administrador');

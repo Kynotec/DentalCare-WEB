@@ -13,9 +13,9 @@ use Yii;
  * @property int $servico_id
  * @property int $diagnostico_id
  *
- * @property Diagnosticos $diagnostico
- * @property Produtos $produto
- * @property Servicos $servico
+ * @property Diagnostico $diagnostico
+ * @property Produto $produto
+ * @property Servico $servico
  */
 class Imagem extends \yii\db\ActiveRecord
 {
@@ -36,9 +36,9 @@ class Imagem extends \yii\db\ActiveRecord
             [['filename', 'produto_id', 'servico_id', 'diagnostico_id'], 'required'],
             [['produto_id', 'servico_id', 'diagnostico_id'], 'integer'],
             [['filename'], 'string', 'max' => 2000],
-            [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produtos::class, 'targetAttribute' => ['produto_id' => 'id']],
-            [['servico_id'], 'exist', 'skipOnError' => true, 'targetClass' => Servicos::class, 'targetAttribute' => ['servico_id' => 'id']],
-            [['diagnostico_id'], 'exist', 'skipOnError' => true, 'targetClass' => Diagnosticos::class, 'targetAttribute' => ['diagnostico_id' => 'id']],
+            [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produto::class, 'targetAttribute' => ['produto_id' => 'id']],
+            [['servico_id'], 'exist', 'skipOnError' => true, 'targetClass' => Servico::class, 'targetAttribute' => ['servico_id' => 'id']],
+            [['diagnostico_id'], 'exist', 'skipOnError' => true, 'targetClass' => Diagnostico::class, 'targetAttribute' => ['diagnostico_id' => 'id']],
         ];
     }
 
@@ -63,7 +63,7 @@ class Imagem extends \yii\db\ActiveRecord
      */
     public function getDiagnostico()
     {
-        return $this->hasOne(Diagnosticos::class, ['id' => 'diagnostico_id']);
+        return $this->hasOne(Diagnostico::class, ['id' => 'diagnostico_id']);
     }
 
     /**
@@ -73,7 +73,7 @@ class Imagem extends \yii\db\ActiveRecord
      */
     public function getProduto()
     {
-        return $this->hasOne(Produtos::class, ['id' => 'produto_id']);
+        return $this->hasOne(Produto::class, ['id' => 'produto_id']);
     }
 
     /**
@@ -83,6 +83,6 @@ class Imagem extends \yii\db\ActiveRecord
      */
     public function getServico()
     {
-        return $this->hasOne(Servicos::class, ['id' => 'servico_id']);
+        return $this->hasOne(Servico::class, ['id' => 'servico_id']);
     }
 }

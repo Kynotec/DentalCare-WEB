@@ -17,8 +17,8 @@ use Yii;
  * @property int $servico_id
  *
  * @property Faturas $fatura
- * @property Produtos $produto
- * @property Servicos $servico
+ * @property Produto $produto
+ * @property Servico $servico
  */
 class LinhaFatura extends \yii\db\ActiveRecord
 {
@@ -40,8 +40,8 @@ class LinhaFatura extends \yii\db\ActiveRecord
             [['fatura_id', 'produto_id', 'servico_id'], 'integer'],
             [['servico_id'], 'required'],
             [['fatura_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faturas::class, 'targetAttribute' => ['fatura_id' => 'id']],
-            [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produtos::class, 'targetAttribute' => ['produto_id' => 'id']],
-            [['servico_id'], 'exist', 'skipOnError' => true, 'targetClass' => Servicos::class, 'targetAttribute' => ['servico_id' => 'id']],
+            [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produto::class, 'targetAttribute' => ['produto_id' => 'id']],
+            [['servico_id'], 'exist', 'skipOnError' => true, 'targetClass' => Servico::class, 'targetAttribute' => ['servico_id' => 'id']],
         ];
     }
 
@@ -79,7 +79,7 @@ class LinhaFatura extends \yii\db\ActiveRecord
      */
     public function getProduto()
     {
-        return $this->hasOne(Produtos::class, ['id' => 'produto_id']);
+        return $this->hasOne(Produto::class, ['id' => 'produto_id']);
     }
 
     /**
@@ -89,6 +89,6 @@ class LinhaFatura extends \yii\db\ActiveRecord
      */
     public function getServico()
     {
-        return $this->hasOne(Servicos::class, ['id' => 'servico_id']);
+        return $this->hasOne(Servico::class, ['id' => 'servico_id']);
     }
 }
