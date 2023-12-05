@@ -43,7 +43,7 @@
                         'visible' => Yii::$app->user->can("createConsulta"),
                         'items' => [
                             ['label' => 'Consultar Marcações', 'icon' => 'eye', 'url' => ['/marcacoes'], ],
-                            ['label' => 'Criar Marcações', 'icon' => 'plus', 'url' => ['../web/user/create?userType=utente'],
+                            ['label' => 'Criar Marcações', 'icon' => 'plus', 'url' => ['/marcacoes/create'],
                             ],
                         ],
                     ],
@@ -68,7 +68,7 @@
                         'visible' => Yii::$app->user->can("createUtilizador"),
                         'items' => [
                             ['label' => 'Consultar Utentes', 'icon' => 'eye', 'url' => ['/utente'], ],
-                            ['label' => 'Criar Utentes', 'icon' => 'plus', 'url' => ['../web/user/create?userType=utente'],
+                            ['label' => 'Criar Utentes', 'icon' => 'plus', 'url' => ['/user/create?userType=utente'],
                             ],
                         ],
                     ],
@@ -80,7 +80,7 @@
                         'visible' => Yii::$app->user->can("createAdministrador"),
                         'items' => [
                             ['label' => 'Consultar Administradores', 'icon' => 'eye', 'url' => ['/administrador']],
-                            ['label' => 'Criar Administradores', 'icon' => 'plus', 'url' => ['../web/user/create?userType=administrador']],
+                            ['label' => 'Criar Administradores', 'icon' => 'plus', 'url' => ['/user/create?userType=administrador']],
                         ],
                     ],
 
@@ -91,7 +91,7 @@
                         'visible' => Yii::$app->user->can("createFuncionario"),
                         'items' => [
                             ['label' => 'Consultar Funcionarios', 'icon' => 'eye', 'url' => ['/funcionario']],
-                            ['label' => 'Criar Funcionarios', 'icon' => 'plus', 'url' => ['../user/create?userType=funcionario']],
+                            ['label' => 'Criar Funcionarios', 'icon' => 'plus', 'url' => ['/user/create?userType=funcionario']],
                         ],
                     ],
 
@@ -102,7 +102,7 @@
                         'visible' => Yii::$app->user->can("createMedico"),
                         'items' => [
                             ['label' => 'Consultar Médicos', 'icon' => 'eye', 'url' => ['/medico']],
-                            ['label' => 'Criar Médicos', 'icon' => 'plus', 'url' => ['../web/user/create?userType=medico']],
+                            ['label' => 'Criar Médicos', 'icon' => 'plus', 'url' => ['/user/create?userType=medico']],
                         ],
                     ],
 
@@ -134,8 +134,8 @@
                         'icon' => 'tag',
                         'visible' => Yii::$app->user->can("createIva"),
                         'items' => [
-                            ['label' => 'Consultar Produtos', 'icon' => 'eye', 'url' => ['']],
-                            ['label' => 'Criar Produtos', 'icon' => 'plus', 'url' => ['']],
+                            ['label' => 'Consultar Ivas', 'icon' => 'eye', 'url' => ['/iva']],
+                            ['label' => 'Criar Iva', 'icon' => 'plus', 'url' => ['/iva/create']],
                         ],
                     ],
 

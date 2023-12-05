@@ -26,3 +26,4 @@ use yii\bootstrap4\ActiveForm;
     <?= Html::submitButton('Guardar', ['class' => 'btn btn-success btn-lg btn-block']) ?>
 
     <?php ActiveForm::end(); ?>
+</div>

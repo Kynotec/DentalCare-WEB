@@ -2,14 +2,13 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\User */
+/** @var yii\web\View $this */
+/** @var common\models\Iva $model */
 
-$this->title = 'Criar Utilizador';
-$this->params['breadcrumbs'][] = ['label' => 'User'];
+$this->title = 'Criar Iva';
+$this->params['breadcrumbs'][] = ['label' => 'Iva', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">

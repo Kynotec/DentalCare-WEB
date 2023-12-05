@@ -3,10 +3,11 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\Perfil $model */
-$this->title = 'Atualizar Funcionário:  ' . $model->user->username;
-$this->params['breadcrumbs'][] = ['label' => 'Funcionários', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->user->username, 'url' => ['view', 'id' => $model->id]];
+/** @var common\models\Iva $model */
+
+$this->title = 'Atualizar Iva: ' . $model->descricao;
+$this->params['breadcrumbs'][] = ['label' => 'Iva', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->descricao, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 <div class="container">
