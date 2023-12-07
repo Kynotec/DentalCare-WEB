@@ -169,8 +169,7 @@
                         'icon' => 'building',
                         'visible' => Yii::$app->user->can("addEmpresa"),
                         'items' => [
-                            ['label' => 'Consultar Empresa', 'icon' => 'eye', 'url' => ['']],
-                            ['label' => 'Criar Empresa', 'icon' => 'plus', 'url' => ['']],
+                            ['label' => 'Consultar Empresa', 'icon' => 'eye', 'url' => ['/empresa']],
                         ],
                     ],
 

@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 return Html::a("<span class='material-symbols-outlined' style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>toggle_off</span>", ['desativar', 'user_id' => $model->user_id], [
                                                     'class' => 'btn  btn-danger pb-0',
                                                     'data'=> [
-                                                        'confirm' => 'Tem a certeza que quer desativar este Utente?'
+                                                        'confirm' => 'Tem a certeza que quer desativar este Administrador?'
                                                     ]
                                                 ]);
                                             }
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 return Html::a("<span class='material-symbols-outlined'  style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>toggle_on</span>", ['ativar', 'user_id' => $model->user_id], [
                                                     'class' => 'btn  btn-success pb-0',
                                                     'data'=> [
-                                                        'confirm' => 'Tem a certeza que quer ativar este Utente?'
+                                                        'confirm' => 'Tem a certeza que quer ativar este Administrador?'
                                                     ]
                                                 ]);
                                             }
