@@ -28,7 +28,7 @@ class Categoria extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['descricao'], 'string', 'max' => 15],
+            [['descricao'], 'string', 'max' => 30],
         ];
     }
 
@@ -39,7 +39,7 @@ class Categoria extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
         ];
     }
 

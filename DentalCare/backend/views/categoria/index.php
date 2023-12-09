@@ -43,16 +43,29 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'buttons' => [
                                     'view' => function($url, $model)
                                     {
-                                        if (Yii::$app->user->can('readCategoria')) {
+                                        if (Yii::$app->user->can('readCategorias')) {
                                             return Html::a('<i class="fas fa-eye"></i>', ['categoria/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
                                         }
                                     },
                                     'update' => function($url, $model)
                                     {
-                                        if (Yii::$app->user->can('updateCategoria')) {
+                                        if (Yii::$app->user->can('updateCategorias')) {
                                             return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['categoria/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
                                         }
                                     },
+
+                                    'delete' => function($url, $model)
+                                    {
+                                        return Html::a('<i class="fas fa-trash-alt"></i>', ['categoria/delete', 'id' => $model->id], [
+                                            'class' => 'btn btn-danger',
+                                            'data'=> [
+                                                'confirm' => 'Tem a certeza que pretende eliminar esta categoria?',
+                                                'method'=> 'POST'
+                                            ]
+                                        ]);
+                                    },
+
+
 
                                 ],
                             ],

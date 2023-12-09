@@ -24,9 +24,27 @@ use Yii;
  */
 class Produto extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
+
+
+    public function getStatusLabel()
+    {
+        switch ($this->ativo)
+        {
+            case self::STATUS_ACTIVE:
+                return '<span class="badge badge-success">Ativo</span>';
+
+            case self::STATUS_INACTIVE:
+                return '<span class="badge badge-danger">Desativado</span>';
+
+            default:
+                return '<span class="badge badge-info">' . $this->ativo . '</span>';
+        }
+    }
+
+
     public static function tableName()
     {
         return 'produtos';
@@ -38,13 +56,15 @@ class Produto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ativo', 'stock', 'iva_id', 'categoria_id'], 'integer'],
+            [['stock', 'iva_id', 'categoria_id'], 'integer'],
             [['nome'], 'required'],
             [['descricao'], 'string'],
             [['precounitario'], 'number'],
             [['nome'], 'string', 'max' => 250],
             [['iva_id'], 'exist', 'skipOnError' => true, 'targetClass' => Iva::class, 'targetAttribute' => ['iva_id' => 'id']],
             [['categoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::class, 'targetAttribute' => ['categoria_id' => 'id']],
+            ['ativo', 'default', 'value' => self::STATUS_ACTIVE],
+            ['ativo', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
     }
 
@@ -55,13 +75,15 @@ class Produto extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'ativo' => 'Ativo',
+
+            'filename' =>'Imagem do Produto',
             'nome' => 'Nome',
-            'descricao' => 'Descricao',
-            'precounitario' => 'Precounitario',
+            'descricao' => 'Descrição',
+            'precounitario' => 'Preço unitario',
             'stock' => 'Stock',
-            'iva_id' => 'Iva ID',
-            'categoria_id' => 'Categoria ID',
+            'iva_id' => 'Iva',
+            'categoria_id' => 'Categoria',
+            'ativo' => 'Estado',
         ];
     }
 
