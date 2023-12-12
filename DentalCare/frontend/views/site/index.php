@@ -41,7 +41,7 @@ $this->title = 'Dental Care';
             <?php
             if (!Yii::$app->user->isGuest)
             {
-                echo Html::tag('li',Html::a('AREA UTENTE',['/areautente/view','user_id'=>Yii::$app->user->id]));
+                echo Html::tag('li',Html::a('AREA UTENTE',['/utente/view','user_id'=>Yii::$app->user->id]));
                 echo Html::tag('li',Html::a('MARCAÇÕES',['/marcacoes/view','user_id'=>Yii::$app->user->id]));
                 echo Html::tag('li',Html::a('CONSULTA',['/consulta/view','user_id'=>Yii::$app->user->id]));
                 echo Html::tag('li',Html::a('PRODUTOS',['/site/produtos']));
