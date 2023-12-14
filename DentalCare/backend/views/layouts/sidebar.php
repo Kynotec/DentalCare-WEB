@@ -139,8 +139,8 @@
                         'icon' => 'dolly',
                         'visible' => Yii::$app->user->can("createServicos"),
                         'items' => [
-                            ['label' => 'Consultar Serviços', 'icon' => 'eye', 'url' => ['']],
-                            ['label' => 'Criar Serviços', 'icon' => 'plus', 'url' => ['']],
+                            ['label' => 'Consultar Serviços', 'icon' => 'eye', 'url' => ['/servico']],
+                            ['label' => 'Criar Serviços', 'icon' => 'plus', 'url' => ['/servico/create']],
                         ],
                     ],
 

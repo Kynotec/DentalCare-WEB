@@ -21,6 +21,9 @@ use Yii;
  */
 class Servico extends \yii\db\ActiveRecord
 {
+    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
     /**
      * {@inheritdoc}
      */
@@ -29,6 +32,20 @@ class Servico extends \yii\db\ActiveRecord
         return 'servicos';
     }
 
+    public function getStatusLabel()
+    {
+        switch ($this->ativo)
+        {
+            case self::STATUS_ACTIVE:
+                return '<span class="badge badge-success">Ativo</span>';
+
+            case self::STATUS_INACTIVE:
+                return '<span class="badge badge-danger">Desativado</span>';
+
+            default:
+                return '<span class="badge badge-info">' . $this->ativo . '</span>';
+        }
+    }
     /**
      * {@inheritdoc}
      */
@@ -51,10 +68,10 @@ class Servico extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'referencia' => 'Referencia',
-            'descricao' => 'Descricao',
-            'preco' => 'Preco',
+            'descricao' => 'Descrição',
+            'preco' => 'Preço',
             'ativo' => 'Ativo',
-            'iva_id' => 'Iva ID',
+            'iva_id' => 'Taxa IVA',
         ];
     }
 

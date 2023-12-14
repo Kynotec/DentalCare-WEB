@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 echo Html::a("<span class='material-symbols-outlined' style='font-variation-settings: \"FILL\" 1, \"wght\" 400, \"GRAD\" 200, \"opsz\" 20; padding-bottom: 0;'>toggle_off</span>", ['ativar', 'id' => $model->id],
                                     [
                                         'class' => 'btn  btn-success pb-0',
-                                        'hidden' => !Yii::$app->user->can("disableProduto"),
+                                        'hidden' => !Yii::$app->user->can("deleteProdutos"),
                                         'data' => [
                                             'confirm' => 'Tem a certeza que pretende ativar este Produto?',
                                             'method' => 'post',
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                     [
                                         'class' => 'btn  btn-danger pb-0',
-                                        'hidden' => !Yii::$app->user->can("disableProduto"),
+                                        'hidden' => !Yii::$app->user->can("deleteProdutos"),
                                         'data' => [
                                             'confirm' => 'Tem a certeza que pretende desativar este Produto?',
                                             'method' => 'post',
