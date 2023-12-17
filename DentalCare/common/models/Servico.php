@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\FileHelper;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "servicos".
@@ -55,8 +57,11 @@ class Servico extends \yii\db\ActiveRecord
             [['preco'], 'number'],
             [['ativo', 'iva_id'], 'integer'],
             [['referencia'], 'string', 'max' => 45],
+            [['iva_id','descricao','preco'], 'required'],
             [['descricao'], 'string', 'max' => 100],
             [['iva_id'], 'exist', 'skipOnError' => true, 'targetClass' => Iva::class, 'targetAttribute' => ['iva_id' => 'id']],
+            ['ativo', 'default', 'value' => self::STATUS_ACTIVE],
+            ['ativo', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
     }
 

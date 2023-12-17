@@ -3,11 +3,16 @@
 namespace backend\controllers;
 
 use common\models\Servico;
+use common\models\Imagem;
 use backend\models\SearchServico;
+use common\models\UploadFormServicos;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use Yii;
+use common\models\UploadForm;
 
 /**
  * ServicoController implements the CRUD actions for Servico model.
@@ -77,8 +82,22 @@ class ServicoController extends Controller
     {
         $model = new Servico();
 
+        $imagem = new Imagem();
+
+        $modelUpload = new UploadFormServicos();
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                $modelUpload->imageFile = UploadedFile::getInstance($modelUpload, 'imageFile');
+
+                if ($modelUpload->upload()) {
+                    // file is uploaded successfully
+                    $imagem->filename = $modelUpload->filename;
+                    $imagem->produto_id = null;
+                    $imagem->servico_id = $model->id;
+                    $imagem->diagnostico_id = null;
+                    $imagem->save();
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -87,6 +106,7 @@ class ServicoController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'modelUpload' => $modelUpload,
         ]);
     }
 
@@ -97,19 +117,74 @@ class ServicoController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
+
+    public function actionUpload()
+    {
+        $model = new UploadFormServicos();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'filename');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('create', ['model' => $model]);
+    }
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelUpload = new UploadFormServicos(); // Instantiate UploadForm
+        $imagem = new Imagem(); // Instantiate Imagem
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            // Load Servico model data from the POST request
+            if ($model->load($this->request->post())) {
+                // Save the Servico model
+                if ($model->save()) {
+                    // Get the uploaded file instance
+                    $modelUpload->imageFile = UploadedFile::getInstance($modelUpload, 'imageFile');
+
+                    // Check if there is an uploaded file
+                    if ($modelUpload->imageFile) {
+                        // Attempt to upload the file
+                        if ($modelUpload->upload()) {
+                            // File is uploaded successfully
+
+                            // Update or create Imagem record
+                            $imagem = Imagem::findOne(['servico_id' => $model->id]);
+
+                            if (!$imagem) {
+                                $imagem = new Imagem();
+                                $imagem->servico_id = $model->id;
+                            }
+
+                            // Update Imagem model with new filename
+                            $imagem->filename = $modelUpload->filename;
+                            $imagem->produto_id = null;
+                            $imagem->diagnostico_id = null;
+
+                            // Save the Imagem model
+                            $imagem->save();
+                        }
+                    }
+
+                    // Redirect to the view page
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+        } else {
+            // If it's not a POST request, load default values
+            $model->loadDefaultValues();
         }
 
+        // Render the update view
         return $this->render('update', [
             'model' => $model,
+            'modelUpload' => $modelUpload,
         ]);
     }
-
     /**
      * Deletes an existing Servico model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

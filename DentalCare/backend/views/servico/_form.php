@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Iva;
+use common\models\Imagem;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -12,11 +13,13 @@ use yii\widgets\ActiveForm;
 
 <div class="servico-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
     <?= $form->field($model, 'referencia')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'descricao')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($modelUpload, 'imageFile')->fileInput() ?>
 
     <?= $form->field($model, 'preco')->textInput() ?>
 

@@ -50,8 +50,39 @@ $this->params['breadcrumbs'][] = $this->title;
                             'id',
                             'referencia',
                             'descricao',
-                            'preco',
-                            //'iva_id',
+
+                            [
+                                'label' => 'Imagem Serviço',
+                                'attribute' => 'filename',
+                                'format' => 'html',
+                                'value' => function ($model) {
+                                    if (!empty($model->imagens) && is_array($model->imagens)) {
+                                        if (isset($model->imagens[0]['filename'])) {
+                                            return Html::img('http://localhost/DentalCare-WEB/DentalCare/public' . '/images/services/' . $model->imagens[0]['filename'], ['style' => 'height: 150px; display: block; margin: 0 auto;']);
+                                        }
+                                    }
+
+                                    return 'Available image';
+                                },
+                            ],
+
+                            [
+                                'attribute' => 'preco',
+                                'value' => function ($model) {
+                                    $preco = $model->preco . " € " ;
+                                    return $preco;
+                                }
+                            ],
+
+                            [
+                                'attribute' => 'iva_id',
+                                'label' => 'Iva',
+                                'value' => function ($model) {
+                                    $iva = $model->iva->percentagem .'%';
+                                    return $iva;
+                                }
+                            ],
+
                             [
                                 'attribute' => 'ativo',
                                 'format' => 'html',

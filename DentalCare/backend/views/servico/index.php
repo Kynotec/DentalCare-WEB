@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use common\models\Imagem;
 
 /** @var yii\web\View $this */
 /** @var backend\models\SearchServico $searchModel */
@@ -34,7 +35,31 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'id',
                             'referencia',
                             'descricao',
-                            'preco',
+
+                            [
+                                'label' => 'Imagem Serviço',
+                                'attribute' => 'filename',
+                                'format' => 'html',
+                                'content' => function($model) {
+                                    if (!empty($model->imagens) && is_array($model->imagens)) {
+                                        // Check if the first element exists and has the "filename" key
+                                        if (isset($model->imagens[0]['filename'])) {
+                                            return Html::img('http://localhost/DentalCare-WEB/DentalCare/public' . '/images/services/' . $model->imagens[0]['filename'],['style'=>'height: 100px; display: block; margin: 0 auto;']);
+                                        }
+                                    }
+
+                                    return 'Error Image'; // Or any default value or message you want to display
+                                }
+                            ],
+
+                            [
+                                'attribute' => 'preco',
+                                'value' => function ($model) {
+                                    $preco = $model->preco . " € " ;
+                                    return $preco;
+                                }
+                            ],
+
                             [
                                 'attribute' => 'ativo',
                                 'format' => 'html',
