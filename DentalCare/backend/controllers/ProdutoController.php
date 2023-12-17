@@ -3,11 +3,15 @@
 namespace backend\controllers;
 
 use common\models\Produto;
+use common\models\Imagem;
 use backend\models\SearchProduto;
+use common\models\UploadForm;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProdutoController implements the CRUD actions for Produto model.
@@ -25,8 +29,8 @@ class ProdutoController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','update','ativar','desativar'],
-                        'roles' => ['administrador','funcionario'],
+                        'actions' => ['index', 'create', 'view', 'update', 'ativar', 'desativar'],
+                        'roles' => ['administrador', 'funcionario'],
                     ],
                 ],
             ],
@@ -73,12 +77,34 @@ class ProdutoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
+    /**
+     * @param bool $trim
+     * @return string
+     */
+
+
     public function actionCreate()
     {
         $model = new Produto();
 
+        $imagem = new Imagem();
+
+        $modelUpload = new UploadForm();
+
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                $modelUpload->imageFile = UploadedFile::getInstance($modelUpload, 'imageFile');
+
+                if ($modelUpload->upload()) {
+                    // file is uploaded successfully
+                    $imagem->filename = $modelUpload->filename;
+                    $imagem->produto_id = $model->id;
+                    $imagem->servico_id = null;
+                    $imagem->diagnostico_id = null;
+                    $imagem->save();
+
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -87,7 +113,24 @@ class ProdutoController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'modelUpload' => $modelUpload,
         ]);
+    }
+
+
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'filename');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('create', ['model' => $model]);
     }
 
     /**
@@ -100,13 +143,54 @@ class ProdutoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelUpload = new UploadForm(); // Instantiate UploadForm
+        $imagem = new Imagem(); // Instantiate Imagem
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            // Load Produto model data from the POST request
+            if ($model->load($this->request->post())) {
+                // Save the Produto model
+                if ($model->save()) {
+                    // Get the uploaded file instance
+                    $modelUpload->imageFile = UploadedFile::getInstance($modelUpload, 'imageFile');
+
+                    // Check if there is an uploaded file
+                    if ($modelUpload->imageFile) {
+                        // Attempt to upload the file
+                        if ($modelUpload->upload()) {
+                            // File is uploaded successfully
+
+                            // Update or create Imagem record
+                            $imagem = Imagem::findOne(['produto_id' => $model->id]);
+
+                            if (!$imagem) {
+                                $imagem = new Imagem();
+                                $imagem->produto_id = $model->id;
+                            }
+
+                            // Update Imagem model with new filename
+                            $imagem->filename = $modelUpload->filename;
+                            $imagem->servico_id = null;
+                            $imagem->diagnostico_id = null;
+
+                            // Save the Imagem model
+                            $imagem->save();
+                        }
+                    }
+
+                    // Redirect to the view page
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+        } else {
+            // If it's not a POST request, load default values
+            $model->loadDefaultValues();
         }
 
+        // Render the update view
         return $this->render('update', [
             'model' => $model,
+            'modelUpload' => $modelUpload,
         ]);
     }
 

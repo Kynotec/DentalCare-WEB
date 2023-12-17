@@ -12,7 +12,7 @@ use yii\grid\GridView;
 /** @var Empresa $empresa */
 
 
-$this->title = 'Empresas';
+$this->title = 'Empresa';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container mt-3">

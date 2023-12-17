@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\FileHelper;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "imagens".
@@ -19,6 +21,10 @@ use Yii;
  */
 class Imagem extends \yii\db\ActiveRecord
 {
+
+    /**
+     * {@inheritdoc}
+     */
     /**
      * {@inheritdoc}
      */
@@ -33,7 +39,7 @@ class Imagem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['filename', 'produto_id', 'servico_id', 'diagnostico_id'], 'required'],
+            [['filename'], 'required'],
             [['produto_id', 'servico_id', 'diagnostico_id'], 'integer'],
             [['filename'], 'string', 'max' => 2000],
             [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produto::class, 'targetAttribute' => ['produto_id' => 'id']],
@@ -49,7 +55,7 @@ class Imagem extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'filename' => 'Filename',
+            'filename' => 'Imagem',
             'produto_id' => 'Produto ID',
             'servico_id' => 'Servico ID',
             'diagnostico_id' => 'Diagnostico ID',
@@ -85,4 +91,6 @@ class Imagem extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Servico::class, ['id' => 'servico_id']);
     }
+
+
 }

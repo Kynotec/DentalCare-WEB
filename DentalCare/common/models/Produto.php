@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\FileHelper;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "produtos".
@@ -27,6 +29,7 @@ class Produto extends \yii\db\ActiveRecord
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
+
 
 
     public function getStatusLabel()
@@ -58,6 +61,7 @@ class Produto extends \yii\db\ActiveRecord
         return [
             [['stock', 'iva_id', 'categoria_id'], 'integer'],
             [['nome'], 'required'],
+            [['nome','iva_id','categoria_id','descricao','precounitario','stock'], 'required'],
             [['descricao'], 'string'],
             [['precounitario'], 'number'],
             [['nome'], 'string', 'max' => 250],
@@ -136,4 +140,5 @@ class Produto extends \yii\db\ActiveRecord
     {
         return $this->hasMany(LinhaFatura::class, ['produto_id' => 'id']);
     }
+
 }

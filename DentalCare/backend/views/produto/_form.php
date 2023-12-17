@@ -14,9 +14,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div>
-
-    <?php $form = ActiveForm::begin(); ?>
-
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
 
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
@@ -24,6 +22,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'descricao')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'precounitario')->textInput() ?>
+
+    <?= $form->field($modelUpload, 'imageFile')->fileInput() ?>
 
     <?= $form->field($model, 'stock')->textInput() ?>
 

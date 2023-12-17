@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var common\models\Produto $model */
 
-$this->title = $model->descricao;
+$this->title = $model->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -47,13 +47,46 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= DetailView::widget([
                             'model' => $model,
                             'attributes' => [
-                                'id',
+                                [
+                                    'label' => 'Imagem Produto',
+                                    'attribute' => 'filename',
+                                    'format' => 'html',
+                                    'value' => function ($model) {
+                                        if (!empty($model->imagens) && is_array($model->imagens)) {
+                                            if (isset($model->imagens[0]['filename'])) {
+                                                return Html::img('http://localhost/DentalCare-WEB/DentalCare/public' . '/images/products/' . $model->imagens[0]['filename'], ['style' => 'height: 150px; display: block; margin: 0 auto;']);
+                                            }
+                                        }
+
+                                        return 'Available image';
+                                    },
+                                ],
                                 'nome',
                                 'descricao',
-                                'precounitario',
+                                [
+                                    'attribute' => 'precounitario',
+                                    'value' => function ($model) {
+                                        $precounitario = $model->precounitario . "€" ;
+                                        return $precounitario;
+                                    }
+                                ],
                                 'stock',
-                                'iva_id',
-                                'categoria_id',
+                                [
+                                    'attribute' => 'iva_id',
+                                    'label' => 'Iva',
+                                    'value' => function ($model) {
+                                        $iva = $model->iva->percentagem .'%';
+                                        return $iva;
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'categoria_id',
+                                    'label' => 'Categoria',
+                                    'value' => function ($model) {
+                                        $categoria = $model->categoria->descricao;
+                                        return $categoria;
+                                    }
+                                ],
                                 [
                                     'attribute' => 'ativo',
                                     'format' => 'html',

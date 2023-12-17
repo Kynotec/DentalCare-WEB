@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Produto;
+use common\models\Imagem;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -32,11 +33,35 @@ $this->params['breadcrumbs'][] = $this->title;
                             // 'filterModel' => $searchModel,
                             'columns' => [
 
-                                //'id',
-                                'filename',
+
+
+                                [
+                                    'label' => 'Imagem Produto',
+                                    'attribute' => 'filename',
+                                    'format' => 'html',
+                                    'content' => function($model) {
+                                        if (!empty($model->imagens) && is_array($model->imagens)) {
+                                            // Check if the first element exists and has the "filename" key
+                                            if (isset($model->imagens[0]['filename'])) {
+                                               return Html::img('http://localhost/DentalCare-WEB/DentalCare/public' . '/images/products/' . $model->imagens[0]['filename'],['style'=>'height: 100px; display: block; margin: 0 auto;']);
+                                               // return Html::img('@public' . '/images/products/' . $model->imagens[0]['filename']);
+                                            }
+                                        }
+
+                                        return 'error image'; // Or any default value or message you want to display
+                                    }
+                                ],
+
                                 'nome',
                                 'descricao',
-                                'precounitario',
+                                [
+                                    'attribute' => 'precounitario',
+                                    'value' => function ($model) {
+                                        $precounitario = $model->precounitario . " € " ;
+                                        return $precounitario;
+                                    }
+                                ],
+
                                 //'stock',
                                 //'iva_id',
                                 [
@@ -100,6 +125,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             }
 
                                         }
+
 
                                     ],
                                 ],
