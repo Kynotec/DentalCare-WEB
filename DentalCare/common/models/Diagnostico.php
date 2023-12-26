@@ -10,7 +10,8 @@ use Yii;
  * @property int $id
  * @property string|null $descricao
  * @property string|null $data
- * @property int $profile_id
+ * @property string $hora
+ * @property int|null $profile_id
  * @property int $consulta_id
  *
  * @property Consulta $consulta
@@ -33,8 +34,8 @@ class Diagnostico extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data'], 'safe'],
-            [['profile_id', 'consulta_id'], 'required'],
+            [['data', 'hora'], 'safe'],
+            [['hora', 'consulta_id'], 'required'],
             [['profile_id', 'consulta_id'], 'integer'],
             [['descricao'], 'string', 'max' => 45],
             [['profile_id'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::class, 'targetAttribute' => ['profile_id' => 'id']],
@@ -50,8 +51,9 @@ class Diagnostico extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'descricao' => 'Descricao',
-            'data' => 'Data',
-            'profile_id' => 'Profile ID',
+            'data' => 'Data do Diagnóstico',
+            'hora' => 'Hora do Diagnóstico',
+            'profile_id' => 'Nome do Utente',
             'consulta_id' => 'Consulta ID',
         ];
     }

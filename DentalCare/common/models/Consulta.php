@@ -9,7 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string|null $descricao
- * @property string|null $data
+ * @property string $data
+ * @property string $hora
  * @property string $estado
  * @property int|null $profile_id
  * @property int|null $servico_id
@@ -34,8 +35,8 @@ class Consulta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data'], 'safe'],
-            [['estado'], 'required'],
+            [['data', 'hora', 'estado'], 'required'],
+            [['data', 'hora'], 'safe'],
             [['profile_id', 'servico_id'], 'integer'],
             [['descricao'], 'string', 'max' => 45],
             [['estado'], 'string', 'max' => 30],
@@ -53,6 +54,7 @@ class Consulta extends \yii\db\ActiveRecord
             'id' => 'ID',
             'descricao' => 'Descricao',
             'data' => 'Data',
+            'hora' => 'Hora',
             'estado' => 'Estado',
             'profile_id' => 'Profile ID',
             'servico_id' => 'Servico ID',

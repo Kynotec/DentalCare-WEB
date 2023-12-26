@@ -58,8 +58,8 @@
                         'icon' => 'notes-medical',
                         'visible' => Yii::$app->user->can("addEstadoClinico"),
                         'items' => [
-                            ['label' => 'Consultar Diagnósticos', 'icon' => 'eye', 'url' => [''], ],
-                            ['label' => 'Criar Diagnósticos', 'icon' => 'plus', 'url' => [''],
+                            ['label' => 'Consultar Diagnósticos', 'icon' => 'eye', 'url' => ['/diagnostico'], ],
+                            ['label' => 'Criar Diagnósticos', 'icon' => 'plus', 'url' => ['/diagnostico/create'],
                             ],
                         ],
                     ],
