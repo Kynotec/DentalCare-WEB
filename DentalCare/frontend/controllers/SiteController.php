@@ -2,10 +2,12 @@
 
 namespace frontend\controllers;
 
+use common\models\Produto;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -100,7 +102,15 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
+    public function actionLoja()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Produto::find()->andWhere(['ativo' => 10])
+        ]);
+        return $this->render('loja',[
+            'dataProvider' => $dataProvider
+        ]);
+    }
     /**
      * Logs out the current user.
      *

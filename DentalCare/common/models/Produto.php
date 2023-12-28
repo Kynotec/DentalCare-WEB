@@ -110,6 +110,10 @@ class Produto extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Imagem::class, ['produto_id' => 'id']);
     }
+    public function getShortDescription()
+    {
+        return \yii\helpers\StringHelper::truncateWords(strip_tags($this->descricao), 25);
+    }
 
     /**
      * Gets query for [[Iva]].

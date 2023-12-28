@@ -2,6 +2,7 @@
 
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
+
 /** @var \common\models\LoginForm $model */
 
 use frontend\assets\AppAsset;
@@ -13,35 +14,46 @@ $this->title = 'Login';
 ?>
 
 <div class="container">
-    <a class="icon" href="../"><i class="fa-solid fa-arrow-left"></i></a>
-<div class="site-login">
-    <h1>Bem Vindo de volta à Dental Care</h1>
-    <p>Acede à tua conta para ter acesso às nossas funcionalidades!</p>
+    <div class="site-login"><br>
+        <h1>Bem Vindo de volta à Dental Care</h1>
+        <p>Acede à tua conta para ter acesso às nossas funcionalidades!</p>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+        <h1><?= Html::encode($this->title) ?></h1>
+
+        <div class="row">
+            <div class="col-lg-5">
+                <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
 
-            <label>
+                <label>
                                 <span>
                                     <?php
-                                    echo Html::tag('div',Html::a('Criar uma conta',['site/signup']));
+                                    echo Html::tag('div', Html::a('Criar uma conta', ['site/signup']));
                                     ?>
                                 </span>
-            </label>
+                </label>
 
 
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
 
-            <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
-</div>
+
