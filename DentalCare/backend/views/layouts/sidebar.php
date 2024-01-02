@@ -46,8 +46,8 @@
                         'icon' => 'calendar',
                         'visible' => Yii::$app->user->can("createConsulta"),
                         'items' => [
-                            ['label' => 'Consultar Marcações', 'icon' => 'eye', 'url' => ['/marcacoes'], ],
-                            ['label' => 'Criar Marcações', 'icon' => 'plus', 'url' => ['/marcacoes/create'],
+                            ['label' => 'Consultar Marcações', 'icon' => 'eye', 'url' => ['/marcacao'], ],
+                            ['label' => 'Criar Marcações', 'icon' => 'plus', 'url' => ['/marcacao/create'],
                             ],
                         ],
                     ],

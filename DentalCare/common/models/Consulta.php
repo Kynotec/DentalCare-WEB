@@ -66,6 +66,19 @@ class Consulta extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
+
+    public $hoursOptions;
+    public function getHoursOptions()
+    {
+        // Lógica para gerar as opções de horas com base na data
+        $options = [];
+        for ($hour = 9; $hour <= 18; $hour++) {
+            $options[sprintf('%02d:00:00', $hour)] = $hour;
+        }
+
+        return $options;
+    }
+
     public function getDiagnosticos()
     {
         return $this->hasMany(Diagnostico::class, ['consulta_id' => 'id']);
