@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var common\models\Diagnostico $model */
 
 $this->title = 'Criar Diagnóstico';
-$this->params['breadcrumbs'][] = ['label' => 'Diagnosticos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Diagnósticos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="diagnostico-create">

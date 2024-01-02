@@ -19,11 +19,12 @@ use Yii;
  * @property Perfil $profile
  * @property Servico $servico
  */
-class Consulta extends \yii\db\ActiveRecord
+class Marcacao extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
+
     public static function tableName()
     {
         return 'consultas';
@@ -51,23 +52,18 @@ class Consulta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'descricao' => 'Descricao',
-            'data' => 'Data',
-            'hora' => 'Hora',
-            'estado' => 'Estado',
-            'profile_id' => 'Profile ID',
-            'servico_id' => 'Servico ID',
+            'id' => 'ID da Marcação',
+            'descricao' => 'Breve Descrição',
+            'data' => 'Data da Marcação',
+            'hora' => 'Hora da Marcação',
+            'estado' => 'Estado da Marcação',
+            'profile_id' => 'Nome do Utente',
+            'servico_id' => 'Serviço a Realizar',
         ];
     }
 
-    /**
-     * Gets query for [[Diagnosticos]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-
     public $hoursOptions;
+
     public function getHoursOptions()
     {
         // Lógica para gerar as opções de horas com base na data
@@ -79,6 +75,11 @@ class Consulta extends \yii\db\ActiveRecord
         return $options;
     }
 
+    /**
+     * Gets query for [[Diagnosticos]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
     public function getDiagnosticos()
     {
         return $this->hasMany(Diagnostico::class, ['consulta_id' => 'id']);

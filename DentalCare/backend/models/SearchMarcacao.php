@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Consulta;
+use common\models\Marcacao;
 
 /**
- * SearchMarcacao represents the model behind the search form of `common\models\Consulta`.
+ * SearchMarcacao represents the model behind the search form of `common\models\Marcacao`.
  */
-class SearchMarcacao extends Consulta
+class SearchMarcacao extends Marcacao
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class SearchMarcacao extends Consulta
      */
     public function search($params)
     {
-        $query = Consulta::find();
+        $query = Marcacao::find();
 
         // add conditions that should always apply here
 

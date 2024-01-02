@@ -14,7 +14,7 @@ use Yii;
  * @property int|null $profile_id
  * @property int $consulta_id
  *
- * @property Consulta $consulta
+ * @property Marcacao $consulta
  * @property Imagem[] $imagens
  * @property Perfil $profile
  */
@@ -39,7 +39,7 @@ class Diagnostico extends \yii\db\ActiveRecord
             [['profile_id', 'consulta_id'], 'integer'],
             [['descricao'], 'string', 'max' => 45],
             [['profile_id'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::class, 'targetAttribute' => ['profile_id' => 'id']],
-            [['consulta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Consulta::class, 'targetAttribute' => ['consulta_id' => 'id']],
+            [['consulta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Marcacao::class, 'targetAttribute' => ['consulta_id' => 'id']],
         ];
     }
 
@@ -50,7 +50,7 @@ class Diagnostico extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
             'data' => 'Data do Diagnóstico',
             'hora' => 'Hora do Diagnóstico',
             'profile_id' => 'Nome do Utente',
@@ -65,7 +65,7 @@ class Diagnostico extends \yii\db\ActiveRecord
      */
     public function getConsulta()
     {
-        return $this->hasOne(Consulta::class, ['id' => 'consulta_id']);
+        return $this->hasOne(Marcacao::class, ['id' => 'consulta_id']);
     }
 
     /**

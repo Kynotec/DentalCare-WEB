@@ -1,6 +1,5 @@
 <?php
-
-use common\models\Consulta;
+use common\models\Marcacao;
 use common\models\Perfil;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -22,11 +21,24 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'hora')->textInput(['value' => date('H:i:s'), 'readonly' => true]) ?>
 
-    <?= $form->field($model, 'profile_id')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id', 'nome'),['prompt' => '- Nenhum -']); ?>
+    <?= $form->field($model, 'profile_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map(
+            \common\models\Perfil::find()
+                ->select('profiles.user_id, nome, telefone, morada, nif, codigopostal')
+                ->leftJoin('auth_assignment', 'auth_assignment.user_id = profiles.user_id')
+                ->where(['auth_assignment.item_name' => 'utente'])
+                ->asArray()
+                ->all(),
+            'user_id',
+            'nome'
+        ),
+        ['prompt' => '- Nenhum -']
+    )->label('Selecione um Utente:');
+    ?>
 
     <?= $form->field($model, 'consulta_id')->dropDownList(
         ArrayHelper::map(
-            Consulta::find()->all(),
+            Marcacao::find()->all(),
             'id',
             function ($consulta) {
                 return $consulta->data . ' ' .  $consulta->hora . ' | ' . $consulta->profile->nome;

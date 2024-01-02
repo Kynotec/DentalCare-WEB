@@ -3,15 +3,13 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\Consulta $model */
+/** @var common\models\Marcacao $model */
 
-$this->title = 'Create Consulta';
-$this->params['breadcrumbs'][] = ['label' => 'Consultas', 'url' => ['index']];
+$this->title = 'Criar Marcação';
+$this->params['breadcrumbs'][] = ['label' => 'Marcações', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="consulta-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="marcacao-create">
 
     <?= $this->render('_form', [
         'model' => $model,

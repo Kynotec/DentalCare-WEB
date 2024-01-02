@@ -3,16 +3,14 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\Consulta $model */
+/** @var common\models\Marcacao $model */
 
-$this->title = 'Update Consulta: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Consultas', 'url' => ['index']];
+$this->title = 'Atualizar Marcação: ' . $model->data .' | '. $model->hora .' | '. $model->profile->nome;
+$this->params['breadcrumbs'][] = ['label' => 'Marcações', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Atualizar';
 ?>
-<div class="consulta-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="marcacao-update">
 
     <?= $this->render('_form', [
         'model' => $model,
