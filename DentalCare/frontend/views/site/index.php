@@ -22,7 +22,12 @@ $this->title = 'Dental Care';
         <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url(index/img/slide/slide-2.jpg);">
+            <div class="carousel-item active" style="background-image: url(img/slide/slide-2.jpg);">
+                <div class="container">
+                    <h2>Bem-vindo à <span>DentalCare</span></h2>
+                </div>
+            </div>
+            <div class="carousel-item active" style="background-image: url(img/slide/slide-4.jpg);">
                 <div class="container">
                     <h2>Bem-vindo à <span>DentalCare</span></h2>
                 </div>

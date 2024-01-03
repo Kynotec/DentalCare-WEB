@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use common\models\Produto;
+use common\models\Servico;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -10,9 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ProdutoController implements the CRUD actions for Produto model.
+ * ServicoController implements the CRUD actions for Servico model.
  */
-class ProdutoController extends Controller
+class ServicoController extends Controller
 {
     /**
      * @inheritDoc
@@ -44,19 +44,15 @@ class ProdutoController extends Controller
             ],
         ];
     }
-
     /**
-     * Lists all Produto models.
+     * Lists all Servico models.
      *
      * @return string
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Produto::find()
-                ->andWhere(['ativo' => 10])
-                ->andWhere(['>', 'stock', 0]),
-
+            'query' => Servico::find(),
 
             'pagination' => [
                 'pageSize' => 15
@@ -69,15 +65,13 @@ class ProdutoController extends Controller
 
         ]);
 
-
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-
         ]);
     }
 
     /**
-     * Displays a single Produto model.
+     * Displays a single Servico model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -91,15 +85,15 @@ class ProdutoController extends Controller
 
 
     /**
-     * Finds the Produto model based on its primary key value.
+     * Finds the Servico model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Produto the loaded model
+     * @return Servico the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Produto::findOne(['id' => $id])) !== null) {
+        if (($model = Servico::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

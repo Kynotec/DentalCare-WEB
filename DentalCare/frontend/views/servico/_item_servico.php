@@ -5,7 +5,7 @@
 
         if (!empty($model->imagens) && isset($model->imagens[0]['filename'])): ?>
             <img class="img card-img-top"
-                 src="<?php echo 'http://localhost/DentalCare-WEB/DentalCare/public/images/products/' . $model->imagens[0]['filename']; ?>"
+                 src="<?php echo 'http://localhost/DentalCare-WEB/DentalCare/public/images/services/' . $model->imagens[0]['filename']; ?>"
                  alt="...">
         <?php else: ?>
             <p>error image</p> <!-- Or any default value or message you want to display -->
@@ -24,9 +24,9 @@
 
                     <!-- Product price -->
                     <?php
-                    $currencyFormatted = Yii::$app->formatter->asCurrency($model->precounitario, 'EUR'); ?>
+                    $currencyFormatted = Yii::$app->formatter->asCurrency($model->preco, 'EUR'); ?>
 
-                    <a class="cart" <?= Html::a('<span class="price">' . str_replace('€', '', $currencyFormatted) . ' €' . '</span> <span class="add-to-cart"><span class="txt">Adicionar ao carrinho</span>', ['carrinho/create', 'idProduto' => $model->id]) ?>
+                    <a class="cart" <?= Html::a('<span class="price">' . str_replace('€', '', $currencyFormatted) . ' €' . '</span> <span class="add-to-cart"><span class="txt">Fazer Marcação</span>')//, ['carrinho/create', 'idProduto' => $model->id]) ?>
                 </div>
 
                 <!-- Product description -->

@@ -112,7 +112,7 @@ class Produto extends \yii\db\ActiveRecord
     }
     public function getShortDescription()
     {
-        return \yii\helpers\StringHelper::truncateWords(strip_tags($this->descricao), 25);
+        return \yii\helpers\StringHelper::truncateWords(strip_tags($this->descricao), 20);
     }
 
     /**

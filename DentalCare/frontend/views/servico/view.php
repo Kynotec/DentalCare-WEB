@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var common\models\Produto $model */
+/** @var common\models\Servico $model */
 
 $this->title = $model->nome;
-$this->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Servicos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="text-center">
         <?php if (!empty($model->imagens) && isset($model->imagens[0]['filename'])): ?>
             <img class="img" style="max-width: 100%; max-height: 400px;"
-                 src="<?= 'http://localhost/DentalCare-WEB/DentalCare/public/images/products/' . $model->imagens[0]['filename']; ?>"
+                 src="<?= 'http://localhost/DentalCare-WEB/DentalCare/public/images/services/' . $model->imagens[0]['filename']; ?>"
                  alt="...">
         <?php else: ?>
             <p class="error-message">Imagem não disponível</p>
@@ -31,18 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'nome',
-            [
-                'attribute' => 'categoria_id',
-                'label' => 'Categoria',
-                'value' => function ($model) {
-                    $categoria = $model->categoria->descricao;
-                    return $categoria;
-                }
-            ],
             'descricao:ntext',
             [
                 'label' => 'Valor',
-                'value' => Yii::$app->formatter->asDecimal($model->precounitario, 2) . ' €',
+                'value' => Yii::$app->formatter->asDecimal($model->preco, 2) . ' €',
             ],
 
             [
@@ -57,9 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ],
     ]) ?>
+    <br>
+    <br>
+    <br>
 
     <?= Html::a('Voltar', Yii::$app->request->referrer, ['class' => 'btn btn-primary']) ?>
-    <?= Html::a('Adicionar ao carrinho', ['carrinho/create', 'idProduto' => $model->id], ['class' => 'btn btn-primary']); ?>
+    <?= Html::a('Fazer a Marcação', ['carrinho/create', 'idProduto' => $model->id], ['class' => 'btn btn-primary']); ?>
 </div>
-
-

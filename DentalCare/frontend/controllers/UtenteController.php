@@ -7,6 +7,7 @@ use frontend\models\SearchUtente;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -67,6 +68,10 @@ class UtenteController extends Controller
      */
     public function actionView($user_id)
     {
+        if (Yii::$app->user->identity->id != $user_id) {
+            throw new ForbiddenHttpException('Você não tem permissão para realizar esta ação.');
+        }
+
         return $this->render('view', [
             'model' => $this->findModel($user_id),
         ]);
@@ -119,6 +124,10 @@ class UtenteController extends Controller
     public function actionUpdate($user_id)
     {
 
+        if (Yii::$app->user->identity->id != $user_id) {
+            throw new ForbiddenHttpException('Você não tem permissão para realizar esta ação.');
+        }
+
         $model = $this->findModel($user_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -126,9 +135,7 @@ class UtenteController extends Controller
         }
 
         return $this->render('update', [
-
             'model' => $model,
-
         ]);
     }
 

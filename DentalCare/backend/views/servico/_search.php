@@ -19,6 +19,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'referencia') ?>
 
+    <?= $form->field($model, 'nome') ?>
+
     <?= $form->field($model, 'descricao') ?>
 
     <?= $form->field($model, 'preco') ?>

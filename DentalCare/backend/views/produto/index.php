@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 [
                                     'attribute' => 'precounitario',
                                     'value' => function ($model) {
-                                        $precounitario = $model->precounitario . " € " ;
+                                        $precounitario = Yii::$app->formatter->asDecimal($model->precounitario, 2) . ' €';
                                         return $precounitario;
                                     }
                                 ],

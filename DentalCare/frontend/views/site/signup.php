@@ -30,6 +30,8 @@ $this->title = 'Signup';
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
+                <h4>Informações Pessoais:</h4>
+
                 <?= $form->field($model, 'nome')->textInput(['autofocus' => true])?>
 
                 <?= $form->field($model, 'telefone')?>
@@ -54,6 +56,12 @@ $this->title = 'Signup';
 
                 <?php ActiveForm::end(); ?>
             </div>
+            <div class="col-lg-7">
+                <br><br><br><br>
+                <img src="../img/slide/slide-5.jpg" class="img-fluid rounded-start-circle" alt="...">
+            </div>
         </div>
+
     </div>
+
 </div>

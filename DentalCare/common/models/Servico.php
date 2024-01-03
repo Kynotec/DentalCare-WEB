@@ -11,6 +11,7 @@ use yii\web\UploadedFile;
  *
  * @property int $id
  * @property string|null $referencia
+ * @property string $nome
  * @property string|null $descricao
  * @property float|null $preco
  * @property int|null $ativo
@@ -54,11 +55,13 @@ class Servico extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nome'], 'string', 'max' => 50],
+            [['nome'], 'required'],
+            [['descricao'], 'string'],
             [['preco'], 'number'],
             [['ativo', 'iva_id'], 'integer'],
             [['referencia'], 'string', 'max' => 45],
             [['iva_id','descricao','preco'], 'required'],
-            [['descricao'], 'string', 'max' => 100],
             [['iva_id'], 'exist', 'skipOnError' => true, 'targetClass' => Iva::class, 'targetAttribute' => ['iva_id' => 'id']],
             ['ativo', 'default', 'value' => self::STATUS_ACTIVE],
             ['ativo', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
@@ -72,6 +75,7 @@ class Servico extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'nome' => 'Nome',
             'referencia' => 'Referencia',
             'descricao' => 'Descrição',
             'preco' => 'Preço',
@@ -98,6 +102,11 @@ class Servico extends \yii\db\ActiveRecord
     public function getImagens()
     {
         return $this->hasMany(Imagem::class, ['servico_id' => 'id']);
+    }
+
+    public function getShortDescription()
+    {
+        return \yii\helpers\StringHelper::truncateWords(strip_tags($this->descricao), 20);
     }
 
     /**

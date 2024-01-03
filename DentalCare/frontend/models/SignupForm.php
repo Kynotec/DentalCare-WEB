@@ -49,7 +49,7 @@ class SignupForm extends Model
             ['nome', 'required', 'message' => 'Insira um nome.'],
 
             ['telefone', 'trim'],
-            ['nome', 'required', 'message' => 'Insira um número de telefone.'],
+            ['telefone', 'required', 'message' => 'Insira um número de telefone.'],
 
             ['morada', 'trim'],
             ['morada', 'required', 'message' => 'Insira uma morada.'],
