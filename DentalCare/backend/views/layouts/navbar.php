@@ -24,6 +24,9 @@ use yii\helpers\Html;
             <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
         </li>
         <li class="nav-item">
+            <?= Html::a('<i class="fas fa-cog mr-2"></i>',['/definicoes/view','user_id'=>Yii::$app->user->id], ['data-method' => 'post', 'class' => 'nav-link']); ?>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
