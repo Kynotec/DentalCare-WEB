@@ -65,7 +65,7 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
      */
     public function getCarrinho()
     {
-        return $this->hasOne(Carrinho::class, ['id' => 'carrinho_id']);
+        return $this->hasMany(Carrinho::class, ['carrinho_id' => 'id']);
     }
 
     /**

@@ -2,23 +2,20 @@
 
 use common\models\Perfil;
 use common\models\Servico;
-use yii\helpers\Html;
-use yii\web\View;
-use yii\widgets\ActiveForm;
-use yii\jui\DatePicker;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var common\models\Marcacao $model */
 /** @var yii\widgets\ActiveForm $form */
-
 
 $model->hoursOptions = $model->getHoursOptions();
 ?>
 
 <div class="consulta-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['action' => ['create']]); ?>
 
     <?= $form->field($model, 'descricao')->textInput(['maxlength' => true]) ?>
 
@@ -26,9 +23,6 @@ $model->hoursOptions = $model->getHoursOptions();
         'dateFormat' => 'yyyy-MM-dd', // Formato da data
         'options' => ['class' => 'form-control'], // Opções do input
     ]) ?>
-
-    <?= $form->field($model, 'hora')->dropDownList($model->hoursOptions, ['prompt' => 'Selecione a hora']) ?>
-
 
     <?= $form->field($model, 'estado')->dropDownList(
         [
@@ -58,7 +52,7 @@ $model->hoursOptions = $model->getHoursOptions();
     <?= $form->field($model, 'servico_id')->dropDownList(ArrayHelper::map(Servico::find()->all(), 'id', 'descricao'), ['prompt' => '- Nenhum -']); ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Salvar e Continuar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

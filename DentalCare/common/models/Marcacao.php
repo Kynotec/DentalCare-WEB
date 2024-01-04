@@ -36,7 +36,7 @@ class Marcacao extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data', 'hora', 'estado'], 'required'],
+            [['data', 'estado'], 'required'],
             [['data', 'hora'], 'safe'],
             [['profile_id', 'servico_id'], 'integer'],
             [['descricao'], 'string', 'max' => 45],
@@ -64,11 +64,14 @@ class Marcacao extends \yii\db\ActiveRecord
 
     public $hoursOptions;
 
-    public function getHoursOptions()
+    public function getHoursOptions($horariosIndisponiveis)
     {
         // Lógica para gerar as opções de horas com base na data
         $options = [];
         for ($hour = 9; $hour <= 18; $hour++) {
+            if(in_array($horariosIndisponiveis, $hour)) {
+                continue;
+            }
             $options[sprintf('%02d:00:00', $hour)] = $hour;
         }
 
