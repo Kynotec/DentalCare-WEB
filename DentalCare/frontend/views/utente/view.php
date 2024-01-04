@@ -19,8 +19,7 @@ $this->title = 'Dental Care';
     <div class="row d-flex justify-content-center">
         <div class="col-md-7">
             <div class="card p-3 py-4">
-                <a href="../" class="btn-left"><i class="fas fa-arrow-left" data-toggle="tooltip" data-placement="left"
-                                             title="Cancelar"></i></a>
+                <a href="../" class="btn-left"><i class="fas fa-arrow-left" data-toggle="tooltip" data-placement="left" title="Cancelar"></i></a>
                 <div class="text-center">
 
                     <?= Html::img('@web/img/icon-people.png', ['alt' => 'some', 'class' => 'rounded', 'width' => '200']); ?>
@@ -32,6 +31,12 @@ $this->title = 'Dental Care';
                     <p>
                         <?php
                         echo Html::a('Atualizar Informação', ['update', 'user_id' => $model->user_id], ['class' => 'btn btn-primary'])
+                        ?>
+                    </p>
+
+                    <p>
+                        <?php
+                        echo Html::a('Consultar Diagnóstico', ['diagnostico/index'], ['class' => 'btn btn-primary'])
                         ?>
                     </p>
                     <br>
