@@ -9,10 +9,11 @@ use Yii;
  *
  * @property int $id
  * @property string|null $data
- * @property int|null $stock
  * @property float|null $valortotal
+ * @property int $user_id
  *
  * @property LinhaCarrinho[] $linhaCarrinhos
+ * @property User $user
  */
 class Carrinho extends \yii\db\ActiveRecord
 {
@@ -31,8 +32,10 @@ class Carrinho extends \yii\db\ActiveRecord
     {
         return [
             [['data'], 'safe'],
-            [['stock'], 'integer'],
             [['valortotal'], 'number'],
+            [['user_id'], 'required'],
+            [['user_id'], 'integer'],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -44,8 +47,8 @@ class Carrinho extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'data' => 'Data',
-            'stock' => 'Stock',
             'valortotal' => 'Valortotal',
+            'user_id' => 'User ID',
         ];
     }
 
@@ -57,5 +60,15 @@ class Carrinho extends \yii\db\ActiveRecord
     public function getLinhaCarrinhos()
     {
         return $this->hasMany(LinhaCarrinho::class, ['carrinho_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 }

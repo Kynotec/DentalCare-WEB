@@ -26,7 +26,7 @@ class MarcacaoController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','update'],
+                        'actions' => ['index','create','view','update','create-time'],
                         'roles' => ['medico','funcionario','admin'],
                     ],
                 ],
@@ -78,18 +78,50 @@ class MarcacaoController extends Controller
     {
         $model = new Marcacao();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+
+            // Salvando na base de dados
+            if ($model->save()) {
+
+
+                // Redirecionando para a segunda vista com o ID da marcação recém-criada
+                return $this->redirect(['create-time', 'id' => $model->id]);
             }
-        } else {
-            $model->loadDefaultValues();
+            var_dump($model->errors);
+            die;
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
     }
+    public function actionCreateTime($id)
+    {
+        $model = $this->findModel($id);
+
+        var_dump($model->data);
+        $marcacao = Marcacao::find()->select('hora')->where(['data'=>$model->data])->all();
+
+        var_dump($marcacao);
+        die();
+        $horariosIndisponiveis = [];
+
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            // Salvando na base de dados
+            if ($model->save()) {
+                // Redirecionando para a visualização da marcação
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+
+        // Obtendo as opções de hora
+        $model->hoursOptions = $model->getHoursOptions($horariosIndisponiveis);
+
+        return $this->render('create-time', [
+            'model' => $model,
+        ]);
+    }
+
 
     /**
      * Updates an existing Marcacao model.
