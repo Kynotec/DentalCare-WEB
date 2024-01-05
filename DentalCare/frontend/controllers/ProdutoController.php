@@ -79,36 +79,6 @@ class ProdutoController extends Controller
         ]);
     }
 
-
-    public function actionAdicionarAoCarrinho($produtoId)
-    {
-
-        if (!Yii::$app->user->isGuest) {
-            $userId = Yii::$app->user->id;
-
-            // Verifica se o usuário possui um carrinho
-            $carrinho = Carrinho::find()->where(['user_id' => $userId])->one();
-
-            if (!$carrinho) {
-                // Se o usuário não tiver um carrinho, cria um novo
-                $carrinho = new Carrinho();
-                $carrinho->user_id = $userId;
-                $carrinho->save();
-            }
-
-            // Adiciona o produto ao carrinho
-            $linhaCarrinho = new LinhaCarrinho();
-            $linhaCarrinho->carrinho_id = $carrinho->id;
-            $linhaCarrinho->produto_id = $produtoId;
-            $linhaCarrinho->save();
-
-            return $this->redirect(['index']); // Redireciona para a página de produtos, por exemplo
-        } else {
-            // Redireciona para a página de login se o usuário não estiver logado
-            return $this->redirect(['/site/login']);
-        }
-    }
-
     /**
      * Displays a single Produto model.
      * @param int $id ID

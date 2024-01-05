@@ -20,6 +20,7 @@ use Yii;
  */
 class LinhaCarrinho extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
@@ -34,8 +35,9 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['quantidade', 'valorunitario', 'valoriva', 'valortotal'], 'number'],
+            [['quantidade', 'valoriva', 'valortotal'], 'number'],
             [['carrinho_id', 'produto_id'], 'integer'],
+            [['quantidade'], 'integer', 'min' => 1],
             [['produto_id'], 'required'],
             [['carrinho_id'], 'exist', 'skipOnError' => true, 'targetClass' => Carrinho::class, 'targetAttribute' => ['carrinho_id' => 'id']],
             [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produto::class, 'targetAttribute' => ['produto_id' => 'id']],
@@ -50,7 +52,6 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'quantidade' => 'Quantidade',
-            'valorunitario' => 'Valorunitario',
             'valoriva' => 'Valoriva',
             'valortotal' => 'Valortotal',
             'carrinho_id' => 'Carrinho ID',
@@ -65,7 +66,7 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
      */
     public function getCarrinho()
     {
-        return $this->hasMany(Carrinho::class, ['carrinho_id' => 'id']);
+        return $this->hasOne(Carrinho::class, ['id' => 'carrinho_id']);
     }
 
     /**
@@ -76,5 +77,10 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
     public function getProduto()
     {
         return $this->hasOne(Produto::class, ['id' => 'produto_id']);
+    }
+
+    public function calcularTotal()
+    {
+        return $this->quantidade * $this->produto->precounitario;
     }
 }

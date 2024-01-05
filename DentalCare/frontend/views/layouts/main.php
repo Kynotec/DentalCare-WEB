@@ -4,6 +4,8 @@
 
 /** @var string $content */
 
+use common\models\Carrinho;
+use common\models\LinhaCarrinho;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\bootstrap5\Breadcrumbs;
@@ -96,16 +98,21 @@ AppAsset::register($this);
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             </ul>
             <?php
-            if (!Yii::$app->user->isGuest) { ?>
-
-                <form class="d-flex" action="/carrinho/index">
+            if (!Yii::$app->user->isGuest) {
+                $userId = Yii::$app->user->id;
+                $countLinhasCarrinho = LinhaCarrinho::find()
+                    ->joinWith('carrinho')
+                    ->where(['carrinhos.user_id' => $userId])
+                    ->count();
+                ?>
+                <form class="d-flex" action="carrinho/view">
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>Carrinho
-                        <span class="badge bg-dark text-white ms-1 rounded-pill"
-                              id="carrinho-quantidade"><?php echo 'variavel' ?></span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill" id="carrinho-quantidade"><?= $countLinhasCarrinho ?></span>
                     </button>
                 </form>
             <?php } ?>
+        </div>
     </header>
 
 

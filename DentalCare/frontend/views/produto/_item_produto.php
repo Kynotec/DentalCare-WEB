@@ -26,14 +26,14 @@
                     <?php
                     $currencyFormatted = Yii::$app->formatter->asCurrency($model->precounitario, 'EUR'); ?>
 
-                    <a class="cart" <?= Html::a('<span class="price">' . str_replace('€', '', $currencyFormatted) . ' €' . '</span> <span class="add-to-cart"><span class="txt">Adicionar ao carrinho</span>',   ['produto/adicionar-ao-carrinho', 'produtoId' => $model->id]) ?>
+                    <a class="cart" <?= Html::a('<span class="price">' . str_replace('€', '', $currencyFormatted) . ' €' . '</span> <span class="add-to-cart"><span class="txt">Adicionar ao carrinho</span>',   ['carrinho/adicionar-ao-carrinho', 'produtoId' => $model->id]) ?>
                 </div>
 
                 <!-- Product description -->
                 <div class="card-text">
                     <?php echo $model->getShortDescription() ?>
                 </div>
-                <?= Html::a('Ver detalhes', ['view', 'id' => $model->id], ['class' => 'btn btn-info fas eye']) ?>
+                <?= Html::a('Ver detalhes', ['view', 'id' => $model->id], ['class' => 'btn btn-info ']) ?>
             </div>
         </div>
     </div>
