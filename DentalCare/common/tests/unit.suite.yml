@@ -5,4 +5,3 @@ modules:
     - Yii2:
         part: [orm, email, fixtures]
     - Asserts
-    - Db

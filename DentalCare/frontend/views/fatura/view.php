@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var common\models\Diagnostico $model */
+/** @var common\models\Faturas $model */
 
-$this->title = 'Diagnóstico: '. $model->profile->nome;
-$this->params['breadcrumbs'][] = ['label' => 'Diagnosticos', 'url' => ['index']];
+$this->title = $model->id;
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 
 <div class="container-fluid">
 
@@ -26,8 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
-                            'id',
-
                             [
                                 'attribute' => 'profile_id',
                                 'label' => 'Nome do Utente',
@@ -36,24 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return $perfil;
                                 }
                             ],
-                            [
-                                'attribute' => 'data',
-                                'label' => 'Data|Hora do Diagnóstico',
-                                'value' => function ($model) {
-                                    $diagnostico = $model->data . ' | ' . $model->hora;
-                                    return $diagnostico;
-                                }
-                            ],
-                            [
-                                'attribute' => 'data',
-                                'label' => 'Data|Hora da Consulta',
-                                'value' => function ($model) {
-                                    $consulta = $model->consulta->data . ' | ' . $model->consulta->hora;
-                                    return $consulta;
-                                }
-                            ],
+                            'data',
+                            'valortotal',
+                            'ivatotal',
+                            'subtotal',
+                            'estado',
 
-                            'descricao',
                         ],
                     ]) ?>
 
@@ -66,6 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <!--.card-body-->
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
     <!--.card-->
 </div>

@@ -1,20 +1,19 @@
 <?php
 
-use common\models\Diagnostico;
-use common\models\Perfil;
+use common\models\Faturas;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var backend\models\SearchDiagnostico $searchModel */
+/** @var frontend\models\SearchFatura $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-
-$this->title = 'Diagnósticos';
+$this->title = 'Faturas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -33,38 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,
-
                         'columns' => [
 
                             //'id',
-                            //'descricao',
-                            [
-                                'attribute' => 'profile_id',
-                                'label' => 'Nome do Utente',
-                                'value' => function ($model) {
-                                    $perfil = $model->profile->nome;
-                                    return $perfil;
-                                }
-                            ],
-                            [
-                                'attribute' => 'data',
-                                'label' => 'Data|Hora do Diagnóstico',
-                                'value' => function ($model) {
-                                    $diagnostico = $model->data . ' | ' . $model->hora;
-                                    return $diagnostico;
-                                }
-                            ],
-
-                            [
-                                'attribute' => 'hora',
-                                'label' => 'Data|Hora da Consulta',
-                                'value' => function ($model) {
-                                    $consulta = $model->consulta->data . ' | ' . $model->consulta->hora;
-                                    return $consulta;
-                                }
-                            ],
-
-                            //'consulta_id',
+                            'data',
+                            'valortotal',
+                            'ivatotal',
+                            'subtotal',
+                            //'estado',
+                            //'profile_id',
 
                             [
                                 'class' => ActionColumn::className(),
@@ -74,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'view' => function($url, $model)
                                     {
 
-                                        return Html::a('<i class="fas fa-eye"></i>', ['diagnostico/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                                        return Html::a('<i class="fas fa-eye"></i>', ['fatura/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
 
 
                                     },
@@ -84,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]); ?>
 
-                    <br><br><br><br>
+
                 </div>
                 <!--.card-body-->
             </div>
@@ -92,5 +68,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <!--.col-md-12-->
     </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <!--.row-->
 </div>
