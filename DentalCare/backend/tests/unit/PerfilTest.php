@@ -50,7 +50,7 @@ class PerfilTest extends \Codeception\Test\Unit
 
     public function testCreatePerfilSuccessfully()
     {
-        $user= new User();
+        $user = new User();
         $user->email = 'digoo@gmail.com';
         $user->username = 'diogodiogo';
         $user->setPassword('12345678d');
@@ -72,19 +72,21 @@ class PerfilTest extends \Codeception\Test\Unit
         $this->assertTrue($model->validate(['codigopostal']));
 
         verify($model->save())->true();
-        $this->assertNotNull( Perfil::findOne(['user_id' =>  $model->user_id]));
-        $this->tester->seeRecord('common\models\Perfil', array('nome' => 'user1','telefone' => '123456789'));
-    /*}
+        $this->assertNotNull(Perfil::findOne(['user_id' => $model->user_id]));
+        $this->tester->seeRecord('common\models\Perfil', array('nome' => 'user1', 'telefone' => '123456789','morada'=>'Rua das Flores','nif'=>'123456789',
+            'codigopostal'=>'4131491'));
+    }
 
 
     public function testUpdatePerfil()
-    {*/
-//fazer com find
-        $user1 = $this->tester->grabRecord('common\models\Perfil', array('nome' => 'user1','telefone' => '123456789'));
-        //$user1 = $this->tester->grabEntryFromDatabase('profiles', ['nome' => 'user1']);
-        //$user1 = Perfil::find()->where(['nome'=>'user1','telefone'=>'123456789'])->one();
+    {
+        $user1 = $this->tester->grabRecord('common\models\Perfil', array('nome' => 'user1', 'telefone' => '123456789','morada'=>'Rua das Flores','nif'=>'123456789',
+            'codigopostal'=>'4131491'));
+
+        $user = new User();
+
         $model = new Perfil();
-        $model->user_id = $user1->id;
+        $model->user_id = $user->id;
         $model->nome = 'joao';
         $model->telefone = '123452789';
         $model->morada = 'Rua das Floressss';
@@ -92,16 +94,17 @@ class PerfilTest extends \Codeception\Test\Unit
         $model->codigopostal = '4111491';
 
         $model->save();
-        $this->tester->dontSeeRecord('common\models\Perfil', array('nome' => 'user1','telefone' => '123456789'));
-        $this->tester->seeRecord('common\models\Perfil', array('nome' => 'joao','telefone' => '123452789'));
+        $this->tester->dontSeeRecord('common\models\Perfil', array('nome' => 'user1', 'telefone' => '123456789','morada'=>'Rua das Flores','nif'=>'123456789',
+            'codigopostal'=>'4131491'));
+        $this->tester->seeRecord('common\models\Perfil', array('nome' => 'joao','telefone' => '123452789','morada'=>'Rua das Floressss','nif'=>'123456389','codigopostal'=>'4111491'));
     }
 
     public function testDeletePerfil()
     {
-        $user1 = $this->tester->grabRecord('common\models\Perfil', array('nome' => 'joao','telefone' => '123452789'));
-        $user1 -> delete();
-        $this->tester->dontSeeRecord('common\models\Perfil', array('nome' => 'joao','telefone' => '123452789'));
+        $user = new User();
 
-
+        $user1 = $this->tester->grabRecord('common\models\Perfil', array('user_id' => $user->id, 'nome' => 'joao','telefone' => '123452789','morada'=>'Rua das Floressss','nif'=>'123456389','codigopostal'=>'4111491'));
+        $user1->delete();
+        $this->tester->dontSeeRecord('common\models\Perfil', array('user_id' => $user->id, 'nome' => 'joao','telefone' => '123452789','morada'=>'Rua das Floressss','nif'=>'123456389','codigopostal'=>'4111491'));
     }
 }
