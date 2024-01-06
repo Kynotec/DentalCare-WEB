@@ -72,11 +72,17 @@ class Carrinho extends \yii\db\ActiveRecord
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
-    public function calcularTotalCarrinho(){$totalCarrinho = 0;
+
+    public function calcularTotalCarrinho()
+    {
+        $totalCarrinho = 0;
 
         foreach ($this->linhaCarrinhos as $linhaCarrinho) {
             $totalCarrinho += $linhaCarrinho->calcularTotal();
         }
+
+        $this->valortotal = $totalCarrinho;
+        $this->save();
 
         return $totalCarrinho;
     }

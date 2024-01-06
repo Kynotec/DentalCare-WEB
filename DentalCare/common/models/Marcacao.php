@@ -69,7 +69,7 @@ class Marcacao extends \yii\db\ActiveRecord
         // Lógica para gerar as opções de horas com base na data
         $options = [];
         for ($hour = 9; $hour <= 18; $hour++) {
-            if(in_array($horariosIndisponiveis, $hour)) {
+            if(in_array($hour.':00:00', $horariosIndisponiveis)) {
                 continue;
             }
             $options[sprintf('%02d:00:00', $hour)] = $hour;

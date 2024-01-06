@@ -3,7 +3,9 @@
 namespace frontend\controllers;
 
 use common\models\Carrinho;
+use common\models\Faturas;
 use common\models\LinhaCarrinho;
+use common\models\Produto;
 use frontend\models\SearchCarrinho;
 use Yii;
 use yii\web\Controller;
@@ -57,12 +59,8 @@ class CarrinhoController extends Controller
                 ]);
             }
         }
-
-
         return $this->redirect(['/site/login']);
     }
-
-
 
     /**
      * Creates a new Carrinho model.
@@ -74,37 +72,34 @@ class CarrinhoController extends Controller
         if (!Yii::$app->user->isGuest) {
             $userId = Yii::$app->user->id;
 
-            // Encontrar ou criar o carrinho  do User
             $carrinho = Carrinho::find()->where(['user_id' => $userId])->one();
 
             if (!$carrinho) {
                 $carrinho = new Carrinho();
                 $carrinho->user_id = $userId;
                 $carrinho->data = Carbon::now();
-                $linhaCarrinho = new LinhaCarrinho();
-              //  $carrinho->valortotal; falta calcular
                 $carrinho->save();
             }
 
-            // Verificar o produto se já existe no carrinho
             $linhaCarrinho = LinhaCarrinho::find()
                 ->where(['carrinho_id' => $carrinho->id, 'produto_id' => $produtoId])
                 ->one();
 
+            $produto = Produto::find()->where(['id' => $produtoId])->one();
+
             if ($linhaCarrinho) {
-                // Se o produto já existe, atualizar a quantidade
                 $linhaCarrinho->quantidade += 1;
+                $linhaCarrinho->recalcularIva();
+                $linhaCarrinho->valortotal = $linhaCarrinho->calcularTotal();
             } else {
-                // Se o produto não existe, criar uma nova linha no carrinho
                 $linhaCarrinho = new LinhaCarrinho();
                 $linhaCarrinho->carrinho_id = $carrinho->id;
                 $linhaCarrinho->quantidade = 1;
-                $linhaCarrinho->valortotal = $linhaCarrinho->quantidade * $linhaCarrinho->produto->precounitario;
-                //$linhaCarrinho->valoriva = 1; falta calcular
-
                 $linhaCarrinho->produto_id = $produtoId;
+                $linhaCarrinho->valorunitario = $produto->precounitario;
+                $linhaCarrinho->valoriva = $produto->calcularIva();
+                $linhaCarrinho->valortotal = $linhaCarrinho->calcularTotal();
             }
-
             $linhaCarrinho->save();
 
             return $this->redirect(['produto/']);
@@ -112,8 +107,6 @@ class CarrinhoController extends Controller
             return $this->redirect(['/site/login']);
         }
     }
-
-
     /**
      * Updates an existing Carrinho model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -129,9 +122,15 @@ class CarrinhoController extends Controller
             $novaQuantidade = Yii::$app->request->post('quantidade')[$linhaCarrinhoId];
             $linhaCarrinho->quantidade = $novaQuantidade;
             $linhaCarrinho->save();
+
+            $linhaCarrinho->recalcularIva();
+            $total = $linhaCarrinho->calcularTotal();
+            $linhaCarrinho->valortotal = $total;
+            $linhaCarrinho->save();
         }
         return $this->redirect(['view']);
     }
+
     /**
      * Deletes an existing Carrinho model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -141,41 +140,21 @@ class CarrinhoController extends Controller
      */
     public function actionDelete($linhaCarrinhoId)
     {
-
-        // Encontra a LinhaCarrinho pelo ID
         $linhaCarrinho = LinhaCarrinho::findOne($linhaCarrinhoId);
 
-        // Se a LinhaCarrinho não for encontrada, lança uma exceção NotFoundHttpException
         if (!$linhaCarrinho) {
             throw new NotFoundHttpException('A linha de carrinho não foi encontrada.');
         }
 
-        // Obtém o ID do carrinho antes de deletar a linha
         $carrinhoId = $linhaCarrinho->carrinho_id;
 
-        // Deleta a LinhaCarrinho
         $linhaCarrinho->delete();
 
         // Recalcula o total do carrinho após a remoção da linha
-      //  $this->recalcularTotalCarrinho($carrinhoId);
+        //  $this->recalcularTotalCarrinho($carrinhoId);
 
         // Redireciona para a página do carrinho ou qualquer outra página desejada
         return $this->redirect(['view']);
-    }
-
-    /**
-     * Recalcula o total do carrinho.
-     * @param int $carrinhoId ID do carrinho
-     */
-    protected function recalcularTotalCarrinho($carrinhoId)
-    {
-        $carrinho = Carrinho::findOne($carrinhoId);
-
-        if ($carrinho) {
-            // Lógica para recalcular o total do carrinho
-            // Implemente conforme necessário com base na estrutura do seu modelo
-            $carrinho->calcularTotalCarrinho();
-        }
     }
 
     /**

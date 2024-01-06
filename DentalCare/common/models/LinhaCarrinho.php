@@ -81,6 +81,19 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
 
     public function calcularTotal()
     {
-        return $this->quantidade * $this->produto->precounitario;
+        return $this->quantidade * $this->valorunitario + $this->valoriva;
+    }
+
+    public function calcularTotalIva()
+    {
+        return $this->quantidade * $this->produto->precounitario * $this->produto->iva_id;
+    }
+
+    public function recalcularIva()
+    {
+        if ($this->produto) {
+            $this->valoriva = $this->produto->calcularIva()* $this->quantidade;
+            $this->save();
+        }
     }
 }

@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /** @var common\models\Marcacao $model */
 /** @var yii\widgets\ActiveForm $form */
 
-$model->hoursOptions = $model->getHoursOptions();
+
 ?>
 
 <div class="consulta-form">

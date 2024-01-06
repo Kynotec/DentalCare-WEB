@@ -9,8 +9,6 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var common\models\Marcacao $model */
 /** @var yii\widgets\ActiveForm $form */
-
-$model->hoursOptions = $model->getHoursOptions();
 ?>
 
 <div class="consulta-form">
@@ -52,7 +50,7 @@ $model->hoursOptions = $model->getHoursOptions();
     <?= $form->field($model, 'servico_id')->dropDownList(ArrayHelper::map(Servico::find()->all(), 'id', 'descricao'), ['prompt' => '- Nenhum -']); ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Salvar e Continuar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar e Continuar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

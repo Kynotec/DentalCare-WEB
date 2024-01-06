@@ -125,6 +125,14 @@ class Produto extends \yii\db\ActiveRecord
         return $this->hasOne(Iva::class, ['id' => 'iva_id']);
     }
 
+    public function calcularIva()
+    {
+        if ($this->iva) {
+            return $this->precounitario * ($this->iva->percentagem / 100);
+        }
+        return 0;
+    }
+
     /**
      * Gets query for [[LinhaCarrinhos]].
      *
