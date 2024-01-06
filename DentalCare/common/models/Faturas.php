@@ -8,12 +8,12 @@ use Yii;
  * This is the model class for table "faturas".
  *
  * @property int $id
- * @property string|null $data
- * @property float|null $valortotal
- * @property float|null $ivatotal
- * @property float|null $subtotal
- * @property string|null $estado
- * @property int|null $profile_id
+ * @property string $data
+ * @property float $valortotal
+ * @property float $ivatotal
+ * @property float $subtotal
+ * @property string $estado
+ * @property int $profile_id
  *
  * @property LinhaFatura[] $linhaFaturas
  * @property Perfil $profile
@@ -34,6 +34,7 @@ class Faturas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['data', 'valortotal', 'ivatotal', 'subtotal', 'estado', 'profile_id'], 'required'],
             [['data'], 'safe'],
             [['valortotal', 'ivatotal', 'subtotal'], 'number'],
             [['profile_id'], 'integer'],

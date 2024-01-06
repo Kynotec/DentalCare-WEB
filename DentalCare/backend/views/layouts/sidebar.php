@@ -161,8 +161,8 @@
                         'icon' => 'copy',
                         'visible' => Yii::$app->user->can("createFaturas"),
                         'items' => [
-                            ['label' => 'Consultar Faturas', 'icon' => 'eye', 'url' => ['']],
-                            ['label' => 'Criar Fatura', 'icon' => 'plus', 'url' => ['']],
+                            ['label' => 'Consultar Faturas', 'icon' => 'eye', 'url' => ['/fatura']],
+                            ['label' => 'Criar Fatura', 'icon' => 'plus', 'url' => ['/fatura/create']],
                         ],
                     ],
 
