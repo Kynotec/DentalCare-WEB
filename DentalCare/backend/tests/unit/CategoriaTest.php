@@ -5,7 +5,7 @@ namespace backend\tests\Unit;
 
 use backend\tests\UnitTester;
 use common\models\Categoria;
-use common\widgets\Alert;
+
 
 class CategoriaTest extends \Codeception\Test\Unit
 {
@@ -27,6 +27,7 @@ class CategoriaTest extends \Codeception\Test\Unit
         $categorias = new Categoria();
         $categorias->descricao = 'HNxM1eZMhUjeNCrLLwQYNRxPwxCfmjDb3E7dCtCRHfRzoLoOyQPL0vadgasdfsa';
         $this->assertFalse($categorias->validate(['descricao']));
+
         verify($categorias->save())->false();
     }
 

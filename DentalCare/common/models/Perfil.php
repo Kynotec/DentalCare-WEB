@@ -15,8 +15,8 @@ use Yii;
  * @property string|null $codigopostal
  * @property int|null $user_id
  *
- * @property Consultas[] $consultas
- * @property Diagnosticos[] $diagnosticos
+ * @property Marcacao[] $consultas
+ * @property Diagnostico[] $diagnosticos
  * @property Faturas[] $faturas
  * @property User $user
  */
@@ -72,7 +72,7 @@ class Perfil extends \yii\db\ActiveRecord
      */
     public function getConsultas()
     {
-        return $this->hasMany(Consultas::class, ['profile_id' => 'id']);
+        return $this->hasMany(Marcacao::class, ['profile_id' => 'id']);
     }
 
     /**
@@ -82,7 +82,7 @@ class Perfil extends \yii\db\ActiveRecord
      */
     public function getDiagnosticos()
     {
-        return $this->hasMany(Diagnosticos::class, ['profile_id' => 'id']);
+        return $this->hasMany(Diagnostico::class, ['profile_id' => 'id']);
     }
 
     /**

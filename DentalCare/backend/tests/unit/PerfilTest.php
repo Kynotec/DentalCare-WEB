@@ -94,8 +94,7 @@ class PerfilTest extends \Codeception\Test\Unit
         $model->codigopostal = '4111491';
 
         $model->save();
-        $this->tester->dontSeeRecord('common\models\Perfil', array('nome' => 'user1', 'telefone' => '123456789','morada'=>'Rua das Flores','nif'=>'123456789',
-            'codigopostal'=>'4131491'));
+        $this->tester->dontSeeRecord('common\models\Perfil', array('nome' => 'user1', 'telefone' => '123456789','morada'=>'Rua das Flores','nif'=>'123456789', 'codigopostal'=>'4131491'));
         $this->tester->seeRecord('common\models\Perfil', array('nome' => 'joao','telefone' => '123452789','morada'=>'Rua das Floressss','nif'=>'123456389','codigopostal'=>'4111491'));
     }
 

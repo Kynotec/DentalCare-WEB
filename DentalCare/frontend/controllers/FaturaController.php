@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use common\models\Faturas;
 use frontend\models\SearchFatura;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,11 +40,16 @@ class FaturaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SearchFatura();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['site/login']);
+        }
+        $profileId = Yii::$app->user->id;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Faturas::find()->where(['profile_id' => $profileId]),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

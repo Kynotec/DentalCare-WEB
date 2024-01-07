@@ -65,7 +65,6 @@ $this->title = 'Carrinho';
                             [
                                 'class' => 'btn btn-danger',
                                 'data' => [
-                                    'confirm' => 'Tem certeza que deseja remover este item do carrinho?',
                                     'method' => 'post',
                                 ],
                             ]

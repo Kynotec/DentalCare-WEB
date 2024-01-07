@@ -28,6 +28,7 @@ class Categoria extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['descricao'], 'required'],
             [['descricao'], 'string', 'max' => 30],
         ];
     }

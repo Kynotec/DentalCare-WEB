@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string|null $descricao
- * @property string|null $data
+ * @property string $data
  * @property string $hora
  * @property int|null $profile_id
  * @property int $consulta_id
@@ -35,7 +35,7 @@ class Diagnostico extends \yii\db\ActiveRecord
     {
         return [
             [['data', 'hora'], 'safe'],
-            [['hora', 'consulta_id'], 'required'],
+            [['data', 'hora', 'consulta_id'], 'required'],
             [['profile_id', 'consulta_id'], 'integer'],
             [['descricao'], 'string', 'max' => 45],
             [['profile_id'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::class, 'targetAttribute' => ['profile_id' => 'id']],
