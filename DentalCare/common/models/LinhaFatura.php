@@ -8,13 +8,13 @@ use Yii;
  * This is the model class for table "linha_faturas".
  *
  * @property int $id
- * @property float|null $quantidade
- * @property float|null $valorunitario
- * @property float|null $valoriva
- * @property float|null $valortotal
- * @property int|null $fatura_id
+ * @property int $quantidade
+ * @property float $valorunitario
+ * @property float $valoriva
+ * @property float $valortotal
+ * @property int $fatura_id
  * @property int|null $produto_id
- * @property int $servico_id
+ * @property int|null $servico_id
  *
  * @property Faturas $fatura
  * @property Produto $produto
@@ -35,13 +35,14 @@ class LinhaFatura extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
-            [['quantidade', 'valorunitario', 'valoriva', 'valortotal'], 'number'],
-            [['fatura_id', 'produto_id', 'servico_id'], 'integer'],
-            [['servico_id'], 'required'],
-            [['fatura_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faturas::class, 'targetAttribute' => ['fatura_id' => 'id']],
+        return[
+            [['quantidade', 'valorunitario', 'valoriva', 'valortotal', 'fatura_id'], 'required'],
+            [['quantidade', 'fatura_id', 'produto_id', 'servico_id'], 'integer'],
+            [['valorunitario', 'valoriva', 'valortotal'], 'number'],
             [['produto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Produto::class, 'targetAttribute' => ['produto_id' => 'id']],
             [['servico_id'], 'exist', 'skipOnError' => true, 'targetClass' => Servico::class, 'targetAttribute' => ['servico_id' => 'id']],
+            [['fatura_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faturas::class, 'targetAttribute' => ['fatura_id' => 'id']],
+
         ];
     }
 
