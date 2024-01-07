@@ -76,7 +76,7 @@ AppAsset::register($this);
                         echo Html::tag('div ', Html::a('Home', ['/']));
                         echo Html::tag('div', Html::a('PRODUTOS', ['/produto']));
                         echo Html::tag('div', Html::a('SERVIÇOS', ['/servico']));
-                        echo Html::tag('div', Html::a('MARCAÇÕES', ['/marcacoes/view', 'user_id' => Yii::$app->user->id]));
+                        echo Html::tag('div', Html::a('MARCAÇÕES', ['/marcacao']));
                         echo Html::tag('div', Html::a('Faturas', ['/fatura']));
                         echo Html::tag('div', Html::a(''));
                         echo Html::tag('div', Html::a(''));

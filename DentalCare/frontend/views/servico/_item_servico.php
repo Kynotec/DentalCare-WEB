@@ -26,8 +26,8 @@
                     <?php
                     $currencyFormatted = Yii::$app->formatter->asCurrency($model->preco, 'EUR'); ?>
 
-                    <a class="cart" <?= Html::a('<span class="price">' . str_replace('€', '', $currencyFormatted) . ' €' . '</span> <span class="add-to-cart"><span class="txt">Fazer Marcação</span>')//, ['carrinho/create', 'idProduto' => $model->id]) ?>
-                </div>
+
+                    <a class="cart" <?= Html::a('<span class="price">' . str_replace('€', '', $currencyFormatted) . ' €' . '</span> <span class="add-to-cart"><span class="txt">Marcar Consulta</span>',   ['marcacao/create', 'servico_id' => $model->id]) ?></div>
 
                 <!-- Product description -->
                 <div class="card-text">

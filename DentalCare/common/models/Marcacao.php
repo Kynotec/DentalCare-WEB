@@ -36,7 +36,7 @@ class Marcacao extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data', 'hora', 'estado'], 'required'],
+            [['data', 'estado'], 'required'],
             [['data', 'hora'], 'safe'],
             [['profile_id', 'servico_id'], 'integer'],
             [['descricao'], 'string', 'max' => 45],
@@ -72,7 +72,7 @@ class Marcacao extends \yii\db\ActiveRecord
             if(in_array($hour.':00:00', $horariosIndisponiveis)) {
                 continue;
             }
-            $options[sprintf('%02d:00:00', $hour)] = $hour;
+            $options[sprintf('%02d:00:00', $hour)] = $hour.':00';
         }
 
         return $options;
