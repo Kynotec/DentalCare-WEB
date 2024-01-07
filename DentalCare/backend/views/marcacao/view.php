@@ -12,10 +12,17 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="marcacao-view">
-
     <p>
-        <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+    <?php
+    if ($model->estado != 'Realizado') {
+        echo Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+        echo Html::a(' ');
+        echo Html::a('Concluir Consulta', ['concluir', 'id' => $model->id], ['class' => 'btn btn-success']);
+        echo Html::a(' ');
+        echo Html::a('Desmarcar Consulta', ['delete', 'id' => $model->id], ['class' => 'btn btn-danger']);
+    }?>
     </p>
+
 
     <?= DetailView::widget([
         'model' => $model,

@@ -126,29 +126,6 @@ class MarcacaoController extends Controller
             'model' => $model,
         ]);
     }
-    /*
-        public function actionCancelar($id)
-        {
-            $model = $this->findModel($id);
-
-            if ($model->estado == 'Cancelado') {
-                Yii::$app->session->setFlash('warning', 'Esta marcação já está cancelada.');
-                return $this->redirect(['index']);
-            }
-            if ($model->estado == 'Por Realizar') {
-                $model->estado = 'Cancelado';
-
-                if ($model->save()) {
-                    Yii::$app->session->setFlash('success', 'A Marcação foi cancelada com sucesso!');
-                } else {
-                    Yii::$app->session->setFlash('error', 'Erro ao cancelar a marcação!');
-                }
-            } else {
-                Yii::$app->session->setFlash('warning', 'Apenas marcações "Por Realizar" podem ser canceladas.');
-            }
-            return $this->redirect(['index']);
-        }
-    */
 
     /**
      * Updates an existing Marcacao model.

@@ -5,6 +5,8 @@ namespace backend\controllers;
 use backend\models\SearchUtente;
 use common\models\Marcacao;
 use backend\models\SearchMarcacao;
+use Exception;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -26,7 +28,7 @@ class MarcacaoController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','update','create-time'],
+                        'actions' => ['index','create','view','update','create-time','concluir','delete'],
                         'roles' => ['medico','funcionario','admin'],
                     ],
                 ],
@@ -34,7 +36,7 @@ class MarcacaoController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -78,6 +80,8 @@ class MarcacaoController extends Controller
     {
         $model = new Marcacao();
 
+        $model->estado = 'Por Realizar';
+
         if ($this->request->isPost && $model->load($this->request->post())) {
             if ($model->save()) {
                 return $this->redirect(['create-time', 'id' => $model->id]);
@@ -89,6 +93,7 @@ class MarcacaoController extends Controller
             'model' => $model,
         ]);
     }
+
     public function actionCreateTime($id)
     {
         $model = $this->findModel($id);
@@ -113,8 +118,6 @@ class MarcacaoController extends Controller
             'model' => $model,
         ]);
     }
-
-
     /**
      * Updates an existing Marcacao model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -122,6 +125,9 @@ class MarcacaoController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
+
+
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -133,6 +139,23 @@ class MarcacaoController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionConcluir($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->estado == 'Por Realizar') {
+            $model->estado = 'Realizado';
+
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'A Marcação foi concluida com sucesso!');
+            } else {
+                Yii::$app->session->setFlash('error', 'Erro ao concluir a marcação!');
+            }
+
+            return $this->redirect(['index']);
+        }
     }
 
     /**

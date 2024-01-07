@@ -52,7 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'update' => function($url, $model)
                     {
-                        if (Yii::$app->user->can('updateConsulta')) {
+                        $estadosNaoPermitidos = ['Realizado'];
+
+                        if (Yii::$app->user->can('updateConsulta') && !in_array($model->estado, $estadosNaoPermitidos)) {
                             return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['marcacao/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
                         }
                     },

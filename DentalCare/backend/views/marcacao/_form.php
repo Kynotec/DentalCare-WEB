@@ -22,15 +22,7 @@ use yii\widgets\ActiveForm;
         'options' => ['class' => 'form-control'], // Opções do input
     ]) ?>
 
-    <?= $form->field($model, 'estado')->dropDownList(
-        [
-            'Realizado' => 'Realizado',
-            'Por Realizar' => 'Por Realizar',
-            'Cancelado' => 'Cancelado',
-        ],
-        ['prompt' => '- Nenhum -']
-    )->label('Selecione um Estado:'); ?>
-
+    <?= $form->field($model, 'estado')->hiddenInput()->label(false) ?>
 
     <?= $form->field($model, 'profile_id')->dropDownList(
         \yii\helpers\ArrayHelper::map(
@@ -46,7 +38,6 @@ use yii\widgets\ActiveForm;
         ['prompt' => '- Nenhum -']
     )->label('Selecione um Utente:');
     ?>
-
     <?= $form->field($model, 'servico_id')->dropDownList(ArrayHelper::map(Servico::find()->all(), 'id', 'descricao'), ['prompt' => '- Nenhum -']); ?>
 
     <div class="form-group">
