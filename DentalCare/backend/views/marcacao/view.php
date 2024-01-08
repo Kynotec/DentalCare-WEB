@@ -14,12 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="marcacao-view">
     <p>
     <?php
-    if ($model->estado != 'Realizado') {
+    if ($model->estado == 'Por Realizar') {
         echo Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
         echo Html::a(' ');
         echo Html::a('Concluir Consulta', ['concluir', 'id' => $model->id], ['class' => 'btn btn-success']);
         echo Html::a(' ');
         echo Html::a('Desmarcar Consulta', ['delete', 'id' => $model->id], ['class' => 'btn btn-danger']);
+    }elseif ($model->estado == 'Realizado' && $model->estado == 'Pago'){
+        echo Html::a(' ');
     }?>
     </p>
 
@@ -58,8 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $servico;
                 }
             ],
-            //'profile_id',
-            //'servico_id',
+
         ],
     ]) ?>
 

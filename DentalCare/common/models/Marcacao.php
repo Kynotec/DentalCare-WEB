@@ -78,6 +78,7 @@ class Marcacao extends \yii\db\ActiveRecord
         return $options;
     }
 
+
     /**
      * Gets query for [[Diagnosticos]].
      *

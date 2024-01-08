@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => ActionColumn::class,
                 'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
-                'template' => '{view} {update}',
+                'template' => '{view} {update} {pagar}',
                 'buttons' => [
                     'view' => function($url, $model)
                     {
@@ -50,10 +50,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'update' => function($url, $model)
                     {
-                        $estadosNaoPermitidos = ['Realizado'];
+                        $estadosNaoPermitidos = ['Realizado','Pago'];
 
                         if (Yii::$app->user->can('updateConsulta') && !in_array($model->estado, $estadosNaoPermitidos)) {
                             return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['marcacao/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
+                        }
+                    },
+                    'pagar' => function($url, $model)
+                    {
+                        $estadosNaoPermitidos = ['Realizado'];
+
+                        if (Yii::$app->user->can('updateConsulta') && in_array($model->estado, $estadosNaoPermitidos)) {
+                            return Html::a('<i></i>Pagar', ['marcacao/pagar', 'id' => $model->id], ['class' => 'btn btn-success']);
+
                         }
                     },
 

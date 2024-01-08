@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 02-Jan-2024 às 14:26
+-- Tempo de geração: 07-Jan-2024 às 23:43
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.1.13
 
@@ -44,7 +44,8 @@ INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 ('administrador', '1', 1702079747),
 ('medico', '9', 1703353863),
 ('utente', '10', 1703360767),
-('utente', '11', 1704199135);
+('utente', '11', 1704199135),
+('utente', '12', 1704373901);
 
 -- --------------------------------------------------------
 
@@ -217,10 +218,11 @@ DROP TABLE IF EXISTS `carrinhos`;
 CREATE TABLE IF NOT EXISTS `carrinhos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `data` datetime DEFAULT NULL,
-  `stock` int DEFAULT NULL,
   `valortotal` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -252,7 +254,7 @@ DROP TABLE IF EXISTS `consultas`;
 CREATE TABLE IF NOT EXISTS `consultas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `descricao` varchar(45) DEFAULT NULL,
-  `data` date NOT NULL,
+  `data` date DEFAULT NULL,
   `hora` time NOT NULL,
   `estado` enum('Realizado','Por Realizar','Cancelado','') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `profile_id` int DEFAULT NULL,
@@ -260,16 +262,26 @@ CREATE TABLE IF NOT EXISTS `consultas` (
   PRIMARY KEY (`id`),
   KEY `profile_id` (`profile_id`),
   KEY `servico_id` (`servico_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `consultas`
 --
 
 INSERT INTO `consultas` (`id`, `descricao`, `data`, `hora`, `estado`, `profile_id`, `servico_id`) VALUES
-(1, 'Visualização de Análises', '2023-12-30', '17:00:00', 'Por Realizar', 10, 1),
+(1, 'Visualização de Análises', '2023-12-30', '17:00:00', 'Realizado', 10, 1),
 (2, 'dd', '2023-12-13', '09:00:00', 'Realizado', 10, 7),
-(3, '22', '2023-12-30', '11:00:00', 'Cancelado', 10, 2);
+(3, '22', '2023-12-30', '11:00:00', 'Cancelado', 10, 2),
+(4, '', '2023-12-30', '17:00:00', 'Realizado', 10, 4),
+(5, '', '2023-12-30', '17:00:00', 'Por Realizar', 10, 5),
+(6, 'tt', '2023-12-30', '16:00:00', 'Realizado', 10, 7),
+(7, 'tt', '2023-12-30', '17:00:00', 'Realizado', 10, 6),
+(8, 'FFF', '2023-12-30', '14:00:00', 'Por Realizar', 10, 5),
+(9, 'FFF', '2023-12-30', '00:00:00', 'Por Realizar', 10, 4),
+(10, 'FFF', '2023-12-30', '17:00:00', 'Por Realizar', 10, 4),
+(11, 'FFF', '2023-12-30', '00:00:00', 'Por Realizar', 10, 4),
+(12, 'FFF', '2024-01-30', '11:00:00', 'Realizado', 10, 2),
+(14, 'diogo', '2023-12-30', '12:00:00', 'Por Realizar', 10, 7);
 
 -- --------------------------------------------------------
 
@@ -349,7 +361,19 @@ CREATE TABLE IF NOT EXISTS `faturas` (
   `profile_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `profile_id` (`profile_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `faturas`
+--
+
+INSERT INTO `faturas` (`id`, `data`, `valortotal`, `ivatotal`, `subtotal`, `estado`, `profile_id`) VALUES
+(1, '2024-01-07 19:30:37', '0.00', '0.00', '0.00', 'Pago', 10),
+(2, '2024-01-07 19:32:46', '0.00', '0.00', '0.00', 'Pago', 10),
+(3, '2024-01-07 19:33:31', '2.24', '0.24', '2.00', 'Pago', 10),
+(4, '2024-01-07 22:40:35', '22.40', '2.40', '20.00', 'Pago', 10),
+(5, '2024-01-07 22:45:44', '2.24', '0.24', '2.00', 'Pago', 10),
+(6, '2024-01-07 23:40:38', '2.24', '0.24', '2.00', 'Pago', 10);
 
 -- --------------------------------------------------------
 
@@ -436,7 +460,7 @@ CREATE TABLE IF NOT EXISTS `linha_carrinhos` (
   PRIMARY KEY (`id`),
   KEY `carrinho_id` (`carrinho_id`),
   KEY `produto_id` (`produto_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -453,12 +477,22 @@ CREATE TABLE IF NOT EXISTS `linha_faturas` (
   `valortotal` decimal(10,2) DEFAULT NULL,
   `fatura_id` int DEFAULT NULL,
   `produto_id` int DEFAULT NULL,
-  `servico_id` int NOT NULL,
+  `servico_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fatura_id` (`fatura_id`),
   KEY `produto_id` (`produto_id`),
   KEY `servico_id` (`servico_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `linha_faturas`
+--
+
+INSERT INTO `linha_faturas` (`id`, `quantidade`, `valorunitario`, `valoriva`, `valortotal`, `fatura_id`, `produto_id`, `servico_id`) VALUES
+(2, '1.00', 2, 0.24, '2.24', 3, 8, NULL),
+(3, '20.00', 1, 2.4, '22.40', 4, 9, NULL),
+(4, '1.00', 2, 0.24, '2.24', 5, 10, NULL),
+(5, '1.00', 2, 0.24, '2.24', 6, 8, NULL);
 
 -- --------------------------------------------------------
 
@@ -484,7 +518,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `ativo` tinyint(1) DEFAULT NULL,
   `nome` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `descricao` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `descricao` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `precounitario` double DEFAULT NULL,
   `stock` int DEFAULT NULL,
   `iva_id` int DEFAULT NULL,
@@ -528,18 +562,19 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `profiles`
 --
 
 INSERT INTO `profiles` (`id`, `nome`, `telefone`, `morada`, `nif`, `codigopostal`, `user_id`) VALUES
-(1, 'Admin', '123456789', 'Rua do admin', '999999999', '2400-555', 1),
+(1, 'Admin', '123456789', 'Rua do admin', '123456789', '2400-555', 1),
 (8, 'Admin1', '123556789', 'Rua do admin1', '999999999', '2000-555', 8),
-(9, 'Medico 1', '98758748', 'Leiria', '998877889', '2400-777', 9),
+(9, 'Medico 1', '98758748', 'LeiriaCity', '998877889', '2400-777', 9),
 (10, 'Utente 1', '98758748', 'Leiria', '998877889', '2400-777', 10),
-(11, 'Utente List', '987878578', 'lll', '999999999', '3100-888', 11);
+(11, 'Utente List', '987878578', 'lll', '999999999', '3100-888', 11),
+(12, 'uuu', '324576876', 'dfg', '345766453', '2333-043', 12);
 
 -- --------------------------------------------------------
 
@@ -551,8 +586,8 @@ DROP TABLE IF EXISTS `servicos`;
 CREATE TABLE IF NOT EXISTS `servicos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `referencia` varchar(45) DEFAULT NULL,
-  `nome` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `descricao` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `nome` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `descricao` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `preco` double DEFAULT NULL,
   `ativo` tinyint(1) DEFAULT NULL,
   `iva_id` int DEFAULT NULL,
@@ -565,8 +600,8 @@ CREATE TABLE IF NOT EXISTS `servicos` (
 --
 
 INSERT INTO `servicos` (`id`, `referencia`, `nome`, `descricao`, `preco`, `ativo`, `iva_id`) VALUES
-(1, '2', '', 'ColocaÃ§Ã£o aparelho DentÃ¡rio', 50, 10, 2),
-(2, '1', '', 'ColocaÃ§Ã£o aparelho DentÃ¡rio', 2, 9, 2),
+(1, '2', '', 'Colocação aparelho Dentário', 50, 10, 2),
+(2, '1', '', 'Colocação aparelho Dentário', 2, 9, 2),
 (3, '22', '', 'ddd', 1, 10, 1),
 (4, '6', '', 'hh', 50, 10, 1),
 (5, '6', '', 'hh', 50, 10, 1),
@@ -595,7 +630,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `user`
@@ -606,7 +641,8 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_res
 (8, 'admin1', 'osVFDTj_Mr4C77Dxc8tuA_NU97OYu3F-', '$2y$13$rku.ZcKHkHq8/T/TUc3Yeu7x8nLTF1mbn0M5Ih7HWPlDFiiBpbkqK', NULL, 'admin1@gmail.com', 10, 1701190204, 1701190204, NULL),
 (9, 'medico1', 'vmP12k-gZtPi5k0z25DvfoNbBdcZRYGL', '$2y$13$X1WYglTS2uJW/Ecv2hAuz.pXH/MSKYrwbG1jDOWXWOqxfBm7Dpqli', NULL, 'medico1@gmail.com', 10, 1703353863, 1703353863, NULL),
 (10, 'utente1', '6CyI8qPk8tZCns-B_cUFaE8cgcESnKhZ', '$2y$13$lUSx0Eh4ymXE2Rk42Tp8d.KAm2.WiOQioSeoNrROUKVZpY802sniO', NULL, 'utente1@gmail.com', 10, 1703360767, 1703360767, NULL),
-(11, 'Utente Lis', 'gfRP6Uz8B864Qr-BksrakwHXY7mNbfqA', '$2y$13$8rGtV7nGuDJDVgkUYWMPZeWG8vLxlHlGLl0sqoDeKtsfBmsqLKPRO', NULL, 'utetnelis@gmail.com', 10, 1704199135, 1704199135, NULL);
+(11, 'Utente Lis', 'gfRP6Uz8B864Qr-BksrakwHXY7mNbfqA', '$2y$13$8rGtV7nGuDJDVgkUYWMPZeWG8vLxlHlGLl0sqoDeKtsfBmsqLKPRO', NULL, 'utetnelis@gmail.com', 10, 1704199135, 1704199135, NULL),
+(12, 'utente', 'iSCIFt_tgphw0Kg82Oe1K3pf70oHBJv-', '$2y$13$4KjUWaM8Ho3mI4wX9XDRReTPWmKhvrPu40tBymsU9FqmpNQCitlAy', NULL, 'utente33@gmail.com', 10, 1704373901, 1704373901, NULL);
 
 --
 -- Restrições para despejos de tabelas
@@ -630,6 +666,12 @@ ALTER TABLE `auth_item`
 ALTER TABLE `auth_item_child`
   ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `carrinhos`
+--
+ALTER TABLE `carrinhos`
+  ADD CONSTRAINT `carrinhos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Limitadores para a tabela `consultas`
@@ -663,8 +705,8 @@ ALTER TABLE `imagens`
 -- Limitadores para a tabela `linha_carrinhos`
 --
 ALTER TABLE `linha_carrinhos`
-  ADD CONSTRAINT `linha_carrinhos_ibfk_1` FOREIGN KEY (`carrinho_id`) REFERENCES `carrinhos` (`id`),
-  ADD CONSTRAINT `linha_carrinhos_ibfk_2` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`);
+  ADD CONSTRAINT `linha_carrinhos_ibfk_2` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`),
+  ADD CONSTRAINT `linha_carrinhos_ibfk_3` FOREIGN KEY (`carrinho_id`) REFERENCES `carrinhos` (`id`);
 
 --
 -- Limitadores para a tabela `linha_faturas`

@@ -19,8 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         if ($model->estado == 'Por Realizar') {
             echo Html::a('Atualizar Marcação', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+            echo(' ');
             echo Html::a('Desmarcar Consulta', ['delete', 'id' => $model->id], ['class' => 'btn btn-danger']);
         }?>
+    </p>
+    <p>
+    <?php
+    if ($model->estado == 'Realizado') {
+        echo Html::a('Pagar Consulta', ['pagar', 'id' => $model->id], ['class' => 'btn btn-success']);
+    }?>
     </p>
 
     <?= DetailView::widget([
