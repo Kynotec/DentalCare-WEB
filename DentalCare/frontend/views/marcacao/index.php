@@ -13,7 +13,7 @@ use yii\grid\GridView;
 $this->title = 'As Minhas Marcações';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="marcacao-index">
+<div class="container-md">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <br>

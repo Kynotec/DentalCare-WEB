@@ -27,7 +27,7 @@ class UtenteController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','update','view'],
+                        'actions' => ['update','view'],
                         'roles' => ['@'],
                     ],
                 ],

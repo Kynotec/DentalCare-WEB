@@ -16,83 +16,82 @@ $this->title = 'As Minhas Faturas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="fatura-index">
-<h1><?= Html::encode($this->title) ?></h1>
-        <div class="col-md-12">
-                <div class="card-body">
+<div class="container-md">
+    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="col-md-12">
+        <div class="card-body">
 
-                    <br>
+            <br>
 
-                    <?= GridView::widget([
-                        'dataProvider' => $dataProvider,
-                        'filterModel' => $searchModel,
-                        'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-                            //'id',
-                            'data',
+                    //'id',
+                    'data',
 
 
-                            [
-                                'attribute' => 'subtotal',
-                                'value' => function ($model) {
-                                    $subtotal = $model->subtotal . ' €';
-                                    return $subtotal;
+                    [
+                        'attribute' => 'subtotal',
+                        'value' => function ($model) {
+                            $subtotal = $model->subtotal . ' €';
+                            return $subtotal;
+                        }
+                    ],
+                    [
+                        'attribute' => 'ivatotal',
+                        'value' => function ($model) {
+                            $ivatotal = $model->ivatotal . ' €';
+                            return $ivatotal;
+                        }
+                    ],
+                    [
+                        'attribute' => 'valortotal',
+                        'value' => function ($model) {
+                            $valortotal = $model->valortotal . ' €';
+                            return $valortotal;
+                        }
+                    ],
+
+                    'estado',
+                    //'profile_id',
+
+                    [
+                        'class' => ActionColumn::class,
+                        'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
+                        'template' => '{view}',
+                        'buttons' => [
+                            'view' => function ($url, $model) {
+                                if (Yii::$app->user->can('readConsulta')) {
+                                    return Html::a('<i class="fas fa-eye"></i>', ['fatura/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
                                 }
-                            ],
-                            [
-                                'attribute' => 'ivatotal',
-                                'value' => function ($model) {
-                                    $ivatotal = $model->ivatotal . ' €';
-                                    return $ivatotal;
-                                }
-                            ],
-                            [
-                                'attribute' => 'valortotal',
-                                'value' => function ($model) {
-                                    $valortotal = $model->valortotal . ' €';
-                                    return $valortotal;
-                                }
-                            ],
+                            },
 
-                            'estado',
-                            //'profile_id',
-
-                            [
-                                'class' => ActionColumn::class,
-                                'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
-                                'template' => '{view}',
-                                'buttons' => [
-                                    'view' => function($url, $model)
-                                    {
-                                        if (Yii::$app->user->can('readConsulta')) {
-                                            return Html::a('<i class="fas fa-eye"></i>', ['fatura/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
-                                        }
-                                    },
-                                    
-                                ],
-                            ],
                         ],
-                    ]); ?>
+                    ],
+                ],
+            ]); ?>
 
-                </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-                <!-- .card-body -->
-            </div>
-            <!-- .card -->
         </div>
-        <!-- .col-md-12 -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- .card-body -->
     </div>
+    <!-- .card -->
+</div>
+<!-- .col-md-12 -->
+</div>
 
-    <!-- .row -->
+<!-- .row -->
 
 

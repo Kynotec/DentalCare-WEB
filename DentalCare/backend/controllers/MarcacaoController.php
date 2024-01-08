@@ -131,12 +131,11 @@ class MarcacaoController extends Controller
 
 
 
-        if ($this->request->isPost && $model->load($this->request->post())) {
-            if ($model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
                 return $this->redirect(['create-time', 'id' => $model->id]);
             }
 
-        }
         return $this->render('update', [
             'model' => $model,
         ]);

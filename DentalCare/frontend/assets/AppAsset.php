@@ -20,6 +20,15 @@ class AppAsset extends AssetBundle
         'index/css/solid.css',
         'index/css/style.css',
         'index/css/site.css',
+        'index/css/style-loja.css',
+        [
+            'href' => 'img/dentalcareicon.ico',
+            'rel' => 'icon'
+        ],
+        'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css',
+        'https://fonts.gstatic.com',
+        'https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap',
+        'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css',
 
     ];
     public $js = [

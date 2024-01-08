@@ -26,24 +26,9 @@ AppAsset::register($this);
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
-
-        <link href="index/img/dentalcareicon.ico" rel="icon">
-        <link href="index/img/dentalcareicon.ico" rel="apple-touch-icon">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
-
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap"
-              rel="stylesheet">
-
-        <!-- Icon Font Stylesheet -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-
     </head>
     <body class="d-flex flex-column h-100">
     <?php $this->beginBody() ?>
-
     <header id="header">
         <div class="container d-flex align-items-center">
 
@@ -52,8 +37,7 @@ AppAsset::register($this);
                 <ul>
 
                     <div class="container d-flex align-items-center">
-                        <img src="../web/img/dentalcarelogo.png" height="70" width="160"></a>
-
+                        <?= Html::img('@web/img/dentalcarelogo.png', [ 'alt'=>'Logotipo','width'=>'120','height'=>'70']);?>
 
                         <nav id="navbar" class="navbar form">
                             <ul>

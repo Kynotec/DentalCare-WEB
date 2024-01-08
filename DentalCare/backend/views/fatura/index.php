@@ -13,37 +13,62 @@ use yii\grid\GridView;
 $this->title = 'Faturas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="faturas-index">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                *<div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                            <?= Html::a('Criar Faturas', ['create'], ['class' => 'btn btn-success']) ?>
+                        </div>
+                    </div>
 
-    <p>
-        <?= Html::a('Create Faturas', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                            'id',
+                            'data',
+                            'valortotal',
+                            'ivatotal',
+                            'subtotal',
+                            'estado',
+                            //'profile_id',
+                            [
+                                'class' => ActionColumn::class,
+                                'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
+                                'template' => '{view} {update}',
+                                'buttons' => [
+                                    'view' => function ($url, $model) {
+                                        if (Yii::$app->user->can('readFatura')) {
+                                            return Html::a('<i class="fas fa-eye"></i>', ['fatura/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                                        }
+                                    },
+                                    'update' => function ($url, $model) {
+                                        $estadosNaoPermitidos = ['Pago'];
 
-            'id',
-            'data',
-            'valortotal',
-            'ivatotal',
-            'subtotal',
-            //'estado',
-            //'profile_id',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Faturas $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
-        ],
-    ]); ?>
+                                        if (Yii::$app->user->can('updateFatura') && !in_array($model->estado, $estadosNaoPermitidos)) {
+                                            return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['fatura/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
+                                        }
+                                    },
 
+                                ],
+                            ],
+                        ],
+                    ]); ?>
 
+                </div>
+                <!--.card-body-->
+            </div>
+            <!--.card-->
+        </div>
+        <!--.col-md-12-->
+    </div>
+    <!--.row-->
 </div>

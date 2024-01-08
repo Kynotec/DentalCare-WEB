@@ -13,56 +13,69 @@ use yii\grid\GridView;
 $this->title = 'Marcações';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="marcacao-index">
-    <p>
-        <?= Html::a('Criar Marcação', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                            <?= Html::a('Criar Marcação', ['create'], ['class' => 'btn btn-success']) ?>
+                        </div>
+                    </div>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            'id',
-            //'descricao',
-            [
-                'attribute' => 'profile_id',
-                'label' => 'Nome do Utente',
-                'value' => function ($model) {
-                    $perfil = $model->profile->nome;
-                    return $perfil;
-                }
-            ],
-            'data',
-            'hora',
-            'estado',
-            //'servico_id',
+                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-            [
-                'class' => ActionColumn::class,
-                'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
-                'template' => '{view} {update}',
-                'buttons' => [
-                    'view' => function($url, $model)
-                    {
-                        if (Yii::$app->user->can('readConsulta')) {
-                            return Html::a('<i class="fas fa-eye"></i>', ['marcacao/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
-                        }
-                    },
-                    'update' => function($url, $model)
-                    {
-                        $estadosNaoPermitidos = ['Realizado','Pago'];
+                    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            'id',
+                            //'descricao',
+                            [
+                                'attribute' => 'profile_id',
+                                'label' => 'Nome do Utente',
+                                'value' => function ($model) {
+                                    $perfil = $model->profile->nome;
+                                    return $perfil;
+                                }
+                            ],
+                            'data',
+                            'hora',
+                            'estado',
+                            //'servico_id',
 
-                        if (Yii::$app->user->can('updateConsulta') && !in_array($model->estado, $estadosNaoPermitidos)) {
-                            return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['marcacao/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
-                        }
-                    },
+                            [
+                                'class' => ActionColumn::class,
+                                'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
+                                'template' => '{view} {update}',
+                                'buttons' => [
+                                    'view' => function ($url, $model) {
+                                        if (Yii::$app->user->can('readConsulta')) {
+                                            return Html::a('<i class="fas fa-eye"></i>', ['marcacao/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                                        }
+                                    },
+                                    'update' => function ($url, $model) {
+                                        $estadosNaoPermitidos = ['Realizado', 'Pago'];
 
-                ],
-            ],
-        ],
-    ]); ?>
+                                        if (Yii::$app->user->can('updateConsulta') && !in_array($model->estado, $estadosNaoPermitidos)) {
+                                            return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['marcacao/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
+                                        }
+                                    },
+
+                                ],
+                            ],
+                        ],
+                    ]); ?>
 
 
+                </div>
+                <!--.card-body-->
+            </div>
+            <!--.card-->
+        </div>
+        <!--.col-md-12-->
+    </div>
+    <!--.row-->
 </div>
