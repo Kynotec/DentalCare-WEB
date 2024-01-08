@@ -3,7 +3,8 @@ actor: AcceptanceTester
 modules:
     enabled:
         - WebDriver:
-            url: http://localhost:8080
-            browser: firefox
+            url: http://localhost/DentalCare-WEB/DentalCare/frontend/web/
+            browser: chrome
+            window_size: maximize
         - Yii2:
             part: init
