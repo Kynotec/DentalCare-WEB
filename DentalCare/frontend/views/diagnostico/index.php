@@ -12,10 +12,11 @@ use yii\grid\GridView;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 
-$this->title = 'Diagnósticos';
+$this->title = 'Os meus Diagnósticos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container-fluid">
+    <h1><?= Html::encode($this->title) ?></h1>
     <div class="row">
         <div class="col-md-12">
             <div class="card">

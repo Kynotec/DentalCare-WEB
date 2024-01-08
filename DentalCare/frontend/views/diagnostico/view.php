@@ -7,16 +7,18 @@ use yii\widgets\DetailView;
 /** @var common\models\Diagnostico $model */
 
 $this->title = 'Diagnóstico: '. $model->profile->nome;
-$this->params['breadcrumbs'][] = ['label' => 'Diagnosticos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Os meus Diagnosticos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 
 <div class="container-fluid">
-
+    <h1><?= Html::encode($this->title) ?></h1>
     <div class="card">
 
         <div class="card-body">
+
+
             <p>
                 <a href="./" class="btn-left"><i class="fas fa-arrow-left" data-toggle="tooltip" data-placement="left" title="Cancelar"></i></a>
             </p>
@@ -26,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
-                            'id',
+                            //'id',
 
                             [
                                 'attribute' => 'profile_id',
