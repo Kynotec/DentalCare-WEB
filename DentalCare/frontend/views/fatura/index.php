@@ -12,11 +12,12 @@ use yii\widgets\DetailView;
 /** @var frontend\models\SearchFatura $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 AppAsset::register($this);
-$this->title = 'As Minhas Marcações';
+$this->title = 'As Minhas Faturas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="fatura-index">
+<h1><?= Html::encode($this->title) ?></h1>
         <div class="col-md-12">
                 <div class="card-body">
 
@@ -60,31 +61,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'class' => ActionColumn::class,
                                 'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
-                                'template' => '{view} {update} {pagar}',
+                                'template' => '{view}',
                                 'buttons' => [
                                     'view' => function($url, $model)
                                     {
                                         if (Yii::$app->user->can('readConsulta')) {
-                                            return Html::a('<i class="fas fa-eye"></i>', ['marcacao/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                                            return Html::a('<i class="fas fa-eye"></i>', ['fatura/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
                                         }
                                     },
-                                    'update' => function($url, $model)
-                                    {
-                                        $estadosNaoPermitidos = ['Realizado','Pago'];
-
-                                        if (Yii::$app->user->can('updateConsulta') && !in_array($model->estado, $estadosNaoPermitidos)) {
-                                            return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['marcacao/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
-                                        }
-                                    },
-                                    'pagar' => function($url, $model)
-                                    {
-                                        $estadosNaoPermitidos = ['Realizado'];
-
-                                        if (Yii::$app->user->can('updateConsulta') && in_array($model->estado, $estadosNaoPermitidos)) {
-                                            return Html::a('<i></i>Pagar', ['marcacao/pagar', 'id' => $model->id], ['class' => 'btn btn-success']);
-
-                                        }
-                                    },
+                                    
                                 ],
                             ],
                         ],

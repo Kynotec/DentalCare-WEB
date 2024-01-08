@@ -6,11 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="fab03ef3-d14a-4517-83e3-a9ebf12fedcb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/backend/views/layouts/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/backend/views/layouts/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/backend/views/medico/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/backend/views/medico/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/backend/views/utente/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/backend/views/utente/_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DentalCare/console/controllers/RbacController.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/console/controllers/RbacController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dentalcare.sql" beforeDir="false" afterPath="$PROJECT_DIR$/dentalcare.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/.bowerrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/backend/controllers/FaturaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/backend/controllers/FaturaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/backend/views/fatura/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/backend/views/fatura/_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/backend/views/fatura/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/backend/views/fatura/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/codeception.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/views/produto/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/views/produto/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/frontend/views/servico/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/DentalCare/frontend/views/servico/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/public/images/products/ 65813B2A-ED59-485C-8C53-B3FC036A6BDB.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DentalCare/public/images/products/ 68C95CE7-CE4F-4DE0-A048-2CD948118C77.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,17 +239,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/wamp64/www/DentalCare-WEB",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/DentalCare-WEB&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings scope="ConfigurationFile" />
