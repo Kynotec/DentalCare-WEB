@@ -76,6 +76,10 @@ $this->title = 'Carrinho';
         </table>
 
         <p>Total do Carrinho: <?= Yii::$app->formatter->asCurrency($carrinho->calcularTotalCarrinho(), 'EUR') ?></p>
+        <?php echo Html::a('Concluir Carrinho', ['concluir-carrinho'], [
+        'class' => 'btn btn-success',
+        'id' => 'concluir-carrinho-btn',
+        ]);?>
     <?php else: ?>
         <p>O carrinho está vazio.</p>
     <?php endif; ?>

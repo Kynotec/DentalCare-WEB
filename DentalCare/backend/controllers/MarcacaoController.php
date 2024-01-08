@@ -121,26 +121,26 @@ class MarcacaoController extends Controller
     /**
      * Updates an existing Marcacao model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
+     * @param int $id ID da Marcação
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-
-
-
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
 
+
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            if ($model->save()) {
+                return $this->redirect(['create-time', 'id' => $model->id]);
+            }
+
+        }
         return $this->render('update', [
             'model' => $model,
         ]);
     }
-
     public function actionConcluir($id)
     {
         $model = $this->findModel($id);

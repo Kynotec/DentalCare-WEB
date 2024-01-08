@@ -5,13 +5,17 @@ namespace frontend\controllers;
 use common\models\Carrinho;
 use common\models\Faturas;
 use common\models\LinhaCarrinho;
+use common\models\LinhaFatura;
 use common\models\Produto;
+use Exception;
 use frontend\models\SearchCarrinho;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Carbon\Carbon;
+use yii\web\Response;
 
 
 /**
@@ -24,17 +28,24 @@ class CarrinhoController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['view','adicionar-ao-carrinho','update-quantidade','concluir-carrinho','delete'],
+                        'roles' => ['utente'],
                     ],
                 ],
-            ]
-        );
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -67,6 +78,7 @@ class CarrinhoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
+
     public function actionAdicionarAoCarrinho($produtoId)
     {
         if (!Yii::$app->user->isGuest) {
@@ -95,7 +107,7 @@ class CarrinhoController extends Controller
                 $linhaCarrinho = new LinhaCarrinho();
                 $linhaCarrinho->carrinho_id = $carrinho->id;
                 $linhaCarrinho->quantidade = 1;
-                $linhaCarrinho->produto_id = $produtoId;
+                $linhaCarrinho->produto_id = $produto->id;
                 $linhaCarrinho->valorunitario = $produto->precounitario;
                 $linhaCarrinho->valoriva = $produto->calcularIva();
                 $linhaCarrinho->valortotal = $linhaCarrinho->calcularTotal();
@@ -107,6 +119,8 @@ class CarrinhoController extends Controller
             return $this->redirect(['/site/login']);
         }
     }
+
+
     /**
      * Updates an existing Carrinho model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -131,6 +145,69 @@ class CarrinhoController extends Controller
         return $this->redirect(['view']);
     }
 
+
+    public function actionConcluirCarrinho()
+    {
+        if (!Yii::$app->user->isGuest) {
+            $userId = Yii::$app->user->id;
+            $carrinho = Carrinho::find()->where(['user_id' => $userId])->one();
+
+
+            if ($carrinho) {
+                try {
+                    $fatura = new Faturas();
+                    $fatura->profile_id = $userId;
+                    $fatura->data = Carbon::now();
+                    $fatura->valortotal = 0;
+                    $fatura->ivatotal = 0;
+                    $fatura->subtotal = 0;
+                    $fatura->estado = 'Pago';
+
+                    if (!$fatura->save()) {
+                        throw new Exception('Erro ao guardar a fatura: ' . implode(', ', $fatura->getFirstErrors()));
+                    }
+                    $linhasCarrinho = $carrinho->getLinhaCarrinhos()->all();
+                    foreach ($linhasCarrinho as $linhaCarrinho) {
+                        $linhaFatura = new LinhaFatura();
+                        $linhaFatura->fatura_id = $fatura->id;
+                        $linhaFatura->produto_id = $linhaCarrinho->produto_id;
+                        $linhaFatura->quantidade = (int)$linhaCarrinho->quantidade;
+                        $linhaFatura->valorunitario = $linhaCarrinho->valorunitario;
+                        $linhaFatura->valoriva = $linhaCarrinho->valoriva;
+                        $linhaFatura->valortotal = $linhaCarrinho->valortotal;
+
+                        if (!$linhaFatura->save()) {
+                            throw new Exception('Erro ao guardar a linha de fatura: ' . implode(', ', $linhaFatura->getFirstErrors()));
+                        }
+                        // Remover a linha do carrinho
+                        if (!$linhaCarrinho->delete()) {
+                            throw new Exception('Erro ao eliminar a linha do carrinho: ' . implode(', ', $linhaCarrinho->getFirstErrors()));
+                        }
+
+                        // Atualiza os valores totais da fatura com base na linha_fatura
+                        $fatura->valortotal += $linhaFatura->valortotal;
+                        $fatura->ivatotal += $linhaFatura->valoriva;
+                        $fatura->subtotal += $linhaFatura->valortotal - $linhaFatura->valoriva;
+                    }
+                    if (!$fatura->save()) {
+                        throw new Exception('Erro ao guardar os valores atualizados da fatura: ' . implode(', ', $fatura->getFirstErrors()));
+                    }
+                    //Remover o carrinho
+                    $carrinho->delete();
+                    Yii::$app->session->setFlash('success', 'Carrinho concluído com sucesso!');
+                } catch (Exception $e) {
+                    Yii::$app->session->setFlash('error', $e->getMessage());
+                }
+            } else {
+                Yii::$app->session->setFlash('error', 'Não foi possível processar a compra do carrinho!');
+            }
+
+            return $this->redirect(['produto/']);
+        } else {
+            return $this->redirect(['/site/login']);
+        }
+    }
+
     /**
      * Deletes an existing Carrinho model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -145,15 +222,9 @@ class CarrinhoController extends Controller
         if (!$linhaCarrinho) {
             throw new NotFoundHttpException('A linha de carrinho não foi encontrada.');
         }
-
         $carrinhoId = $linhaCarrinho->carrinho_id;
 
         $linhaCarrinho->delete();
-
-        // Recalcula o total do carrinho após a remoção da linha
-        //  $this->recalcularTotalCarrinho($carrinhoId);
-
-        // Redireciona para a página do carrinho ou qualquer outra página desejada
         return $this->redirect(['view']);
     }
 
@@ -169,7 +240,6 @@ class CarrinhoController extends Controller
         if (($model = Carrinho::findOne(['id' => $id])) !== null) {
             return $model;
         }
-
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
