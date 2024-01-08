@@ -52,8 +52,8 @@ class ServicoController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Servico::find(),
-
+            'query' => Servico::find()
+                ->andWhere(['ativo' =>10]),
             'pagination' => [
                 'pageSize' => 15
             ],

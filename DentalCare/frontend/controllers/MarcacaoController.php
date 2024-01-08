@@ -4,10 +4,13 @@ namespace frontend\controllers;
 
 use backend\models\SearchUtente;
 use Carbon\Carbon;
+use common\models\Faturas;
+use common\models\LinhaFatura;
 use common\models\Marcacao;
 use backend\models\SearchMarcacao;
 use common\models\Produto;
 use common\models\Servico;
+use Exception;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
@@ -31,7 +34,7 @@ class MarcacaoController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','update','delete','create-time'],
+                        'actions' => ['index','create','view','update','delete','create-time','pagar'],
                         'roles' => ['utente'],
                     ],
                 ],
@@ -126,6 +129,45 @@ class MarcacaoController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionPagar($id)
+    {
+        try {
+            $marcacao = Marcacao::findOne($id);
+
+            if (!$marcacao) {
+                throw new Exception('Consulta não encontrada.');
+            }
+            $servico = $marcacao->servico;
+            $marcacao->estado = 'Pago';
+            $marcacao->save();
+            // Permite criar uma fatura
+            $fatura = new Faturas();
+            $fatura->profile_id = Yii::$app->user->id;
+            $fatura->data = Carbon::now();
+            $fatura->valortotal = $servico->preco + ($servico->preco * $servico->iva->percentagem / 100);
+            $fatura->ivatotal = $servico->preco * ($servico->iva->percentagem / 100);
+            $fatura->subtotal = $servico->preco;
+            $fatura->estado = 'Pago';
+            $fatura->save();
+
+            $linhaFatura = new LinhaFatura();
+            $linhaFatura->fatura_id = $fatura->id;
+            $linhaFatura->servico_id = $servico->id;
+            $linhaFatura->quantidade = 1;
+            $linhaFatura->valorunitario = $servico->preco;
+            $linhaFatura->valoriva = $servico->preco * ($servico->iva->percentagem / 100);
+            $linhaFatura->valortotal = $linhaFatura->valorunitario + $linhaFatura->valoriva;
+            $linhaFatura->save();
+
+            Yii::$app->session->setFlash('success', 'Pagamento realizado com sucesso!');
+        } catch (Exception $e) {
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+
+        return $this->redirect(['marcacao/']);
+    }
+
 
     /**
      * Updates an existing Marcacao model.
