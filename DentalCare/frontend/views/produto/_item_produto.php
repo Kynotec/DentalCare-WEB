@@ -24,7 +24,7 @@
 
                     <!-- Product price -->
                     <?php
-                    $currencyFormatted = Yii::$app->formatter->asCurrency($model->precounitario, 'EUR'); ?>
+                    $currencyFormatted = Yii::$app->formatter->asCurrency($model->precounitario + ($model->precounitario * $model->iva->percentagem/100), 'EUR'); ?>
 
                     <a class="cart" <?= Html::a('<span class="price">' . str_replace('€', '', $currencyFormatted) . ' €' . '</span> <span class="add-to-cart"><span class="txt">Adicionar ao carrinho</span>',   ['carrinho/adicionar-ao-carrinho', 'produtoId' => $model->id]) ?>
                 </div>

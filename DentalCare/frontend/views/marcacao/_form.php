@@ -12,6 +12,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="consulta-form">
+    <br>
 
     <?php $form = ActiveForm::begin(['action' => ['create']]); ?>
 
@@ -27,11 +28,13 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'profile_id')->hiddenInput()->label(false) ?>
 
     <?= $form->field($model, 'servico_id')->hiddenInput()->label(false) ?>
-
+    <br>
     <div class="form-group">
         <?= Html::submitButton('Guardar e Selecionar Hora', ['class' => 'btn btn-success']) ?>
     </div>
-
+    <br>
+    <br>
+    <br>
     <?php ActiveForm::end(); ?>
 
 </div>

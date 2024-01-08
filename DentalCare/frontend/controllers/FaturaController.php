@@ -2,10 +2,15 @@
 
 namespace frontend\controllers;
 
+use common\models\Empresa;
 use common\models\Faturas;
+use common\models\LinhaFatura;
+use common\models\Produto;
+use common\models\Servico;
 use frontend\models\SearchFatura;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,17 +25,24 @@ class FaturaController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index','view'],
+                        'roles' => ['utente'],
                     ],
                 ],
-            ]
-        );
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -40,17 +52,21 @@ class FaturaController extends Controller
      */
     public function actionIndex()
     {
+
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
+
         $profileId = Yii::$app->user->id;
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => Faturas::find()->where(['profile_id' => $profileId]),
-        ]);
+        $searchModel = new SearchFatura();
+
+        $dataProvider = $searchModel->search($this->request->queryParams, $profileId);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+
         ]);
     }
 
@@ -62,8 +78,31 @@ class FaturaController extends Controller
      */
     public function actionView($id)
     {
+        $empresas = Empresa::find()->all();
+        $fatura = $this->findModel($id);
+
+        //Vais buscar os produtos que estão associadoas a fatura atual
+        $produtoIds = LinhaFatura::find()->where(['fatura_id' => $fatura->id])->select('produto_id')->column();
+        //Vai buscar todos os produtos que estão associado ao produto_id
+        $produtos = Produto::find()->where(['id' => $produtoIds])->all();
+
+        //Vais buscar os Servicos que estão associadoas a fatura atual
+        $servicoIds = LinhaFatura::find()->where(['fatura_id' => $fatura->id])->select('servico_id')->column();
+        //Vai buscar todos os Servicos que estão associado ao servico_id
+        $servicos = Servico::find()->where(['id' => $servicoIds])->all();
+
+
+
+        if (count($empresas) > 0) {
+            $empresa = $empresas[0];
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $fatura,
+            'empresa' => $empresa,
+            'linhafatura' => $fatura->linhaFaturas,
+            'produtos' => $produtos,
+            'servicos' => $servicos,
         ]);
     }
 

@@ -33,10 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'nome',
             'descricao:ntext',
             [
-                'label' => 'Valor',
-                'value' => Yii::$app->formatter->asDecimal($model->preco, 2) . ' €',
-            ],
+                'label' => 'Valor Total s\ Iva',
+                'value' => Yii::$app->formatter->asDecimal($model->preco , 2) . ' €',
 
+            ],
+            [
+                'label' => 'Valor Total c\ Iva',
+                'value' => Yii::$app->formatter->asDecimal($model->preco + ($model->preco * $model->iva->percentagem/100), 2) . ' €',
+
+            ],
             [
                 'attribute' => 'iva_id',
                 'label' => 'IVA',
@@ -54,5 +59,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
 
     <?= Html::a('Voltar', Yii::$app->request->referrer, ['class' => 'btn btn-primary']) ?>
-    <?= Html::a('Fazer a Marcação', ['carrinho/create', 'idProduto' => $model->id], ['class' => 'btn btn-primary']); ?>
+    <?= Html::a('Fazer a Marcação', ['marcacao/create', 'servico_id' => $model->id], ['class' => 'btn btn-primary']); ?>
 </div>

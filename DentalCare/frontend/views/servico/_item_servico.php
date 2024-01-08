@@ -24,7 +24,7 @@
 
                     <!-- Product price -->
                     <?php
-                    $currencyFormatted = Yii::$app->formatter->asCurrency($model->preco, 'EUR'); ?>
+                    $currencyFormatted = Yii::$app->formatter->asCurrency($model->preco + ($model->preco * $model->iva->percentagem/100), 'EUR'); ?>
 
 
                     <a class="cart" <?= Html::a('<span class="price">' . str_replace('€', '', $currencyFormatted) . ' €' . '</span> <span class="add-to-cart"><span class="txt">Marcar Consulta</span>',   ['marcacao/create', 'servico_id' => $model->id]) ?></div>
@@ -33,7 +33,7 @@
                 <div class="card-text">
                     <?php echo $model->getShortDescription() ?>
                 </div>
-                <?= Html::a('Ver detalhes', ['view', 'id' => $model->id], ['class' => 'btn btn-info fas eye']) ?>
+                <?= Html::a('Ver detalhes', ['view', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
             </div>
         </div>
     </div>

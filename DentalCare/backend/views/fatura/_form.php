@@ -43,6 +43,21 @@ use yii\widgets\ActiveForm;
                                 <address><br>
                                     <strong>Cliente:</strong><br>
                                     <a href="<?= Yii::$app->urlManager->createUrl(['fatura/select-client']) ?>" class="btn btn-primary">Selecionar</a>
+                                    <?php
+
+                                    if($model->profile !== null && $model->profile_id->user !== null) {
+
+                                        echo '<strong>Nome:</strong> ' . $model->profile->nome . '<br>';
+                                        echo '<strong>Morada:</strong> ' . $model->user->profile->morada . '<br>';
+                                        echo '<strong>Contacto:</strong> ' . $model->user->profile->contacto . '<br>';
+                                        echo '<strong>Email:</strong> ' . $model->user->email . '<br>';
+
+                                    } else {
+                                        echo 'Perfil do utilizador não encontrado.';
+                                    }
+
+                                    var_dump($model);
+                                    ?>
                                 </address>
                             </div>
 

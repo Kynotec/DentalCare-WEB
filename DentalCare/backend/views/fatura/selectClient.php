@@ -52,9 +52,11 @@ foreach ($users as $user) {
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{select}',
                 'buttons' => [
-                    'select' => function ($url, $model, $key) {
-                        return Html::a('Selecionar', ['fatura/create', 'userId' => $model['id']], ['class' => 'btn btn-primary']);
-                    },
+
+                        'select' => function ($url, $model, $key) {
+                    return Html::a('Selecionar', ['fatura/create', 'profile_id' => $model['id']], ['class' => 'btn btn-primary']);
+                },
+
                 ],
             ],
         ],

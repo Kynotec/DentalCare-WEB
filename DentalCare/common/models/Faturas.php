@@ -51,9 +51,9 @@ class Faturas extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'data' => 'Data',
-            'valortotal' => 'Valortotal',
-            'ivatotal' => 'Ivatotal',
-            'subtotal' => 'Subtotal',
+            'valortotal' => 'Valor Total',
+            'ivatotal' => 'Iva Total',
+            'subtotal' => 'Sub-Total',
             'estado' => 'Estado',
             'profile_id' => 'Profile ID',
         ];

@@ -10,7 +10,9 @@ $this->title = $model->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
 ?>
+
 <div class="container">
 
     <h1 class="text-center" style="margin-top: -60px;"><?= Html::encode($this->title) ?></h1>
@@ -41,13 +43,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'descricao:ntext',
             [
-                'label' => 'Valor',
-                'value' => Yii::$app->formatter->asDecimal($model->precounitario, 2) . ' €',
+                'label' => 'Valor Total s\ Iva',
+                'value' => Yii::$app->formatter->asDecimal($model->precounitario , 2) . ' €',
+
+            ],
+            [
+                'label' => 'Valor Total c\ Iva',
+                'value' => Yii::$app->formatter->asDecimal($model->precounitario + ($model->precounitario * $model->iva->percentagem/100), 2) . ' €',
+
             ],
 
             [
                 'attribute' => 'iva_id',
-                'label' => 'IVA',
+                'label' => 'Taxa Iva',
                 'value' => function ($model) {
                     $iva = $model->iva->percentagem . ' %';
                     return $iva;
@@ -59,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
     <?= Html::a('Voltar', Yii::$app->request->referrer, ['class' => 'btn btn-primary']) ?>
-    <?= Html::a('Adicionar ao carrinho', ['carrinho/create', 'idProduto' => $model->id], ['class' => 'btn btn-primary']); ?>
+    <?= Html::a('Adicionar ao carrinho', ['carrinho/adicionar-ao-carrinho', 'produtoId' => $model->id], ['class' => 'btn btn-primary']); ?>
 </div>
 
 

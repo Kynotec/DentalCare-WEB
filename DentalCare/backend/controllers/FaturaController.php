@@ -80,24 +80,70 @@ class FaturaController extends Controller
             $model = new Faturas();
             $linhafatura = new LinhaFatura();
 
+        //    $model->profile_id = New Perfil();
+
             if ($this->request->isPost) {
-                if ($model->load($this->request->post()) && $model->save()) {
-                    return $this->redirect(['view', 'id' => $model->id]);
+
+                if ($model->load($this->request->post()) && $linhafatura->load($this->request->post())) {
+
+                    if ($model->validate()) {
+                        $model->save();
+
+
+                        $linhafatura->fatura_id = $model->id;
+                        $linhafatura->save();
+
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }
                 }
             } else {
                 $model->loadDefaultValues();
+                $linhafatura->loadDefaultValues();
             }
 
             return $this->render('create', [
                 'model' => $model,
                 'empresa' => $empresa,
-                'linhafatura'=>$linhafatura,
+                'linhafatura' => $linhafatura,
             ]);
         } else {
             return $this->redirect(['fatura/index']);
         }
     }
 
+    /**
+     * Updates an existing Faturas model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+        $linhafatura = LinhaFatura::findOne(['fatura_id' => $model->id]);
+
+        if ($this->request->isPost) {
+
+            if ($model->load($this->request->post()) && $linhafatura->load($this->request->post())) {
+
+                if ($model->validate()) {
+                    $model->save();
+
+                    $linhafatura->fatura_id = $model->id;
+                    $linhafatura->save();
+
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+            'linhafatura' => $linhafatura,
+        ]);
+    }
     /**
      * Displays a form to select a client.
      * If a client is selected, creates a new Faturas model associated with that client.
@@ -119,27 +165,9 @@ class FaturaController extends Controller
             'users' => $users,
             'profiles'=> $profiles,
         ]);
+
     }
 
-    /**
-     * Updates an existing Faturas model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Deletes an existing Faturas model.

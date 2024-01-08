@@ -1,73 +1,113 @@
 <?php
 
 use common\models\Faturas;
+use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
 /** @var frontend\models\SearchFatura $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
-
-$this->title = 'Faturas';
+AppAsset::register($this);
+$this->title = 'As Minhas Marcações';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="container-fluid">
-    <div class="row">
+<div class="fatura-index">
         <div class="col-md-12">
-            <div class="card">
                 <div class="card-body">
-                    <div class="row mb-2">
-                        <div class="col-md-12">
-                            <p>
-                                <a href="../" class="btn-left"><i class="fas fa-arrow-left" data-toggle="tooltip" data-placement="left" title="Cancelar"></i></a>
-                            </p>
-                        </div>
-                    </div>
 
-
-                    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+                    <br>
 
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
                         'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
 
                             //'id',
                             'data',
-                            'valortotal',
-                            'ivatotal',
-                            'subtotal',
-                            //'estado',
+
+
+                            [
+                                'attribute' => 'subtotal',
+                                'value' => function ($model) {
+                                    $subtotal = $model->subtotal . ' €';
+                                    return $subtotal;
+                                }
+                            ],
+                            [
+                                'attribute' => 'ivatotal',
+                                'value' => function ($model) {
+                                    $ivatotal = $model->ivatotal . ' €';
+                                    return $ivatotal;
+                                }
+                            ],
+                            [
+                                'attribute' => 'valortotal',
+                                'value' => function ($model) {
+                                    $valortotal = $model->valortotal . ' €';
+                                    return $valortotal;
+                                }
+                            ],
+
+                            'estado',
                             //'profile_id',
 
                             [
-                                'class' => ActionColumn::className(),
+                                'class' => ActionColumn::class,
                                 'contentOptions' => ['style' => 'width: 1%; white-space: nowrap;'],
-                                'template' => '{view}',
+                                'template' => '{view} {update} {pagar}',
                                 'buttons' => [
                                     'view' => function($url, $model)
                                     {
-
-                                        return Html::a('<i class="fas fa-eye"></i>', ['fatura/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
-
-
+                                        if (Yii::$app->user->can('readConsulta')) {
+                                            return Html::a('<i class="fas fa-eye"></i>', ['marcacao/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                                        }
                                     },
+                                    'update' => function($url, $model)
+                                    {
+                                        $estadosNaoPermitidos = ['Realizado','Pago'];
 
-                                ]
-                            ]
+                                        if (Yii::$app->user->can('updateConsulta') && !in_array($model->estado, $estadosNaoPermitidos)) {
+                                            return Html::a('<i class="fas fa-pencil-alt text-white"></i>', ['marcacao/update', 'id' => $model->id], ['class' => 'btn btn-warning mr-1']);
+                                        }
+                                    },
+                                    'pagar' => function($url, $model)
+                                    {
+                                        $estadosNaoPermitidos = ['Realizado'];
+
+                                        if (Yii::$app->user->can('updateConsulta') && in_array($model->estado, $estadosNaoPermitidos)) {
+                                            return Html::a('<i></i>Pagar', ['marcacao/pagar', 'id' => $model->id], ['class' => 'btn btn-success']);
+
+                                        }
+                                    },
+                                ],
+                            ],
                         ],
                     ]); ?>
 
-
                 </div>
-                <!--.card-body-->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <!-- .card-body -->
             </div>
-            <!--.card-->
+            <!-- .card -->
         </div>
-        <!--.col-md-12-->
+        <!-- .col-md-12 -->
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <!--.row-->
-</div>
+
+    <!-- .row -->
+
+

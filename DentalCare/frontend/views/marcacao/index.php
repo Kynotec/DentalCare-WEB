@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="marcacao-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <br>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -71,6 +71,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
+<br><br><br><br>
 
 </div>
