@@ -33,4 +33,20 @@ Funcionais(Frontend):
 - ..\vendor\bin\codecept run functional AreautenteCest
 - ..\vendor\bin\codecept run functional CarrinhoCest
 
+(Backend)
+- ..\vendor\bin\codecept run functional CategoriaCest
+- ..\vendor\bin\codecept run functional LoginCest
+- ..\vendor\bin\codecept run functional MarcacaoCest
+
+
+Aceitação(Frontend)
+- selenium-standalone start 
+- .\chromedriver --port=8080   
+- ..\vendor\bin\codecept run acceptance CarrinhoCest 
+- ..\vendor\bin\codecept run acceptance MarcacaoCest 
+
+
+
+
+
 
