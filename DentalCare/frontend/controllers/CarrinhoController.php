@@ -181,7 +181,7 @@ class CarrinhoController extends Controller
                         if ($produto) {
                             // Verificar se há stock suficiente
                             if ($linhaCarrinho->quantidade <= $produto->stock) {
-                                $produto->stock =- $linhaCarrinho->quantidade;
+                                $produto->stock -= $linhaCarrinho->quantidade;
                                 if (!$produto->save()) {
                                     throw new Exception('Erro ao atualizar o stock do produto: ' . implode(', ', $produto->getFirstErrors()));
                                 }

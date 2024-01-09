@@ -26,7 +26,8 @@ use yii\widgets\ActiveForm;
             \common\models\Perfil::find()
                 ->select('profiles.user_id, nome, telefone, morada, nif, codigopostal')
                 ->leftJoin('auth_assignment', 'auth_assignment.user_id = profiles.user_id')
-                ->where(['auth_assignment.item_name' => 'utente'])
+                ->leftJoin('user', 'user.id = profiles.user_id')
+                ->where(['auth_assignment.item_name' => 'utente', 'user.status' => 10])
                 ->asArray()
                 ->all(),
             'user_id',
