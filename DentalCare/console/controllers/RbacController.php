@@ -293,8 +293,12 @@ class RbacController extends Controller
         $auth->addChild($utente, $deleteCarrinho);
         $auth->addChild($utente, $updateCarrinho);
         $auth->addChild($utente, $readProdutos);
+        $auth->addChild($utente, $readFaturas);
 
-        // Cria o utilizador "Médico"
+
+
+
+            // Cria o utilizador "Médico"
         $medico = $auth->createRole("medico");
         $auth->add($medico);
         $auth->addChild($medico, $utente);

@@ -30,8 +30,8 @@ class ServicoController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','update','ativar','desativar'],
-                        'roles' => ['administrador','funcionario'],
+                        'actions' => ['index', 'create', 'view', 'update', 'ativar', 'desativar'],
+                        'roles' => ['administrador', 'funcionario'],
                     ],
                 ],
             ],
@@ -81,24 +81,29 @@ class ServicoController extends Controller
     public function actionCreate()
     {
         $model = new Servico();
-
         $imagem = new Imagem();
-
         $modelUpload = new UploadFormServicos();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                $modelUpload->imageFile = UploadedFile::getInstance($modelUpload, 'imageFile');
+            $model->load($this->request->post());
+            $modelUpload->imageFile = UploadedFile::getInstance($modelUpload, 'imageFile');
 
-                if ($modelUpload->upload()) {
-                    // file is uploaded successfully
+            if ($modelUpload->imageFile !== null) {
+                if ($model->save() && $modelUpload->upload()) {
+
                     $imagem->filename = $modelUpload->filename;
                     $imagem->produto_id = null;
                     $imagem->servico_id = $model->id;
                     $imagem->diagnostico_id = null;
                     $imagem->save();
+
+                    return $this->redirect(['view', 'id' => $model->id]);
                 }
-                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                if (Yii::$app->session->hasFlash('error')) {
+                    echo '<div class="alert alert-danger">' . Yii::$app->session->getFlash('error') . '</div>';
+                }
+
             }
         } else {
             $model->loadDefaultValues();
@@ -118,41 +123,41 @@ class ServicoController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
 
-    public function actionUpload()
+    public
+    function actionUpload()
     {
         $model = new UploadFormServicos();
 
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'filename');
             if ($model->upload()) {
-                // file is uploaded successfully
                 return;
             }
         }
 
         return $this->render('create', ['model' => $model]);
     }
-    public function actionUpdate($id)
+
+    public
+    function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $modelUpload = new UploadFormServicos(); // Instantiate UploadForm
-        $imagem = new Imagem(); // Instantiate Imagem
+        $modelUpload = new UploadFormServicos();
+        $imagem = new Imagem();
 
         if ($this->request->isPost) {
-            // Load Servico model data from the POST request
+
             if ($model->load($this->request->post())) {
-                // Save the Servico model
+
                 if ($model->save()) {
-                    // Get the uploaded file instance
+
                     $modelUpload->imageFile = UploadedFile::getInstance($modelUpload, 'imageFile');
 
-                    // Check if there is an uploaded file
+                    // Verifica se encontra o ficheiro
                     if ($modelUpload->imageFile) {
-                        // Attempt to upload the file
+                        // tenta dar upload da imagem
                         if ($modelUpload->upload()) {
-                            // File is uploaded successfully
 
-                            // Update or create Imagem record
                             $imagem = Imagem::findOne(['servico_id' => $model->id]);
 
                             if (!$imagem) {
@@ -160,31 +165,27 @@ class ServicoController extends Controller
                                 $imagem->servico_id = $model->id;
                             }
 
-                            // Update Imagem model with new filename
                             $imagem->filename = $modelUpload->filename;
                             $imagem->produto_id = null;
                             $imagem->diagnostico_id = null;
 
-                            // Save the Imagem model
                             $imagem->save();
                         }
                     }
 
-                    // Redirect to the view page
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
             }
         } else {
-            // If it's not a POST request, load default values
             $model->loadDefaultValues();
         }
 
-        // Render the update view
         return $this->render('update', [
             'model' => $model,
             'modelUpload' => $modelUpload,
         ]);
     }
+
     /**
      * Deletes an existing Servico model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -192,14 +193,16 @@ class ServicoController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public
+    function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
-    public function actionDesativar($id)
+    public
+    function actionDesativar($id)
     {
         $model = $this->findModel($id);
         $modelServico = $model;
@@ -207,7 +210,8 @@ class ServicoController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionAtivar($id)
+    public
+    function actionAtivar($id)
     {
         $model = $this->findModel($id);
         $modelServico = $model;
@@ -222,7 +226,8 @@ class ServicoController extends Controller
      * @return Servico the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected
+    function findModel($id)
     {
         if (($model = Servico::findOne(['id' => $id])) !== null) {
             return $model;

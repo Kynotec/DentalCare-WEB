@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "linha_carrinhos".
  *
  * @property int $id
- * @property float|null $quantidade
+ * @property int $quantidade
  * @property float|null $valorunitario
  * @property float|null $valoriva
  * @property float|null $valortotal
@@ -35,7 +35,7 @@ class LinhaCarrinho extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['quantidade', 'valoriva', 'valortotal'], 'number'],
+            [['quantidade', 'valoriva','valorunitario', 'valortotal'], 'number'],
             [['carrinho_id', 'produto_id'], 'integer'],
             [['quantidade'], 'integer', 'min' => 1],
             [['produto_id'], 'required'],

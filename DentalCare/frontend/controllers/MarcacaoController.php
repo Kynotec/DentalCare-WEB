@@ -15,6 +15,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -34,7 +35,7 @@ class MarcacaoController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','update','delete','create-time','pagar'],
+                        'actions' => ['index', 'create', 'view', 'update', 'delete', 'create-time', 'pagar'],
                         'roles' => ['utente'],
                     ],
                 ],
@@ -77,8 +78,19 @@ class MarcacaoController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        if (Yii::$app->user->identity->id != $model->profile_id) {
+            throw new ForbiddenHttpException('Você não tem permissão para realizar esta ação.');
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Marcacao::find()->where(['profile_id' => Yii::$app->user->id]),
+        ]);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -111,9 +123,9 @@ class MarcacaoController extends Controller
     {
         $model = $this->findModel($id);
 
-        $marcacoes = Marcacao::find()->select('hora')->where(['data'=>$model->data])->all();
+        $marcacoes = Marcacao::find()->select('hora')->where(['data' => $model->data])->all();
         $horariosIndisponiveis = [];
-        foreach($marcacoes as $marcacao){
+        foreach ($marcacoes as $marcacao) {
             array_push($horariosIndisponiveis, $marcacao->hora);
         }
 
@@ -192,6 +204,7 @@ class MarcacaoController extends Controller
             'model' => $model,
         ]);
     }
+
     /**
      * Deletes an existing Marcacao model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

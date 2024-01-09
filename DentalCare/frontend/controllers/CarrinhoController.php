@@ -176,6 +176,20 @@ class CarrinhoController extends Controller
                         $linhaFatura->valoriva = $linhaCarrinho->valoriva;
                         $linhaFatura->valortotal = $linhaCarrinho->valortotal;
 
+                        // Atualizar o stock do produto
+                        $produto = Produto::findOne($linhaCarrinho->produto_id);
+                        if ($produto) {
+                            // Verificar se há stock suficiente
+                            if ($linhaCarrinho->quantidade <= $produto->stock) {
+                                $produto->stock =- $linhaCarrinho->quantidade;
+                                if (!$produto->save()) {
+                                    throw new Exception('Erro ao atualizar o stock do produto: ' . implode(', ', $produto->getFirstErrors()));
+                                }
+                            } else {
+                                throw new Exception('A Quantidade selecionada é superior ao stock disponível para o  seguinte Produto: ' . $produto->nome );
+                            }
+                        }
+
                         if (!$linhaFatura->save()) {
                             throw new Exception('Erro ao guardar a linha de fatura: ' . implode(', ', $linhaFatura->getFirstErrors()));
                         }

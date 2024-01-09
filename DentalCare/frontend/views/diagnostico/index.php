@@ -74,9 +74,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'buttons' => [
                                     'view' => function($url, $model)
                                     {
+                                        if (Yii::$app->user->can('readEstadoClinico')) {
 
-                                        return Html::a('<i class="fas fa-eye"></i>', ['diagnostico/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
-
+                                            return Html::a('<i class="fas fa-eye"></i>', ['diagnostico/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                                        }
 
                                     },
 
@@ -85,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]); ?>
 
-                    <br><br><br><br>
+                    <br><br><br><br><br><br><br><br>
                 </div>
                 <!--.card-body-->
             </div>

@@ -5,8 +5,10 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Diagnostico;
 use frontend\models\SearchDiagnostico;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -65,8 +67,17 @@ class DiagnosticoController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if (Yii::$app->user->identity->id != $model->profile_id) {
+            throw new ForbiddenHttpException('Você não tem permissão para realizar esta ação.');
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Diagnostico::find()->where(['profile_id' => Yii::$app->user->id]),
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProvider'=>$dataProvider
         ]);
     }
 

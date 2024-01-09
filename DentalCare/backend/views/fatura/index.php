@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                *<div class="card-body">
+                <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-md-12">
 
@@ -35,9 +35,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             'id',
                             'data',
-                            'valortotal',
-                            'ivatotal',
-                            'subtotal',
+                            [
+                                'attribute' => 'subtotal',
+                                'value' => function ($model) {
+                                    $subtotal = $model->subtotal . ' €';
+                                    return $subtotal;
+                                }
+                            ],
+                            [
+                                'attribute' => 'ivatotal',
+                                'value' => function ($model) {
+                                    $ivatotal = $model->ivatotal . ' €';
+                                    return $ivatotal;
+                                }
+                            ],
+                            [
+                                'attribute' => 'valortotal',
+                                'value' => function ($model) {
+                                    $valortotal = $model->valortotal . ' €';
+                                    return $valortotal;
+                                }
+                            ],
                             'estado',
                             //'profile_id',
                             [

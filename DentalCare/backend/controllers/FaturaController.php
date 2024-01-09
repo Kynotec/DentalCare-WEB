@@ -8,6 +8,8 @@ use common\models\Faturas;
 use backend\models\SearchFatura;
 use common\models\LinhaFatura;
 use common\models\Perfil;
+use common\models\Produto;
+use common\models\Servico;
 use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,8 +62,31 @@ class FaturaController extends Controller
      */
     public function actionView($id)
     {
+        $empresas = Empresa::find()->all();
+        $fatura = $this->findModel($id);
+
+        //Vai buscar os produtos que estão associadoas a fatura atual
+        $produtoIds = LinhaFatura::find()->where(['fatura_id' => $fatura->id])->select('produto_id')->column();
+        //Vai buscar todos os produtos que estão associado ao produto_id
+        $produtos = Produto::find()->where(['id' => $produtoIds])->all();
+
+        //Vai buscar os Servicos que estão associadoas a fatura atual
+        $servicoIds = LinhaFatura::find()->where(['fatura_id' => $fatura->id])->select('servico_id')->column();
+        //Vai buscar todos os Servicos que estão associado ao servico_id
+        $servicos = Servico::find()->where(['id' => $servicoIds])->all();
+
+
+
+        if (count($empresas) > 0) {
+            $empresa = $empresas[0];
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $fatura,
+            'empresa' => $empresa,
+            'linhafatura' => $fatura->linhaFaturas,
+            'produtos' => $produtos,
+            'servicos' => $servicos,
         ]);
     }
 

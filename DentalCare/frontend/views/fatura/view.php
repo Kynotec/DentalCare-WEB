@@ -90,9 +90,9 @@ AppAsset::register($this);
                                         <td><?= $linhaFatura->produto->nome ?></td>
                                         <td><?= $linhaFatura->quantidade ?></td>
                                         <td><?= $linhaFatura->valorunitario . ' €' ?></td>
+                                        <td><?= $linhaFatura->valoriva . ' €'?></td>
                                         <td><?= $linhaFatura->produto->iva->percentagem . '%' ?></td>
-                                        <td><?= $linhaFatura->valoriva ?></td>
-                                        <td><?= $linhaFatura->valortotal ?></td>
+                                        <td><?= $linhaFatura->valortotal . ' €'?></td>
 
                                         <!-- Serviços -->
                                     <?php elseif ($linhaFatura->servico): ?>
@@ -100,9 +100,9 @@ AppAsset::register($this);
                                         <td><?= $linhaFatura->servico->nome ?></td>
                                         <td><?= $linhaFatura->quantidade ?></td>
                                         <td><?= $linhaFatura->valorunitario . ' €' ?></td>
+                                        <td><?= $linhaFatura->valoriva . ' €'?></td>
                                         <td><?= $linhaFatura->servico->iva->percentagem . '%' ?></td>
-                                        <td><?= $linhaFatura->valoriva ?></td>
-                                        <td><?= $linhaFatura->valortotal ?></td>
+                                        <td><?= $linhaFatura->valortotal . ' €'?></td>
 
                                     <?php endif; ?>
 

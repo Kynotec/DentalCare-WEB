@@ -27,8 +27,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stock')->textInput() ?>
 
-    <?= $form->field($model, 'iva_id')->dropDownList(ArrayHelper::map(Iva::find()->all(), 'id','percentagem','descricao'), ['prompt' => '- Nenhum -']); ?>
-
+    <?= $form->field($model, 'iva_id')->dropDownList(ArrayHelper::map(Iva::find()
+        ->select(['id', 'CONCAT(percentagem, " %") AS percentagem', 'descricao'])
+        ->where(['emvigor' => 10])
+        ->all(), 'id', 'percentagem', 'descricao'), ['prompt' => '- Nenhum -']);
+    ?>
 
     <?= $form->field($model, 'categoria_id')->dropDownList(ArrayHelper::map(Categoria::find()->all(), 'id', 'descricao'), ['prompt' => '- Nenhum -']); ?>
 

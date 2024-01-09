@@ -20,24 +20,27 @@ class UploadFormServicos extends Model
     public function rules()
     {
         return [
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' =>'png, jpg, jpeg, webp', 'maxSize' => 10 * 1024 * 1024]
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' =>'png, jpg, jpeg, webp', 'maxSize' => 10 * 1024 * 1024]
         ];
     }
-
 
     public function upload()
     {
         if ($this->validate()) {
+            if ($this->imageFile) {
+                $guid = trim(com_create_guid(), '{}');
+                $this->filename = $guid . '.' . $this->imageFile->extension;
 
-            $guid = trim(com_create_guid(), '{}');
-            $this->filename = $guid . '.' . $this->imageFile->extension;
+                $this->imageFile->saveAs(\Yii::getAlias('@public') . '\images\services\\'. $this->filename);
 
-            $this->imageFile->saveAs(\Yii::getAlias('@public') . '\images\services\\'. $this->filename);
-
-            return true;
-
+                return true;
+            } else {
+                $this->addError('imageFile', 'Seleciona uma imagem.');
+                return false;
+            }
         } else {
             return false;
         }
     }
+
 }

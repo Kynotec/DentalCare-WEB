@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'template' => '{view}',
                         'buttons' => [
                             'view' => function ($url, $model) {
-                                if (Yii::$app->user->can('readConsulta')) {
+                                if (Yii::$app->user->can('readFaturas')) {
                                     return Html::a('<i class="fas fa-eye"></i>', ['fatura/view', 'id' => $model->id], ['class' => 'btn btn-primary']);
                                 }
                             },

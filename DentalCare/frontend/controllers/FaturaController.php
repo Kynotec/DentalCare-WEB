@@ -12,6 +12,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -92,6 +93,14 @@ class FaturaController extends Controller
         $servicos = Servico::find()->where(['id' => $servicoIds])->all();
 
 
+        if (Yii::$app->user->identity->id != $fatura->profile_id) {
+            throw new ForbiddenHttpException('Você não tem permissão para realizar esta ação.');
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Faturas::find()->where(['profile_id' => Yii::$app->user->id]),
+        ]);
+
 
         if (count($empresas) > 0) {
             $empresa = $empresas[0];
@@ -103,6 +112,7 @@ class FaturaController extends Controller
             'linhafatura' => $fatura->linhaFaturas,
             'produtos' => $produtos,
             'servicos' => $servicos,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

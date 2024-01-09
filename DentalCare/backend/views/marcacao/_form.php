@@ -27,19 +27,25 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'profile_id')->dropDownList(
         \yii\helpers\ArrayHelper::map(
             \common\models\Perfil::find()
-                ->select('profiles.user_id, nome, telefone, morada, nif, codigopostal')
+                ->select('user.id, nome, telefone, morada, nif, codigopostal')
                 ->leftJoin('auth_assignment', 'auth_assignment.user_id = profiles.user_id')
-                ->where(['auth_assignment.item_name' => 'utente'])
+                ->leftJoin('user', 'user.id = profiles.user_id')
+                ->where(['auth_assignment.item_name' => 'utente', 'user.status' => 10])
                 ->asArray()
                 ->all(),
-            'user_id',
+            'id',
             'nome'
         ),
         ['prompt' => '- Nenhum -']
     )->label('Selecione um Utente:');
     ?>
-    <?= $form->field($model, 'servico_id')->dropDownList(ArrayHelper::map(Servico::find()->all(), 'id', 'descricao'), ['prompt' => '- Nenhum -']); ?>
 
+
+
+    <?= $form->field($model, 'servico_id')->dropDownList(ArrayHelper::map(Servico::find()
+        ->where(['ativo' => 10])
+        ->all(), 'id', 'descricao'), ['prompt' => '- Nenhum -']);
+    ?>
     <div class="form-group">
         <?= Html::submitButton('Guardar e Continuar', ['class' => 'btn btn-success']) ?>
     </div>

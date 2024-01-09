@@ -3,13 +3,12 @@
 use yii\bootstrap5\Html;
 use yii\grid\GridView;
 
-// Converter modelos Perfil para arrays
+
 $profilesArray = [];
 foreach ($profiles as $perfil) {
     $profilesArray[] = $perfil->toArray();
 }
 
-// Mesclar os dados de $users e $profiles
 $mergedData = [];
 foreach ($users as $user) {
     $userId = $user['id'];
@@ -17,11 +16,10 @@ foreach ($users as $user) {
         return $profile['user_id'] == $userId;
     });
 
-    // Verifica se há um perfil antes de tentar acessar o índice '0'
     if (!empty($profile)) {
-        $mergedData[] = array_merge($user, reset($profile)); // Use reset para obter o primeiro elemento do array
+        $mergedData[] = array_merge($user, reset($profile));
     } else {
-        // Adicione uma entrada padrão se não houver perfil
+
         $mergedData[] = $user;
     }
 }
@@ -53,9 +51,9 @@ foreach ($users as $user) {
                 'template' => '{select}',
                 'buttons' => [
 
-                        'select' => function ($url, $model, $key) {
-                    return Html::a('Selecionar', ['fatura/create', 'profile_id' => $model['id']], ['class' => 'btn btn-primary']);
-                },
+                    'select' => function ($url, $model, $key) {
+                        return Html::a('Selecionar', ['fatura/create', 'profile_id' => $model['id']], ['class' => 'btn btn-primary']);
+                    },
 
                 ],
             ],
