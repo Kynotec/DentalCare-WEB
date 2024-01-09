@@ -48,7 +48,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'servico_id',
-                'label' => 'Serviço',
+                'label' => 'Nome do Serviço',
+                'value' => function ($model) {
+                    $servico = $model->servico->nome;
+                    return $servico;
+                }
+            ],
+            [
+                'attribute' => 'servico_id',
+                'label' => 'Descriçao do Serviço',
                 'value' => function ($model) {
                     $servico = $model->servico->descricao;
                     return $servico;

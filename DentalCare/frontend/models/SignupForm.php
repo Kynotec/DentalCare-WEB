@@ -46,18 +46,23 @@ class SignupForm extends Model
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
             ['nome', 'trim'],
+            [['nome'], 'string', 'max' => 45],
             ['nome', 'required', 'message' => 'Insira um nome.'],
 
             ['telefone', 'trim'],
+            [['telefone'], 'string', 'max' => 9],
             ['telefone', 'required', 'message' => 'Insira um número de telefone.'],
 
             ['morada', 'trim'],
+            [['morada'], 'string', 'max' => 50],
             ['morada', 'required', 'message' => 'Insira uma morada.'],
 
             ['nif', 'trim'],
+            [['nif'], 'string', 'max' => 9],
             ['nif', 'required', 'message' => 'Insira o NIF.'],
 
             ['codigopostal', 'trim'],
+            [['codigopostal'], 'string', 'max' => 8],
             ['codigopostal', 'required', 'message' => 'Insira um código postal.'],
         ];
     }
@@ -75,26 +80,32 @@ class SignupForm extends Model
 
         $user = new User();
         $perfil = new Perfil();
+
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        $user->save();
 
         $perfil->nome = $this->nome;
         $perfil->telefone = $this->telefone;
         $perfil->morada = $this->morada;
         $perfil->nif = $this->nif;
         $perfil->codigopostal = $this->codigopostal;
-        $perfil->user_id = $user->id;
 
+        $perfil->user_id = $user->id;
 
         $auth = \Yii::$app->authManager;
         $utenteRole = $auth->getRole('utente');
-        $auth->assign($utenteRole, $user->getId());
 
-        return $perfil->save();
+
+        if ($user->save() && $perfil->save()) {
+            $auth->assign($utenteRole, $user->getId());
+            return true;
+        } else {
+            \Yii::error('Falha ao salvar o usuário ou o perfil.');
+            return null;
+        }
     }
 
     /**

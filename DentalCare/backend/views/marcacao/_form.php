@@ -44,7 +44,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'servico_id')->dropDownList(ArrayHelper::map(Servico::find()
         ->where(['ativo' => 10])
-        ->all(), 'id', 'descricao'), ['prompt' => '- Nenhum -']);
+        ->all(), 'id', 'nome'), ['prompt' => '- Nenhum -']);
     ?>
     <div class="form-group">
         <?= Html::submitButton('Guardar e Continuar', ['class' => 'btn btn-success']) ?>

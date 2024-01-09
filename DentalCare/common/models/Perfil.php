@@ -42,7 +42,7 @@ class Perfil extends \yii\db\ActiveRecord
             [['telefone','nif'], 'required'],
             [['telefone', 'nif'], 'string', 'max' => 9],
             [['morada'], 'required'],
-            [['morada'], 'string', 'max' => 25],
+            [['morada'], 'string', 'max' => 50],
             [['codigopostal'], 'required'],
             [['codigopostal'], 'string', 'max' => 8],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],

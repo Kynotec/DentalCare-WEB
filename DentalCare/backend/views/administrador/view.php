@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'class' => 'btn  btn-success pb-0',
                                     'hidden' =>  !Yii::$app->user->can("disableUtilizador"),
                                     'data' => [
-                                        'confirm' => 'Tem a certeza que pretende ativar este cliente?',
+                                        'confirm' => 'Tem a certeza que pretende ativar este Administrador?',
                                         'method' => 'post',
                                     ],
                                 ]);
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'class' => 'btn  btn-danger pb-0',
                                     'hidden' =>  !Yii::$app->user->can("disableUtilizador"),
                                     'data' => [
-                                        'confirm' => 'Tem a certeza que pretende desativar este cliente?',
+                                        'confirm' => 'Tem a certeza que pretende desativar este Administrador?',
                                         'method' => 'post',
                                     ],
                                 ]);

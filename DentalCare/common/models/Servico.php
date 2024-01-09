@@ -76,7 +76,7 @@ class Servico extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nome' => 'Nome',
-            'referencia' => 'Referencia',
+            'referencia' => 'Referência',
             'descricao' => 'Descrição',
             'preco' => 'Preço',
             'ativo' => 'Ativo',

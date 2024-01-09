@@ -65,7 +65,7 @@ class Iva extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'percentagem' => 'Percentagem',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
             'emvigor' => 'Estado',
         ];
     }

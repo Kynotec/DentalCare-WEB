@@ -30,9 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
             //'profile_id',
             [
                 'attribute' => 'servico_id',
-                'label' => 'Serviço',
+                'label' => 'Nome do Serviço',
                 'value' => function ($model) {
-                    $servico = $model->servico->descricao;
+                    $servico = $model->servico->nome;
                     return $servico;
                 }
             ],
