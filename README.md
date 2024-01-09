@@ -16,3 +16,21 @@ Funcionários:
 Médicos:
 -username: medico1 / password: medico111 
 -username: medico2 / password: medico222
+
+
+Testes
+
+Unitários(Frontend): 
+
+- ..\vendor\bin\codecept run unit PerfilTest    
+- ..\vendor\bin\codecept run unit IvaTest    
+- ..\vendor\bin\codecept run unit DiagnosticoTest   
+- ..\vendor\bin\codecept run unit ConsultaTest     
+- ..\vendor\bin\codecept run unit CategoriaTest    
+
+
+Funcionais(Frontend):
+- ..\vendor\bin\codecept run functional AreautenteCest
+- ..\vendor\bin\codecept run functional CarrinhoCest
+
+
