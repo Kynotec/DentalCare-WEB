@@ -18,9 +18,21 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'descricao')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'data')->widget(\yii\jui\DatePicker::class, [
-        'dateFormat' => 'yyyy-MM-dd', // Formato da data
-        'options' => ['class' => 'form-control'], // Opções do input
+        'dateFormat' => 'yyyy-MM-dd',
+        'options' => ['class' => 'form-control'],
+        'clientOptions' => [
+            'minDate' => new \yii\web\JsExpression('new Date()'),
+            'beforeShowDay' => new \yii\web\JsExpression('
+            function(date) {
+                var day = date.getDay();
+                return [(day != 0 && day != 6)];
+            }
+        '),
+        ],
     ]) ?>
+
+
+
 
     <?= $form->field($model, 'estado')->hiddenInput()->label(false) ?>
 
