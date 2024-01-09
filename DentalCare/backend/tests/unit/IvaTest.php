@@ -1,12 +1,12 @@
 <?php
 
 
-namespace backend\tests\Unit;
+namespace backend\tests\unit;
 
 use backend\tests\UnitTester;
 use common\models\Iva;
 
-class IvaTest extends \Codeception\Test\Unit
+class IvaTest extends \Codeception\Test\unit
 {
 
     protected UnitTester $tester;
@@ -41,21 +41,21 @@ class IvaTest extends \Codeception\Test\Unit
         $ivas->emvigor = 10;
         $this->assertTrue($ivas->validate(['emvigor']));
         verify($ivas->save())->true();
-        $this->tester->seeRecord('common\models\Iva', array('percentagem' => '12', 'descricao' => 'iva de aparelho','emvigor'=>10));
+        $this->tester->seeRecord('common\models\Iva', array('percentagem' => '12', 'descricao' => 'iva de aparelho', 'emvigor' => 10));
     }
 
 
     public function testIvaUpdate()
     {
-        $ivas = $this->tester->grabRecord('common\models\Iva', array('percentagem' => '12', 'descricao' => 'iva de aparelho','emvigor'=>10));
+        $ivas = $this->tester->grabRecord('common\models\Iva', array('percentagem' => '12', 'descricao' => 'iva de aparelho', 'emvigor' => 10));
 
         $ivas = new Iva();
         $ivas->percentagem = '12';
         $ivas->descricao = 'iva de aparelho';
         $ivas->emvigor = 10;
         $ivas->save();
-        $this->tester->dontSeeRecord('common\models\Iva', array('percentagem' => '20', 'descricao' => 'iva de aparelhoooo','emvigor'=>9));
-        $this->tester->seeRecord('common\models\Iva', array('percentagem' => '12', 'descricao' => 'iva de aparelho','emvigor'=>10));
+        $this->tester->dontSeeRecord('common\models\Iva', array('percentagem' => '20', 'descricao' => 'iva de aparelhoooo', 'emvigor' => 9));
+        $this->tester->seeRecord('common\models\Iva', array('percentagem' => '12', 'descricao' => 'iva de aparelho', 'emvigor' => 10));
 
     }
 
@@ -63,7 +63,7 @@ class IvaTest extends \Codeception\Test\Unit
     {
         $ivas = new Iva();
         $ivas->delete();
-        $ivas = Iva::findOne(['percentagem' => '20', 'descricao' => 'iva de aparelhoooo','emvigor'=>2]);
+        $ivas = Iva::findOne(['percentagem' => '20', 'descricao' => 'iva de aparelhoooo', 'emvigor' => 2]);
         $this->assertNull($ivas);
     }
 

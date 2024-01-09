@@ -25,7 +25,7 @@ class MarcacaoCest
         $I->click('SERVIÇOS');
         $I->wait(4);
         //Escolhe o servico a adicionar
-        $I->click('.add-to-cart','a[href*="create?servico_id=5"]');
+        $I->click('.add-to-cart','a[href*="create?servico_id=2"]');
         $I->wait(3);
         //Cria um servico
         $I->see('Criar Marcação');
@@ -35,7 +35,7 @@ class MarcacaoCest
         $I->click('');
         $I->wait(3);
         $I->click('Guardar e Selecionar Hora');
-        $I->amOnPage('marcacao/create-time?id=23');//VER ISTOS
+        $I->amOnPage('marcacao/create-time?id=23');//depende do id
         $I->wait(3);
         $I->selectOption('select[name="Marcacao[hora]"]', '11:00');
         $I->wait(3);

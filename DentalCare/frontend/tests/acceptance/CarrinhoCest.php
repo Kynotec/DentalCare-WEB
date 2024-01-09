@@ -23,12 +23,12 @@ class CarrinhoCest
         $I->click('PRODUTOS');
         $I->wait(4);
         //Escolhe o produto a adicionar ao carrinho
-        $I->click('.add-to-cart','a[href*="adicionar-ao-carrinho?produtoId=9"]');
+        $I->click('.add-to-cart','a[href*="adicionar-ao-carrinho?produtoId=4"]');
         $I->wait(3);
         //Clica no botão do carrinho
         $I->click('.bi-cart-fill.me-1','.btn.btn-outline-dark');
         $I->see('Total do Carrinho:');
-        $I->see('dada');
+        $I->see('Listerine - Elixir Bucal');
         $I->wait(3);
         //Remove Produto ao Carrinho
         $I->click('Remover');

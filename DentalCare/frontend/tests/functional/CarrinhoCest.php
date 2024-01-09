@@ -27,10 +27,10 @@ class CarrinhoCest
 
         //Entra na página do produto
         $I->click('PRODUTOS');
-        $I->click('.cart a[href*="adicionar-ao-carrinho?produtoId=9"]');
+        $I->click('.cart','a[href*="adicionar-ao-carrinho?produtoId=6"]');
         $I->click('Carrinho');
         $I->see('Total do Carrinho:');
-        $I->see('dada');
+        $I->see('Goteira');
 
         //Remover Produto Carrinho
         $I->click('Remover');

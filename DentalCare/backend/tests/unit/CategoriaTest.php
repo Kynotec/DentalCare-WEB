@@ -1,7 +1,7 @@
 <?php
 
 
-namespace backend\tests\Unit;
+namespace backend\tests\unit;
 
 use backend\tests\UnitTester;
 use common\models\Categoria;
@@ -16,7 +16,6 @@ class CategoriaTest extends \Codeception\Test\Unit
     {
         $categorias = new Categoria();
     }
-
 
 
     // tests
@@ -62,7 +61,6 @@ class CategoriaTest extends \Codeception\Test\Unit
         $categorias = Categoria::findOne(['descricao' => 'escova']);
         $this->assertNull($categorias);
     }
-
 
 
 }
