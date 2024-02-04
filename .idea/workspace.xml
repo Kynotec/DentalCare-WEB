@@ -13,6 +13,7 @@
   <component name="ComposerConfigs">
     <option name="configs">
       <option value="$PROJECT_DIR$/DentalCare/frontend/web/assets/c2295deb/composer.json" />
+      <option value="$PROJECT_DIR$/DentalCare/frontend/web/assets/9e015e92/composer.json" />
     </option>
   </component>
   <component name="ComposerSettings" doNotAsk="true">
@@ -35,6 +36,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\wamp64\bin\php\php8.1.13\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/yii2-app-advanced/vendor/ralouphie/getallheaders" />
@@ -233,11 +235,27 @@
       <path value="$PROJECT_DIR$/DentalCare/vendor/php-webdriver/webdriver" />
     </include_path>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2Y84kxxwyy0zBFFviJC2LoZuAbC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/DentalCare-WEB&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RunManager">
     <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings scope="ConfigurationFile" />
@@ -264,6 +282,9 @@
       <workItem from="1700748113737" duration="2398000" />
       <workItem from="1700765191001" duration="539000" />
       <workItem from="1700778385711" duration="1132000" />
+      <workItem from="1705521452171" duration="1244000" />
+      <workItem from="1705523302484" duration="1803000" />
+      <workItem from="1706865163570" duration="4364000" />
     </task>
     <servers />
   </component>

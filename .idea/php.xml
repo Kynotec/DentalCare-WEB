@@ -202,9 +202,13 @@
       <path value="$PROJECT_DIR$/DentalCare/vendor/bower-asset/jquery-ui" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/yiisoft/yii2-jui" />
       <path value="$PROJECT_DIR$/DentalCare/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/module-db" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/codeception/module-webdriver" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/DentalCare/vendor/php-webdriver/webdriver" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpStanOptionsConfiguration">
