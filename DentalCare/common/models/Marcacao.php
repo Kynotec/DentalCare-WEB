@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string|null $descricao
  * @property string $data
- * @property string $hora
+ * @property string $hora // no projeto de sis não existe
  * @property string $estado
  * @property int|null $profile_id
  * @property int|null $servico_id

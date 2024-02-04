@@ -35,7 +35,7 @@ class Diagnostico extends \yii\db\ActiveRecord
     {
         return [
             [['data', 'hora'], 'safe'],
-            [['data', 'hora', 'consulta_id'], 'required'],
+            [['data', 'hora', 'consulta_id'], 'required'], //em sis consulta_id e profile_id estão required
             [['profile_id', 'consulta_id'], 'integer'],
             [['descricao'], 'string', 'max' => 45],
             [['profile_id'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::class, 'targetAttribute' => ['profile_id' => 'id']],
