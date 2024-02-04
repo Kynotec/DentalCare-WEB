@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 <div class="consulta-form">
     <br>
 
-    <?php $form = ActiveForm::begin(['action' => ['create']]); ?>
+    <?php $form = ActiveForm::begin([]); ?>
 
     <?= $form->field($model, 'descricao')->textInput(['maxlength' => true]) ?>
 

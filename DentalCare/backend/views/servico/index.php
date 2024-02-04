@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     if (!empty($model->imagens) && is_array($model->imagens)) {
                                         // Check if the first element exists and has the "filename" key
                                         if (isset($model->imagens[0]['filename'])) {
-                                            return Html::img('http://localhost/DentalCare-WEB/DentalCare/public' . '/images/services/' . $model->imagens[0]['filename'],['style'=>'height: 100px; display: block; margin: 0 auto;']);
+                                            return Html::img('http://172.22.21.201/DentalCare-WEB/DentalCare/public' . '/images/services/' . $model->imagens[0]['filename'],['style'=>'height: 100px; display: block; margin: 0 auto;']);
                                         }
                                     }
 

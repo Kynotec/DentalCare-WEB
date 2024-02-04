@@ -11,7 +11,7 @@ class ProdutoController extends ActiveController
 {
     public $modelClass = 'common\models\Produto';
 
-
+/*
     public function behaviors()
     {
         Yii::$app->params['id'] = 0;
@@ -21,7 +21,7 @@ class ProdutoController extends ActiveController
         ];
         return $behaviors;
     }
-
+*/
     public function actionAlterarpreco($nome)
     {
         $novo_preco=\Yii::$app->request->post('precounitario');

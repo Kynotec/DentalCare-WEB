@@ -78,12 +78,14 @@ return [
                         'GET {data}/count' => 'count', // 'count' é 'actionCount'
                         'DELETE {consultaid}' => 'delporid', // 'delporid' é 'actionDelporid'
                         'PUT alterardata/{profileid}' => 'alterardata', // 'alterardata' é 'actionAlterardata'
+                        'PUT editar-consulta/{idConsulta}' => 'editar-consulta',
 
                     ],
                     'tokens' => [
-                        '{profileid}' => '<profileid:\\d+>',
-                        '{data}' => '<data:[\\w-]+>',
-                        '{consultaid}' => '<consultaid:\\w+>', //[a-zA-Z0-9_] 1 ou + vezes (char)
+                        '{profileid}' => '<profileid:\d+>',
+                        '{data}' => '<data:[\w-]+>',
+                        '{idConsulta}' => '<idConsulta:\d+>',
+                        '{consultaid}' => '<consultaid:\w+>',
                     ],
                 ],
                 //////////////////////////////////////DIAGNOSTICO//////////////////////////////////////////////////////////

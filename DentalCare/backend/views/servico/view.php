@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'value' => function ($model) {
                                     if (!empty($model->imagens) && is_array($model->imagens)) {
                                         if (isset($model->imagens[0]['filename'])) {
-                                            return Html::img('http://localhost/DentalCare-WEB/DentalCare/public' . '/images/services/' . $model->imagens[0]['filename'], ['style' => 'height: 150px; display: block; margin: 0 auto;']);
+                                            return Html::img('http://172.22.21.201/DentalCare-WEB/DentalCare/public' . '/images/services/' . $model->imagens[0]['filename'], ['style' => 'height: 150px; display: block; margin: 0 auto;']);
                                         }
                                     }
 

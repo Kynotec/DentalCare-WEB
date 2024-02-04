@@ -5,7 +5,7 @@
 
         if (!empty($model->imagens) && isset($model->imagens[0]['filename'])): ?>
             <img class="img card-img-top"
-                 src="<?php echo 'http://localhost/DentalCare-WEB/DentalCare/public/images/services/' . $model->imagens[0]['filename']; ?>"
+                 src="<?php echo 'http://172.22.21.201/DentalCare-WEB/DentalCare/public/images/services/' . $model->imagens[0]['filename']; ?>"
                  alt="...">
         <?php else: ?>
             <p>error image</p> <!-- Or any default value or message you want to display -->

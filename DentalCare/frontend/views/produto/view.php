@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="text-center">
         <?php if (!empty($model->imagens) && isset($model->imagens[0]['filename'])): ?>
             <img class="img" style="max-width: 100%; max-height: 400px;"
-                 src="<?= 'http://localhost/DentalCare-WEB/DentalCare/public/images/products/' . $model->imagens[0]['filename']; ?>"
+                 src="<?= 'http://172.22.21.201/DentalCare-WEB/DentalCare/public/images/products/' . $model->imagens[0]['filename']; ?>"
                  alt="...">
         <?php else: ?>
             <p class="error-message">Imagem não disponível</p>
