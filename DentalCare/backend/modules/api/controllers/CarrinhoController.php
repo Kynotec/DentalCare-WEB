@@ -52,7 +52,7 @@ class CarrinhoController extends ActiveController
 
         // Retorna algo indicando que o carrinho não foi encontrado
         return [
-            'error' => 'Carrinho não encontrado para o usuário ID ' . $user_id,
+         //   'message' => 'Não existem produtos no carrinho.',
         ];
     }
 
