@@ -3,6 +3,7 @@
 namespace backend\modules\api\controllers;
 
 use backend\modules\api\components\CustomAuth;
+use common\models\Imagem;
 use Yii;
 use yii\rest\ActiveController;
 class ServicoController extends ActiveController
@@ -39,6 +40,23 @@ class ServicoController extends ActiveController
             ->where(['descricao' => $descricao])
             ->all();
         return $servico;
+    }
+
+    public function actionGetImagem()
+    {
+        $servicos =  $this->modelClass::find()->all();
+        $servicosarray = [];
+        foreach ($servicos as $servico){
+
+            $imagem = Imagem::find()->where(['servico_id'=>$servico->id])->one();
+            $servicosarray[] = ['id'=>$servico->id,
+                'nome'=>$servico->nome,
+                'descricao'=>$servico->descricao,
+                'preco'=>$servico->preco,
+                'imagem'=>$imagem->filename];
+        }
+        return $servicosarray;
+
     }
 
 }

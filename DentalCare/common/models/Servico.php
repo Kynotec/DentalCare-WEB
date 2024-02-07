@@ -17,7 +17,7 @@ use yii\web\UploadedFile;
  * @property int|null $ativo
  * @property int|null $iva_id
  *
- * @property Consulta[] $consultas
+ * @property Marcacao[] $consultas
  * @property Imagem[] $imagens
  * @property Iva $iva
  * @property LinhaFatura[] $linhaFaturas
@@ -91,7 +91,7 @@ class Servico extends \yii\db\ActiveRecord
      */
     public function getConsultas()
     {
-        return $this->hasMany(Consulta::class, ['servico_id' => 'id']);
+        return $this->hasMany(Marcacao::class, ['servico_id' => 'id']);
     }
 
     /**
@@ -103,6 +103,7 @@ class Servico extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Imagem::class, ['servico_id' => 'id']);
     }
+
 
     public function getShortDescription()
     {
