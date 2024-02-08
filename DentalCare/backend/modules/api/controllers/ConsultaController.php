@@ -4,6 +4,7 @@ namespace backend\modules\api\controllers;
 
 use backend\modules\api\components\CustomAuth;
 use common\models\Marcacao;
+use common\models\Servico;
 use Yii;
 use yii\rest\ActiveController;
 class ConsultaController extends ActiveController
@@ -19,6 +20,26 @@ class ConsultaController extends ActiveController
             'class' => CustomAuth::className(),
         ];
         return $behaviors;
+    }
+
+    // Adicionar consulta
+    public function actionAdicionarConsulta()
+    {
+        $model = new $this->modelClass;
+        $descricao = Yii::$app->request->post('descricao');
+        $data = Yii::$app->request->post('data');
+        $hora = Yii::$app->request->post('hora');
+        $estado = 'Por Realizar';
+        $nomeservico = Yii::$app->request->post('nomeservico');
+        $servico_id = Servico::find()->where(['nome'=>$nomeservico])->One();
+        $model->descricao = $descricao;
+        $model->estado = $estado;
+        $model->data = $data;
+        $model->hora = $hora;
+        $model->servico_id = $servico_id->id;
+        $model->profile_id =  Yii::$app->params['id'];
+        $model->save();
+        return $model;
     }
 
     // Editar consulta
@@ -44,9 +65,8 @@ class ConsultaController extends ActiveController
     //Serve para filtrar atraves do token as marcações do perfil autenticado
     public function actionGetMarcacaoPerfil()
     {
-        $model = new $this->modelClass;
 
-        $marcacoes = $model::find()
+        $marcacoes =  $this->modelClass::find()
             ->select([
                 'consultas.id',
                 'consultas.descricao',

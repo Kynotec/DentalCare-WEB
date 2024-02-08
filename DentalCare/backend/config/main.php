@@ -78,6 +78,7 @@ return [
                         'GET {data}/count' => 'count', // 'count' é 'actionCount'
                         'DELETE {consultaid}' => 'delporid', // 'delporid' é 'actionDelporid'
                         'PUT alterardata/{profileid}' => 'alterardata', // 'alterardata' é 'actionAlterardata'
+                        'PUT adicionar-consulta' => 'adicionar-consulta',
                         'PUT editar-consulta/{idConsulta}' => 'editar-consulta',
 
                     ],

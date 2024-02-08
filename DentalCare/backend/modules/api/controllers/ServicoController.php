@@ -2,15 +2,12 @@
 
 namespace backend\modules\api\controllers;
 
-use backend\modules\api\components\CustomAuth;
 use common\models\Imagem;
-use Yii;
 use yii\rest\ActiveController;
+
 class ServicoController extends ActiveController
 {
     public $modelClass = 'common\models\Servico';
-
-
     //Permite ir buscar o valor da percentagem do iva_id associado
     public function actionGetIva()
     {
@@ -33,6 +30,7 @@ class ServicoController extends ActiveController
         return $servicos;
     }
 
+
     public function actionServicospeladescricao($descricao)
     {
         $servicomodel = new $this->modelClass;
@@ -41,6 +39,7 @@ class ServicoController extends ActiveController
             ->all();
         return $servico;
     }
+
 
     public function actionGetImagem()
     {
@@ -59,4 +58,7 @@ class ServicoController extends ActiveController
 
     }
 
+
+
 }
+
