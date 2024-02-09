@@ -36,7 +36,7 @@ class Marcacao extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['hora', 'estado'], 'required'],
+            [['data', 'estado'], 'required'],
             [['data', 'hora'], 'safe'],
             [['profile_id', 'servico_id'], 'integer'],
             [['descricao'], 'string', 'max' => 45],
