@@ -78,7 +78,7 @@ class CarrinhoController extends ActiveController
 
                     $fatura = new Faturas();
                     $fatura->profile_id = $user_id;
-                    $fatura->data = date('Y-m-d');
+                    $fatura->data = date('Y-m-d H:i:s');
                     $fatura->valortotal = 0;
                     $fatura->ivatotal = 0;
                     $fatura->subtotal = 0;
