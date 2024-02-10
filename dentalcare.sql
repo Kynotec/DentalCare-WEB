@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 10-Fev-2024 às 18:01
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.2.0
+-- Generation Time: Feb 10, 2024 at 09:06 PM
+-- Server version: 8.2.0
+-- PHP Version: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `dentalcare`
+-- Database: `dentalcare`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auth_assignment`
+-- Table structure for table `auth_assignment`
 --
 
 DROP TABLE IF EXISTS `auth_assignment`;
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `auth_assignment`
+-- Dumping data for table `auth_assignment`
 --
 
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auth_item`
+-- Table structure for table `auth_item`
 --
 
 DROP TABLE IF EXISTS `auth_item`;
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `auth_item`
+-- Dumping data for table `auth_item`
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
@@ -125,7 +125,7 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auth_item_child`
+-- Table structure for table `auth_item_child`
 --
 
 DROP TABLE IF EXISTS `auth_item_child`;
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `auth_item_child`
+-- Dumping data for table `auth_item_child`
 --
 
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
@@ -199,7 +199,7 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auth_rule`
+-- Table structure for table `auth_rule`
 --
 
 DROP TABLE IF EXISTS `auth_rule`;
@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `carrinhos`
+-- Table structure for table `carrinhos`
 --
 
 DROP TABLE IF EXISTS `carrinhos`;
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `carrinhos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categorias`
+-- Table structure for table `categorias`
 --
 
 DROP TABLE IF EXISTS `categorias`;
@@ -241,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `categorias`
+-- Dumping data for table `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `descricao`) VALUES
@@ -251,7 +251,7 @@ INSERT INTO `categorias` (`id`, `descricao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `consultas`
+-- Table structure for table `consultas`
 --
 
 DROP TABLE IF EXISTS `consultas`;
@@ -269,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `consultas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `consultas`
+-- Dumping data for table `consultas`
 --
 
 INSERT INTO `consultas` (`id`, `descricao`, `data`, `hora`, `estado`, `profile_id`, `servico_id`) VALUES
@@ -280,7 +280,7 @@ INSERT INTO `consultas` (`id`, `descricao`, `data`, `hora`, `estado`, `profile_i
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `diagnosticos`
+-- Table structure for table `diagnosticos`
 --
 
 DROP TABLE IF EXISTS `diagnosticos`;
@@ -297,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `diagnosticos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `diagnosticos`
+-- Dumping data for table `diagnosticos`
 --
 
 INSERT INTO `diagnosticos` (`id`, `descricao`, `data`, `hora`, `profile_id`, `consulta_id`) VALUES
@@ -307,7 +307,7 @@ INSERT INTO `diagnosticos` (`id`, `descricao`, `data`, `hora`, `profile_id`, `co
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `empresas`
+-- Table structure for table `empresas`
 --
 
 DROP TABLE IF EXISTS `empresas`;
@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `empresas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `empresas`
+-- Dumping data for table `empresas`
 --
 
 INSERT INTO `empresas` (`id`, `designacaosocial`, `email`, `telefone`, `nif`, `morada`, `codigopostal`, `localidade`, `capitalsocial`) VALUES
@@ -334,7 +334,7 @@ INSERT INTO `empresas` (`id`, `designacaosocial`, `email`, `telefone`, `nif`, `m
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `faturas`
+-- Table structure for table `faturas`
 --
 
 DROP TABLE IF EXISTS `faturas`;
@@ -351,20 +351,20 @@ CREATE TABLE IF NOT EXISTS `faturas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `faturas`
+-- Dumping data for table `faturas`
 --
 
 INSERT INTO `faturas` (`id`, `data`, `valortotal`, `ivatotal`, `subtotal`, `estado`, `profile_id`) VALUES
-(22, '2024-02-03 12:00:00', '32.64', '4.64', '28.00', 'Pago', 1),
-(23, '2024-02-03 11:00:00', '21.08', '1.08', '20.00', 'Pago', 1),
-(24, '2024-02-03 17:47:00', '103.46', '7.66', '95.80', 'Pago', 1),
-(25, '2024-02-03 07:11:13', '4.31', '0.81', '3.51', 'Pago', 1),
-(26, '2024-02-03 09:11:13', '46.74', '8.74', '38.00', 'Pago', 1);
+(22, '2024-02-03 12:00:00', 32.64, 4.64, 28.00, 'Pago', 1),
+(23, '2024-02-03 11:00:00', 21.08, 1.08, 20.00, 'Pago', 1),
+(24, '2024-02-03 17:47:00', 103.46, 7.66, 95.80, 'Pago', 1),
+(25, '2024-02-03 07:11:13', 4.31, 0.81, 3.51, 'Pago', 1),
+(26, '2024-02-03 09:11:13', 46.74, 8.74, 38.00, 'Pago', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `imagens`
+-- Table structure for table `imagens`
 --
 
 DROP TABLE IF EXISTS `imagens`;
@@ -381,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `imagens` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `imagens`
+-- Dumping data for table `imagens`
 --
 
 INSERT INTO `imagens` (`id`, `filename`, `produto_id`, `servico_id`, `diagnostico_id`) VALUES
@@ -400,7 +400,7 @@ INSERT INTO `imagens` (`id`, `filename`, `produto_id`, `servico_id`, `diagnostic
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ivas`
+-- Table structure for table `ivas`
 --
 
 DROP TABLE IF EXISTS `ivas`;
@@ -413,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `ivas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `ivas`
+-- Dumping data for table `ivas`
 --
 
 INSERT INTO `ivas` (`id`, `percentagem`, `descricao`, `emvigor`) VALUES
@@ -424,7 +424,7 @@ INSERT INTO `ivas` (`id`, `percentagem`, `descricao`, `emvigor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `linha_carrinhos`
+-- Table structure for table `linha_carrinhos`
 --
 
 DROP TABLE IF EXISTS `linha_carrinhos`;
@@ -444,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `linha_carrinhos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `linha_faturas`
+-- Table structure for table `linha_faturas`
 --
 
 DROP TABLE IF EXISTS `linha_faturas`;
@@ -464,22 +464,22 @@ CREATE TABLE IF NOT EXISTS `linha_faturas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `linha_faturas`
+-- Dumping data for table `linha_faturas`
 --
 
 INSERT INTO `linha_faturas` (`id`, `quantidade`, `valorunitario`, `valoriva`, `valortotal`, `fatura_id`, `produto_id`, `servico_id`) VALUES
-(11, '4.00', 4, 3.68, '19.68', 22, 1, NULL),
-(12, '6.00', 2, 0.96, '12.96', 22, 2, NULL),
-(13, '4.00', 4, 0.92, '16.92', 23, 1, NULL),
-(14, '2.00', 2, 0.16, '4.16', 23, 2, NULL),
-(15, '1.00', 95.8, 7.664, '103.46', 24, 6, NULL),
-(16, '1.00', 3.5, 0.805, '4.31', 25, 4, NULL),
-(17, '1.00', 38, 8.74, '46.74', 26, 3, NULL);
+(11, 4.00, 4, 3.68, 19.68, 22, 1, NULL),
+(12, 6.00, 2, 0.96, 12.96, 22, 2, NULL),
+(13, 4.00, 4, 0.92, 16.92, 23, 1, NULL),
+(14, 2.00, 2, 0.16, 4.16, 23, 2, NULL),
+(15, 1.00, 95.8, 7.664, 103.46, 24, 6, NULL),
+(16, 1.00, 3.5, 0.805, 4.31, 25, 4, NULL),
+(17, 1.00, 38, 8.74, 46.74, 26, 3, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `migration`
+-- Table structure for table `migration`
 --
 
 DROP TABLE IF EXISTS `migration`;
@@ -492,7 +492,7 @@ CREATE TABLE IF NOT EXISTS `migration` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Table structure for table `produtos`
 --
 
 DROP TABLE IF EXISTS `produtos`;
@@ -511,7 +511,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `produtos`
+-- Dumping data for table `produtos`
 --
 
 INSERT INTO `produtos` (`id`, `ativo`, `nome`, `descricao`, `precounitario`, `stock`, `iva_id`, `categoria_id`) VALUES
@@ -525,7 +525,7 @@ INSERT INTO `produtos` (`id`, `ativo`, `nome`, `descricao`, `precounitario`, `st
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `profiles`
+-- Table structure for table `profiles`
 --
 
 DROP TABLE IF EXISTS `profiles`;
@@ -542,12 +542,12 @@ CREATE TABLE IF NOT EXISTS `profiles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `profiles`
+-- Dumping data for table `profiles`
 --
 
 INSERT INTO `profiles` (`id`, `nome`, `telefone`, `morada`, `nif`, `codigopostal`, `user_id`) VALUES
 (1, 'Admin', '123456789', 'Rua do admin', '123456787', '2400-555', 1),
-(2, 'Joao', '925847878', 'Rua de Almeiriga, Matosinhos', '954878458', '4455-417', 2),
+(2, 'João Pereira', '925847878', 'Rua de Almeiriga, Matosinhos', '954878458', '4455-417', 2),
 (3, 'Manuela Jordão', '913547878', 'Rua de Leiria, Casal de Cambra, Lisboa', '998754823', '2605-798', 3),
 (4, 'Medico 1', '244547877', 'Leiria', '998758748', '2400-777', 4),
 (5, 'Medico 2', '244536987', 'Leiria', '123659878', '2400-777', 5),
@@ -557,7 +557,7 @@ INSERT INTO `profiles` (`id`, `nome`, `telefone`, `morada`, `nif`, `codigopostal
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `servicos`
+-- Table structure for table `servicos`
 --
 
 DROP TABLE IF EXISTS `servicos`;
@@ -574,7 +574,7 @@ CREATE TABLE IF NOT EXISTS `servicos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `servicos`
+-- Dumping data for table `servicos`
 --
 
 INSERT INTO `servicos` (`id`, `referencia`, `nome`, `descricao`, `preco`, `ativo`, `iva_id`) VALUES
@@ -587,7 +587,7 @@ INSERT INTO `servicos` (`id`, `referencia`, `nome`, `descricao`, `preco`, `ativo
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `user`
+-- Table structure for table `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -609,7 +609,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
@@ -622,56 +622,56 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_res
 (7, 'funcionario2', 'ia7H0orbjABLLHUMmu_ZyMTv_RAfNjbF', '$2y$13$hxgxmiZ6MOFgofPNd/jsI.KynFoGTHocZjS2SeMPAn4jgbaO6lITG', NULL, 'funcionario2@gmail.com', 9, 1704775501, 1704775501, NULL);
 
 --
--- Restrições para despejos de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Limitadores para a tabela `auth_assignment`
+-- Constraints for table `auth_assignment`
 --
 ALTER TABLE `auth_assignment`
   ADD CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `auth_item`
+-- Constraints for table `auth_item`
 --
 ALTER TABLE `auth_item`
   ADD CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `auth_item_child`
+-- Constraints for table `auth_item_child`
 --
 ALTER TABLE `auth_item_child`
   ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `carrinhos`
+-- Constraints for table `carrinhos`
 --
 ALTER TABLE `carrinhos`
   ADD CONSTRAINT `carrinhos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Limitadores para a tabela `consultas`
+-- Constraints for table `consultas`
 --
 ALTER TABLE `consultas`
   ADD CONSTRAINT `consultas_ibfk_1` FOREIGN KEY (`servico_id`) REFERENCES `servicos` (`id`),
   ADD CONSTRAINT `consultas_ibfk_2` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`);
 
 --
--- Limitadores para a tabela `diagnosticos`
+-- Constraints for table `diagnosticos`
 --
 ALTER TABLE `diagnosticos`
   ADD CONSTRAINT `diagnosticos_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`),
   ADD CONSTRAINT `diagnosticos_ibfk_2` FOREIGN KEY (`consulta_id`) REFERENCES `consultas` (`id`);
 
 --
--- Limitadores para a tabela `faturas`
+-- Constraints for table `faturas`
 --
 ALTER TABLE `faturas`
   ADD CONSTRAINT `faturas_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`);
 
 --
--- Limitadores para a tabela `imagens`
+-- Constraints for table `imagens`
 --
 ALTER TABLE `imagens`
   ADD CONSTRAINT `imagens_ibfk_1` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`),
@@ -679,14 +679,14 @@ ALTER TABLE `imagens`
   ADD CONSTRAINT `imagens_ibfk_3` FOREIGN KEY (`diagnostico_id`) REFERENCES `diagnosticos` (`id`);
 
 --
--- Limitadores para a tabela `linha_carrinhos`
+-- Constraints for table `linha_carrinhos`
 --
 ALTER TABLE `linha_carrinhos`
   ADD CONSTRAINT `linha_carrinhos_ibfk_2` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `linha_carrinhos_ibfk_3` FOREIGN KEY (`carrinho_id`) REFERENCES `carrinhos` (`id`) ON DELETE CASCADE;
 
 --
--- Limitadores para a tabela `linha_faturas`
+-- Constraints for table `linha_faturas`
 --
 ALTER TABLE `linha_faturas`
   ADD CONSTRAINT `linha_faturas_ibfk_1` FOREIGN KEY (`fatura_id`) REFERENCES `faturas` (`id`) ON DELETE CASCADE,
@@ -694,20 +694,20 @@ ALTER TABLE `linha_faturas`
   ADD CONSTRAINT `linha_faturas_ibfk_3` FOREIGN KEY (`servico_id`) REFERENCES `servicos` (`id`) ON DELETE CASCADE;
 
 --
--- Limitadores para a tabela `produtos`
+-- Constraints for table `produtos`
 --
 ALTER TABLE `produtos`
   ADD CONSTRAINT `produtos_ibfk_1` FOREIGN KEY (`iva_id`) REFERENCES `ivas` (`id`),
   ADD CONSTRAINT `produtos_ibfk_2` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`);
 
 --
--- Limitadores para a tabela `profiles`
+-- Constraints for table `profiles`
 --
 ALTER TABLE `profiles`
   ADD CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Limitadores para a tabela `servicos`
+-- Constraints for table `servicos`
 --
 ALTER TABLE `servicos`
   ADD CONSTRAINT `servicos_ibfk_1` FOREIGN KEY (`iva_id`) REFERENCES `ivas` (`id`);
