@@ -245,9 +245,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/DentalCare-WEB&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/DentalCare&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -256,6 +257,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="n" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings scope="ConfigurationFile" />
@@ -285,6 +291,9 @@
       <workItem from="1705521452171" duration="1244000" />
       <workItem from="1705523302484" duration="1803000" />
       <workItem from="1706865163570" duration="4364000" />
+      <workItem from="1707589327919" duration="33000" />
+      <workItem from="1707590718535" duration="1849000" />
+      <workItem from="1707593015019" duration="180000" />
     </task>
     <servers />
   </component>
