@@ -36,7 +36,7 @@ $this->title = 'Carrinho';
                     <td>
                         <?php if (!empty($linhaCarrinho->produto->imagens) && isset($linhaCarrinho->produto->imagens[0]['filename'])): ?>
                             <?= Html::img(
-                                'http://localhost/DentalCare-WEB/DentalCare/public/images/products/' . $linhaCarrinho->produto->imagens[0]['filename'],
+                                'http://172.22.21.201/DentalCare-WEB/DentalCare/public/images/products/' . $linhaCarrinho->produto->imagens[0]['filename'],
                                 ['class' => 'img card-img-center', 'alt' => '...',
                                     'width' => 110, // Defina a largura desejada
                                     'height' => 105, // Defina a altura desejada
