@@ -3,6 +3,7 @@
 namespace backend\modules\api\controllers;
 
 use common\models\Imagem;
+use common\models\Iva;
 use yii\rest\ActiveController;
 
 class ServicoController extends ActiveController
@@ -48,9 +49,11 @@ class ServicoController extends ActiveController
         foreach ($servicos as $servico){
 
             $imagem = Imagem::find()->where(['servico_id'=>$servico->id])->one();
+            $ivaspercentagem = Iva::find()->where(['id'=>$servico->iva_id])->one();
             $servicosarray[] = ['id'=>$servico->id,
                 'nome'=>$servico->nome,
                 'descricao'=>$servico->descricao,
+                'ivaspercentagem'=>$ivaspercentagem->percentagem,
                 'preco'=>$servico->preco,
                 'imagem'=>$imagem->filename];
         }
