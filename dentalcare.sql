@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 04-Fev-2024 às 00:12
+-- Tempo de geração: 10-Fev-2024 às 18:01
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.2.0
 
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `carrinhos` (
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -266,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `consultas` (
   PRIMARY KEY (`id`),
   KEY `profile_id` (`profile_id`),
   KEY `servico_id` (`servico_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `consultas`
@@ -348,32 +348,18 @@ CREATE TABLE IF NOT EXISTS `faturas` (
   `profile_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `profile_id` (`profile_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `faturas`
 --
 
 INSERT INTO `faturas` (`id`, `data`, `valortotal`, `ivatotal`, `subtotal`, `estado`, `profile_id`) VALUES
-(21, '2024-02-03 00:00:00', '0.00', '0.00', '0.00', 'Pago', 1),
-(22, '2024-02-03 00:00:00', '32.64', '4.64', '28.00', 'Pago', 1),
-(23, '2024-02-03 00:00:00', '21.08', '1.08', '20.00', 'Pago', 1),
-(24, '2024-02-03 00:00:00', '103.46', '7.66', '95.80', 'Pago', 1),
-(25, '2024-02-03 00:00:00', '4.31', '0.81', '3.51', 'Pago', 1),
-(26, '2024-02-03 00:00:00', '46.74', '8.74', '38.00', 'Pago', 1),
-(27, '2024-02-03 00:00:00', '46.74', '8.74', '38.00', 'Pago', 1),
-(28, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(29, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(30, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(31, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(32, '2024-02-03 00:00:00', '4.92', '0.92', '4.00', 'Pago', 1),
-(33, '2024-02-03 00:00:00', '4.92', '0.92', '4.00', 'Pago', 1),
-(34, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(35, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(36, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(37, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(38, '2024-02-03 00:00:00', '2.16', '0.16', '2.00', 'Pago', 1),
-(39, '2024-02-03 00:00:00', '4.92', '0.92', '4.00', 'Pago', 1);
+(22, '2024-02-03 12:00:00', '32.64', '4.64', '28.00', 'Pago', 1),
+(23, '2024-02-03 11:00:00', '21.08', '1.08', '20.00', 'Pago', 1),
+(24, '2024-02-03 17:47:00', '103.46', '7.66', '95.80', 'Pago', 1),
+(25, '2024-02-03 07:11:13', '4.31', '0.81', '3.51', 'Pago', 1),
+(26, '2024-02-03 09:11:13', '46.74', '8.74', '38.00', 'Pago', 1);
 
 -- --------------------------------------------------------
 
@@ -453,7 +439,7 @@ CREATE TABLE IF NOT EXISTS `linha_carrinhos` (
   PRIMARY KEY (`id`),
   KEY `carrinho_id` (`carrinho_id`),
   KEY `produto_id` (`produto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -475,34 +461,20 @@ CREATE TABLE IF NOT EXISTS `linha_faturas` (
   KEY `fatura_id` (`fatura_id`),
   KEY `produto_id` (`produto_id`),
   KEY `servico_id` (`servico_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `linha_faturas`
 --
 
 INSERT INTO `linha_faturas` (`id`, `quantidade`, `valorunitario`, `valoriva`, `valortotal`, `fatura_id`, `produto_id`, `servico_id`) VALUES
-(10, '1.00', 4, 0.92, '4.92', 21, 1, NULL),
 (11, '4.00', 4, 3.68, '19.68', 22, 1, NULL),
 (12, '6.00', 2, 0.96, '12.96', 22, 2, NULL),
 (13, '4.00', 4, 0.92, '16.92', 23, 1, NULL),
 (14, '2.00', 2, 0.16, '4.16', 23, 2, NULL),
 (15, '1.00', 95.8, 7.664, '103.46', 24, 6, NULL),
 (16, '1.00', 3.5, 0.805, '4.31', 25, 4, NULL),
-(17, '1.00', 38, 8.74, '46.74', 26, 3, NULL),
-(18, '1.00', 38, 8.74, '46.74', 27, 3, NULL),
-(19, '1.00', 2, 0.16, '2.16', 28, 2, NULL),
-(20, '1.00', 2, 0.16, '2.16', 29, 2, NULL),
-(21, '1.00', 2, 0.16, '2.16', 30, 2, NULL),
-(22, '1.00', 2, 0.16, '2.16', 31, 2, NULL),
-(23, '1.00', 4, 0.92, '4.92', 32, 1, NULL),
-(24, '1.00', 4, 0.92, '4.92', 33, 1, NULL),
-(25, '1.00', 2, 0.16, '2.16', 34, 2, NULL),
-(26, '1.00', 2, 0.16, '2.16', 35, 2, NULL),
-(27, '1.00', 2, 0.16, '2.16', 36, 2, NULL),
-(28, '1.00', 2, 0.16, '2.16', 37, 2, NULL),
-(29, '1.00', 2, 0.16, '2.16', 38, 2, NULL),
-(30, '1.00', 4, 0.92, '4.92', 39, 1, NULL);
+(17, '1.00', 38, 8.74, '46.74', 26, 3, NULL);
 
 -- --------------------------------------------------------
 
